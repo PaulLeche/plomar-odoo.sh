@@ -10,7 +10,7 @@ class SaleOrderDeliveryDate(models.Model):
     def action_confirm(self):
         res = super(SaleOrderDeliveryDate, self).action_confirm()
         date_action = fields.Datetime.now()
-        delivery_date = date_action + timedelta(days=5)
+        delivery_date = date_action + timedelta(days=7)
         print(f"Custom delivery date 1: {delivery_date}")
         print(f"Custom delivery date 2: {delivery_date.strftime('%Y-%m-%d %H:%M:%S')}")
         print()
