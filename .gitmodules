@@ -19,3 +19,7 @@
 	path = fel_sv_infile
 	url = git@github.com:aquih/fel_sv_infile.git
 	branch = 13.0
+[submodule "l10n_sv"]
+	path = l10n_sv
+	url = git@github.com:aquih/l10n_sv.git
+	branch = 16.0
