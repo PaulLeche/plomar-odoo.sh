@@ -11,3 +11,11 @@
 	path = l10n_gt_extra
 	url = git@github.com:rocketgithub/l10n_gt_extra.git
 	branch = 13.0
+[submodule "fel_sv"]
+	path = fel_sv
+	url = git@github.com:aquih/fel_sv.git
+	branch = 13.0
+[submodule "fel_sv_infile"]
+	path = fel_sv_infile
+	url = git@github.com:aquih/fel_sv_infile.git
+	branch = 13.0
