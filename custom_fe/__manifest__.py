@@ -2,7 +2,7 @@
 
 {
     'name': 'Custom Electronic Invoice GT',
-    'version': '1.1.5',
+    'version': '13.0',
     'license': "AGPL-3",
     'depends': [
         'account',
