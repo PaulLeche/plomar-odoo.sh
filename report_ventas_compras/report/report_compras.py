@@ -144,7 +144,8 @@ class ReportPurchaseBook(models.AbstractModel):
         if facturas:
             for inv in facturas:
                 # ELIMINAR CUANDO SE INSTALE EL CERTIFICADOR
-                tipo_doc = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else inv.journal_id.tipo_documento
+                # tipo_doc = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else inv.journal_id.tipo_documento
+                tipo_doc = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else 'FC'
                 
                 # MONTO GRAVADO
                 bienes_gravados = 0.00

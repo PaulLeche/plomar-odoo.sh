@@ -120,7 +120,8 @@ class ReportSaleBook(models.AbstractModel):
                 date = inv.invoice_date if inv.invoice_date else inv.date
 
                 # OTHER INVOICE DATA
-                tipo = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else inv.journal_id.tipo_documento
+                # tipo = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else inv.journal_id.tipo_documento 
+                tipo = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else 'FC'
 
                 # ELIMINAR CUANDO SE INSTALE EL CERTIFICADOR
                 if inv.state in ['posted']:
