@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="default_code_recinto_1" model="export.recinto">
+            <field name="code_recinto">01</field>
+            <field name="name_recinto">Terrestre San Bartolo</field>
+        </record>
+        <record id="default_code_recinto_2" model="export.recinto">
+            <field name="code_recinto">02</field>
+            <field name="name_recinto">Marítima de Acajutla</field>
+        </record>
+        <record id="default_code_recinto_3" model="export.recinto">
+            <field name="code_recinto">03</field>
+            <field name="name_recinto">Aerea de Comalapa</field>
+        </record>
+        <record id="default_code_recinto_4" model="export.recinto">
+            <field name="code_recinto">04</field>
+            <field name="name_recinto">Terrestre Las Chinamas</field>
+        </record>
+        <record id="default_code_recinto_5" model="export.recinto">
+            <field name="code_recinto">05</field>
+            <field name="name_recinto">Terrestre La Hachadura</field>
+        </record>
+        <record id="default_code_recinto_6" model="export.recinto">
+            <field name="code_recinto">06</field>
+            <field name="name_recinto">Terrestre Santa Ana</field>
+        </record>
+        <record id="default_code_recinto_7" model="export.recinto">
+            <field name="code_recinto">07</field>
+            <field name="name_recinto">Terrestre San Cristóbal</field>
+        </record>
+        <record id="default_code_recinto_8" model="export.recinto">
+            <field name="code_recinto">08</field>
+            <field name="name_recinto">Terrestre Anguiatú</field>
+        </record>
+        <record id="default_code_recinto_9" model="export.recinto">
+            <field name="code_recinto">09</field>
+            <field name="name_recinto">Terrestre El Amatillo</field>
+        </record>
+        <record id="default_code_recinto_10" model="export.recinto">
+            <field name="code_recinto">10</field>
+            <field name="name_recinto">Marítima La Unión (Puerto Cutuco)</field>
+        </record>
+        <record id="default_code_recinto_11" model="export.recinto">
+            <field name="code_recinto">11</field>
+            <field name="name_recinto">Terrestre El Poy</field>
+        </record>
+        <record id="default_code_recinto_12" model="export.recinto">
+            <field name="code_recinto">12</field>
+            <field name="name_recinto">Aduana Terrestre Metalío</field>
+        </record>
+        <record id="default_code_recinto_15" model="export.recinto">
+            <field name="code_recinto">15</field>
+            <field name="name_recinto">Fardos Postales</field>
+        </record>
+        <record id="default_code_recinto_16" model="export.recinto">
+            <field name="code_recinto">16</field>
+            <field name="name_recinto">Z.F. San Marcos</field>
+        </record>
+        <record id="default_code_recinto_17" model="export.recinto">
+            <field name="code_recinto">17</field>
+            <field name="name_recinto">Z.F. El Pedregal</field>
+        </record>
+        <record id="default_code_recinto_18" model="export.recinto">
+            <field name="code_recinto">18</field>
+            <field name="name_recinto">Z.F. San Bartolo</field>
+        </record>
+        <record id="default_code_recinto_20" model="export.recinto">
+            <field name="code_recinto">20</field>
+            <field name="name_recinto">Z.F. Exportsalva</field>
+        </record>
+        <record id="default_code_recinto_21" model="export.recinto">
+            <field name="code_recinto">21</field>
+            <field name="name_recinto">Z.F. American Park</field>
+        </record>
+        <record id="default_code_recinto_23" model="export.recinto">
+            <field name="code_recinto">23</field>
+            <field name="name_recinto">Z.F. Internacional</field>
+        </record>
+        <record id="default_code_recinto_24" model="export.recinto">
+            <field name="code_recinto">24</field>
+            <field name="name_recinto">Z.F. Diez</field>
+        </record>
+        <record id="default_code_recinto_26" model="export.recinto">
+            <field name="code_recinto">26</field>
+            <field name="name_recinto">Z.F. Miramar</field>
+        </record>
+        <record id="default_code_recinto_27" model="export.recinto">
+            <field name="code_recinto">27</field>
+            <field name="name_recinto">Z.F. Santo Tomas</field>
+        </record>
+        <record id="default_code_recinto_28" model="export.recinto">
+            <field name="code_recinto">28</field>
+            <field name="name_recinto">Z.F. Santa Tecla</field>
+        </record>
+        <record id="default_code_recinto_29" model="export.recinto">
+            <field name="code_recinto">29</field>
+            <field name="name_recinto">Z.F. Santa Ana</field>
+        </record>
+        <record id="default_code_recinto_30" model="export.recinto">
+            <field name="code_recinto">30</field>
+            <field name="name_recinto">Z.F. La Concordia</field>
+        </record>
+        <record id="default_code_recinto_31" model="export.recinto">
+            <field name="code_recinto">31</field>
+            <field name="name_recinto">Aérea Ilopango</field>
+        </record>
+        <record id="default_code_recinto_32" model="export.recinto">
+            <field name="code_recinto">32</field>
+            <field name="name_recinto">Z.F. Pipil</field>
+        </record>
+        <record id="default_code_recinto_33" model="export.recinto">
+            <field name="code_recinto">33</field>
+            <field name="name_recinto">Puerto Barillas</field>
+        </record>
+        <record id="default_code_recinto_34" model="export.recinto">
+            <field name="code_recinto">34</field>
+            <field name="name_recinto">Z.F. Calvo Conservas</field>
+        </record>
+        <record id="default_code_recinto_35" model="export.recinto">
+            <field name="code_recinto">35</field>
+            <field name="name_recinto">Feria Internacional</field>
+        </record>
+        <record id="default_code_recinto_36" model="export.recinto">
+            <field name="code_recinto">36</field>
+            <field name="name_recinto">Delg.Aduana El Papalón</field>
+        </record>
+        <record id="default_code_recinto_37" model="export.recinto">
+            <field name="code_recinto">37</field>
+            <field name="name_recinto">Z.F. Parque Industrial Sam-Li</field>
+        </record>
+        <record id="default_code_recinto_38" model="export.recinto">
+            <field name="code_recinto">38</field>
+            <field name="name_recinto">Z.F. San José</field>
+        </record>
+        <record id="default_code_recinto_39" model="export.recinto">
+            <field name="code_recinto">39</field>
+            <field name="name_recinto">Z.F. Las Mercedes</field>
+        </record>
+        <record id="default_code_recinto_71" model="export.recinto">
+            <field name="code_recinto">71</field>
+            <field name="name_recinto">Almacenes de Desarrollo (Aldesa)</field>
+        </record>
+        <record id="default_code_recinto_72" model="export.recinto">
+            <field name="code_recinto">72</field>
+            <field name="name_recinto">Almac. Gral. Dep. Occidente (Agdosa)</field>
+        </record>
+        <record id="default_code_recinto_73" model="export.recinto">
+            <field name="code_recinto">73</field>
+            <field name="name_recinto">Bodega General de Depósito (Bodesa)</field>
+        </record>
+        <record id="default_code_recinto_76" model="export.recinto">
+            <field name="code_recinto">76</field>
+            <field name="name_recinto">DHL</field>
+        </record>
+        <record id="default_code_recinto_77" model="export.recinto">
+            <field name="code_recinto">77</field>
+            <field name="name_recinto">Transauto (Santa Elena)</field>
+        </record>
+        <record id="default_code_recinto_80" model="export.recinto">
+            <field name="code_recinto">80</field>
+            <field name="name_recinto">Almacenadora Nejapa, S.a. de C.V</field>
+        </record>
+        <record id="default_code_recinto_81" model="export.recinto">
+            <field name="code_recinto">81</field>
+            <field name="name_recinto">Almacenadora Almaconsa S.A. de C.V</field>
+        </record>
+        <record id="default_code_recinto_83" model="export.recinto">
+            <field name="code_recinto">83</field>
+            <field name="name_recinto">Alm.Gral. Depósito Occidente (Apopa)</field>
+        </record>
+        <record id="default_code_recinto_85" model="export.recinto">
+            <field name="code_recinto">85</field>
+            <field name="name_recinto">Gutierrez Courier Y Cargo</field>
+        </record>
+        <record id="default_code_recinto_99" model="export.recinto">
+            <field name="code_recinto">99</field>
+            <field name="name_recinto">San Bartolo Envío Hn/Gt</field>
+        </record>
+
+    </data>
+</odoo>
