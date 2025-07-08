@@ -23,6 +23,3 @@
 	path = l10n_sv
 	url = git@github.com:aquih/l10n_sv.git
 	branch = 16.0
-[submodule "18.0"]
-	path = 18.0
-	url = https://github.com/XETECHS/Global.git
