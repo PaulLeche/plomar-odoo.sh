@@ -514,7 +514,7 @@ class AccountMove(models.Model):
         return data['archivo']
 
     def send_invoice(self):
-        if self.fe_active and self.company_id.fel_enabled:
+        if self.fe_active and self.company_id.fe_enabled:
             URL = self.env['ir.config_parameter'].sudo().get_param('url.webservice.fe')
             xml = self._xml()
             self.write({ 'arch_xml': base64.b64encode( xml ),
@@ -610,7 +610,7 @@ class AccountMove(models.Model):
 
     def button_cancel(self):
         for record in self:
-            if not record.fe_active or not record.company_id.fel_enabled:
+            if not record.fe_active or not record.company_id.fe_enabled:
                 continue
             if record.process_status:
                 if record.journal_id.fe_type != 'OTRO' and record.move_type in ['out_invoice', 'out_refund'] and record.process_status not in ('cancel', 'fail'):
