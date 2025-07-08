@@ -7,25 +7,37 @@ from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
+
+class ResCompanyEstablishment(models.Model):
+    _name = 'res.company.establishment'
+    _description = 'Company Establishment'
+    _rec_name = 'fe_tradename'
+
+    fe_tradename = fields.Char(string='Tradename', required=True)
+    fe_code = fields.Integer(string="Establishment Code", required=True)
+    company_id = fields.Many2one('res.company', string='Company')
+    export_code = fields.Char(string='Export Code')
+
+
 class ResCompany(models.Model):
     _inherit = 'res.company'
-
 
     fe_user = fields.Char(string='EI User')
     fe_key_webservice = fields.Char(string='EI Key WebServise')
     fe_sign_token = fields.Char(string='Sign Token')
     fe_other_email = fields.Char(string="Other Email")
+
     fe_establishment_ids = fields.One2many('res.company.establishment', 'company_id', string='Establishments')
-    fe_phrase_ids = fields.Many2many('account.fe.phrase', string='Phrase', required=False)
-    is_gt = fields.Boolean(string='Is GT', compute='_is_gt')
-    
-    #lets verify if the company is from Guatemala or not
-    @api.depends('country_id')
-    def _is_gt(self):
+    fe_phrase_ids = fields.Many2many('account.fe.phrase', string='Phrase', required=True)
+    tipo_personeria = fields.Char('Personeria', store=True)
+    afiliacion_iva = fields.Char('Afiliación', store=True)
+
+    fel_enabled = fields.Boolean(string='Enable FEL', compute='_compute_fel_enabled', store=True, help="Automatically enabled for Guatemala companies.")
+
+    @api.depends('country_id.code')
+    def _compute_fel_enabled(self):
         for record in self:
-            record.update( {'is_gt': record.country_id.code == 'GT'} )
-            
-    
+            record.fel_enabled = record.country_id.code == 'GT'
 
     def _get_headers(self):
         headers = {'Content-Type': 'application/json'}
@@ -39,17 +51,3 @@ class ResCompany(models.Model):
             raise ValidationError(_("Error. Token isn't setted"))
         return {"llave": self.fe_sign_token,
                 "alias": self.fe_user}
-
-
-class ResCompanyEstablishment(models.Model):
-    _name = 'res.company.establishment'
-    _description = 'Company Establishment'
-    _rec_name = 'fe_tradename'
-
-    fe_tradename = fields.Char(string='Tradename', required=True)
-    fe_code = fields.Integer(string="Establishment Code", required=True)
-    company_id = fields.Many2one('res.company', string='Company')
-    export_code = fields.Char(string='Export Code')
-    fe_tradename_street = fields.Char(string='Direccion')
-    fe_tradename_city = fields.Char(string='Municipio')
-    fe_tradename_state_id = fields.Many2one('res.country.state',string='Departamento')

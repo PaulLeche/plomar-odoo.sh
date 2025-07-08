@@ -8,21 +8,10 @@
             <field name="inherit_id" ref="account.view_account_journal_form"/>
             <field name="arch" type="xml">
                 <field name="type" position="after">
-                    <field name="active_fel" />
-                    <field name="special_fel" />
+                    <field name="fe_active" widget="boolean_toggle" invisible="not company_id.fel_enabled"/>
+                    <field name="fe_type" invisible="not company_id.fel_enabled" />
+                    <field name="fe_establishment_id" domain="[('company_id', '=', company_id)]" invisible="not company_id.fel_enabled"/>
                 </field>
-                <notebook position="inside">
-                    <page name="page_fel_information" string="FEL" attrs="{'invisible': [('active_fel', '=', False)]}">
-                        <group>
-                            <group>
-                                <field name="fe_type" attrs="{'required': [('active_fel', '=', True)]}"/>
-                            </group>
-                            <group>
-                                <field name="fe_establishment_id" domain="[('company_id', '=', company_id)]" attrs="{'required': [('active_fel', '=', True)]}"/>
-                            </group>
-                        </group>
-                    </page>
-                </notebook>
             </field>
         </record>
     </data>
