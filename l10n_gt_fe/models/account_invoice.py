@@ -502,7 +502,7 @@ class AccountMove(models.Model):
 
     def _sign_invoice(self, cancel=False, xml_cancel=False):
         headers = {'Content-Type': 'application/json'}
-        URL = self.env['ir.config_parameter'].sudo().get_param('url.sign.webservice.fe')
+        URL = self.env['ir.config_parameter'].sudo().get_param('url.sign.webservice.fe.gt')
         payloads = self.company_id._get_sign_token()
         payloads.update({
             "codigo": str(self.journal_id.fe_establishment_id.fe_code) if self.journal_id.fe_establishment_id else "0",
@@ -515,7 +515,7 @@ class AccountMove(models.Model):
 
     def send_invoice(self):
         if self.fe_active and self.company_id.fe_enabled:
-            URL = self.env['ir.config_parameter'].sudo().get_param('url.webservice.fe')
+            URL = self.env['ir.config_parameter'].sudo().get_param('url.webservice.fe.gt')
             xml = self._xml()
             self.write({ 'arch_xml': base64.b64encode( xml ),
                         'sent_arch_xml': xml,
@@ -559,7 +559,7 @@ class AccountMove(models.Model):
         self.fe_pdf_file = base64.b64encode( fe_file.content )
 
     def cancel_dte(self):
-        URL = self.env['ir.config_parameter'].sudo().get_param('url.webservice.cancel.fe')
+        URL = self.env['ir.config_parameter'].sudo().get_param('url.webservice.cancel.fe.gt')
         f = BytesIO()
         invd = self.invoice_date or date.today()
         dtnow= datetime.now()
