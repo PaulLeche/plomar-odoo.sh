@@ -5,7 +5,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-TYPE_DTE = [
+TYPE_DTE_SV = [
     ('01', 'Factura'),
     ('03', 'Comprobante de Crédito Fiscal'),
     ('04', 'Nota de Remisión'),
@@ -23,6 +23,12 @@ TYPE_DTE = [
 class AccountJournal(models.Model):
     _inherit = 'account.journal'
 
-    fe_type = fields.Selection(TYPE_DTE, string='Tipo DTE')
+    fe_type_sv = fields.Selection(TYPE_DTE_SV, string='Tipo DTE')
     fe_establishment_id = fields.Many2one('res.company.establishment', string='Establecimiento')
-    fe_active = fields.Boolean(string="FE Activo")
+    fe_active_sv = fields.Boolean(string="FE Activo")
+    fel_enabled_status_sv = fields.Boolean(string='FEL Habilitado', compute='_compute_fel_enabled_status_sv', store=True)
+
+    @api.depends('company_id.fel_enabled_sv')
+    def _compute_fel_enabled_status_sv(self):
+        for record in self:
+            record.fel_enabled_status_sv = record.company_id.fel_enabled_sv if record.company_id else False

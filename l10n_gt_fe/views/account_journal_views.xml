@@ -8,9 +8,10 @@
             <field name="inherit_id" ref="account.view_account_journal_form"/>
             <field name="arch" type="xml">
                 <field name="type" position="after">
-                    <field name="fe_active" widget="boolean_toggle" invisible="not company_id.fe_enabled"/>
-                    <field name="fe_type" invisible="not company_id.fe_enabled" />
-                    <field name="fe_establishment_id" domain="[('company_id', '=', company_id)]" invisible="not company_id.fe_enabled"/>
+                    <field name="fel_enabled_status_gt" invisible="1"/>
+                    <field name="fe_active" widget="boolean_toggle" invisible="not fel_enabled_status_gt"/>
+                    <field name="fe_type" invisible="not fel_enabled_status_gt"/>
+                    <field name="fe_establishment_id" domain="[('company_id', '=', company_id)]" invisible="not fel_enabled_status_gt"/>
                 </field>
             </field>
         </record>

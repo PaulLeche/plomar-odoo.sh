@@ -20,6 +20,13 @@ class ResCompany(models.Model):
     fe_url_prod = fields.Char(string='URL Prod')
     fe_url_test = fields.Char(string='URL Test')
 
+    fel_enabled_sv = fields.Boolean(string='Enable FEL SV', compute='_compute_fel_enabled_sv', store=True, help="Automatically enabled for El Salvador companies.")
+
+    @api.depends('country_id.code')
+    def _compute_fel_enabled_sv(self):
+        for record in self:
+            record.fel_enabled_sv = record.country_id.code == 'SV'
+
     def _get_fe_url(self):
         return self.fe_url_prod if self.fe_mode_prod else self.fe_url_test
 

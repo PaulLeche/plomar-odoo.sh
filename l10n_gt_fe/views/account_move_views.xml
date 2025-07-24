@@ -19,19 +19,19 @@
             </div>
 
             <xpath expr="//field[@name='partner_shipping_id']" position="after">
-                <field name="fe_type" force_save="1" readonly="move_type not in ['in_invoice', 'in_refund', 'in_receipt']" invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'] or not company_id.fe_enabled"/>
-                <field name="fe_phrase_ids" widget="many2many_tags" invisible="not company_id.fe_enabled"/>
-                <field name="tipo_personeria" force_save="1" invisible="fe_type not in ['RDON'] or not company_id.fe_enabled"/>
+                <field name="fe_type" force_save="1" readonly="move_type not in ['in_invoice', 'in_refund', 'in_receipt']" invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'] or not company_id.fel_enabled"/>
+                <field name="fe_phrase_ids" widget="many2many_tags" invisible="not company_id.fel_enabled"/>
+                <field name="tipo_personeria" force_save="1" invisible="fe_type not in ['RDON'] or not company_id.fel_enabled"/>
             </xpath>
             
             <xpath expr="//group[@id='header_right_group']" position="after">
-                <group invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'] or not company_id.fe_enabled">
+                <group invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'] or not company_id.fel_enabled">
                     <field name="fe_active" invisible="1"/>
                     <field name="fe_exhangerate"/>
                     <field name="fe_serie" class="serie_alineado" readonly="fe_active == True" invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund']"/>
                     <field name="fe_number" class="numero_alineado" readonly="fe_active == True" invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund']"/>
                 </group>
-                <group invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'] or not company_id.fe_enabled">
+                <group invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'] or not company_id.fel_enabled">
                     <field name="fe_uuid"/>
                     <field name="fe_certification_date"/>
                 </group>
@@ -42,11 +42,11 @@
             </xpath>
 
             <header position="inside">
-                <button name="send_invoice" type="object" class="oe_highlight" string="Certificar DTE" invisible="(process_status in ['cancel', 'ok']) or (state != 'posted') or (fe_active == False) or not company_id.fe_enabled"/>
+                <button name="send_invoice" type="object" class="oe_highlight" string="Certificar DTE" invisible="(process_status in ['cancel', 'ok']) or (state != 'posted') or (fe_active == False) or not company_id.fel_enabled"/>
             </header>
             
             <xpath expr="//notebook" position="inside">
-                <page string="Electronic invoice" invisible="move_type == 'entry' or fe_active == False or not company_id.fe_enabled">
+                <page string="Electronic invoice" invisible="move_type == 'entry' or fe_active == False or not company_id.fel_enabled">
                     <div class="oe_button_box" name="button_box">
                         <button string="Compute Payment" name="compute_fe_payment_line" type="object" icon="fa-calendar" invisible="fe_type != 'FCAM' or process_status in ['cancel', 'ok']"/>
                         <button string="Cancel DTE" name="cancel_dte" type="object" icon="fa-chain-broken"  groups="l10n_gt_fe.group_fel_manager" class="oe_stat_button"  invisible="process_status == 'cancel' or state != 'posted'"/>
@@ -109,11 +109,11 @@
         <field name="inherit_id" ref="account.view_invoice_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
-                <field name="partner_vat" optional="hide" invisible="not company_id.fe_enabled"/>
-                <field name="fe_uuid" optional="hide" invisible="not company_id.fe_enabled"/>
-                <field name="fe_serie" optional="show" invisible="not company_id.fe_enabled"/>
-                <field name="fe_number" optional="show" invisible="not company_id.fe_enabled"/>
-                <field name="fe_certification_date" optional="hide" invisible="not company_id.fe_enabled"/>
+                <field name="partner_vat" optional="hide" invisible="not company_id.fel_enabled"/>
+                <field name="fe_uuid" optional="hide" invisible="not company_id.fel_enabled"/>
+                <field name="fe_serie" optional="show" invisible="not company_id.fel_enabled"/>
+                <field name="fe_number" optional="show" invisible="not company_id.fel_enabled"/>
+                <field name="fe_certification_date" optional="hide" invisible="not company_id.fel_enabled"/>
             </xpath>
         </field>
     </record>

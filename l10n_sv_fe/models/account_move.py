@@ -118,12 +118,12 @@ class AccountMove(models.Model):
     @api.model
     def default_get(self, default_fields):
         values = super(AccountMove, self).default_get(default_fields)
-        values['fe_type'] = '03' if values.get('move_type', False) == 'out_refund' else '01'
+        values['fe_type_sv'] = '03' if values.get('move_type', False) == 'out_refund' else '01'
 
         return values
 
     # fields list
-    fe_type = fields.Selection(related="journal_id.fe_type", string='Tipo', store=True)
+    fe_type_sv = fields.Selection(related="journal_id.fe_type_sv", string='Tipo', store=True)
     fact_info = fields.Text(store=True)
     prev_move_info = fields.Text(readonly=True, store=True)
     uuid_code = fields.Char(string='UUID', readonly=True, copy=False,tracking=True)
@@ -148,7 +148,7 @@ class AccountMove(models.Model):
     fe_regimen = fields.Many2one('export.regimen', string='Régimen', help='Requerido para facturas de exportación')
     
     fe_export_services = fields.Selection(TYPE_SERVICE, string='Tipo de producto para exportación', store=True, help='Cuando crea una factura de exportación, los productos deben de corresponder a este nuevo campo.')
-    fe_active = fields.Boolean(string="Active FE", related="journal_id.fe_active")
+    fe_active_sv = fields.Boolean(string="Active FE", related="journal_id.fe_active_sv")
 
     # campo para guardar el sello de recepcion
     receipt_stamp = fields.Char(string="Sello de recepción")
@@ -162,7 +162,7 @@ class AccountMove(models.Model):
                 raise UserError(_('Error. Date cannot exceed 5 days'))
         rec = super(AccountMove, self).action_post()
         
-        if self.fe_active and not self.uuid_code:
+        if self.fe_active_sv and not self.uuid_code:
             self.json_create()
 
         return rec
@@ -259,7 +259,7 @@ class AccountMove(models.Model):
     def _onchange_journal_id_to_type(self):
         for order in self:
             if order.journal_id:
-                order.fe_type = order.journal_id.fe_type
+                order.fe_type_sv = order.journal_id.fe_type_sv
 
     def _sign_invoice(self, cancel=False, xml_cancel=False):
         headers = {'Content-Type': 'application/json'}
@@ -277,7 +277,7 @@ class AccountMove(models.Model):
         return data['archivo']
 
     def send_invoice(self):
-        if self.fe_active:
+        if self.fe_active_sv:
             return
 
     def get_pdf(self):
@@ -374,7 +374,7 @@ class AccountMove(models.Model):
 
     def button_cancel(self):
         for record in self:
-            if not record.fe_active:
+            if not record.fe_active_sv:
                 continue
 
         return super(AccountMove, self).button_cancel()
@@ -419,7 +419,7 @@ class AccountMove(models.Model):
         json_body = {}
 
         # DTE FACTURA
-        if int(self.fe_type) == 1:
+        if int(self.fe_type_sv) == 1:
             # for item in self.invoice_line_ids:
             #     if not item.tax_ids:
             #         raise UserError('Para validar una factura es necesario agregar el impuesto')
@@ -428,7 +428,7 @@ class AccountMove(models.Model):
             total_anticipo = 0.0
             json_body = {
                 "documento": {
-                    "tipo_dte": str(self.fe_type),
+                    "tipo_dte": str(self.fe_type_sv),
                     "establecimiento": self.journal_id.fe_establishment_id.fe_code,
                     "condicion_pago": int(self.fe_payment),
                     "pagos": [],
@@ -489,7 +489,7 @@ class AccountMove(models.Model):
                 json_body["documento"]["receptor"] = receptor_info
 
         # dte comprobante de credito fiscal
-        if int(self.fe_type) == 3:
+        if int(self.fe_type_sv) == 3:
             # validacion de impuestos
             for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
                 if not item.tax_ids:
@@ -499,7 +499,7 @@ class AccountMove(models.Model):
             total_items = self.amount_total
 
             json_body = {}
-            self.fe_type = '03'
+            self.fe_type_sv = '03'
 
             # esto es para cuando el ccf viene de un documento relacionado, de una factura.
             if self.fact_info != 0:
@@ -519,7 +519,7 @@ class AccountMove(models.Model):
                 # pago contado
                 json_body = {
                     "documento": {
-                        "tipo_dte": str(self.fe_type),
+                        "tipo_dte": str(self.fe_type_sv),
                         "establecimiento": self.journal_id.fe_establishment_id.fe_code,
                         "condicion_pago": int(self.fe_payment),
                         "pagos": [],
@@ -572,7 +572,7 @@ class AccountMove(models.Model):
                                 "descripcion": item.name,
                                 "precio_unitario": round(item.price_unit, 6),
                             }
-                            if self.fe_type == '05':
+                            if self.fe_type_sv == '05':
                                 item_data.update({'numero_documento': str(None)})
                             if not len(item.tax_ids) > 0:
                                 item_data.update({'tipo_venta': '2'})
@@ -597,7 +597,7 @@ class AccountMove(models.Model):
             else:
                 json_body = {
                     "documento": {
-                        "tipo_dte": str(self.fe_type),
+                        "tipo_dte": str(self.fe_type_sv),
                         "establecimiento": self.journal_id.fe_establishment_id.fe_code,
                         "condicion_pago": int(self.fe_payment),
                         "pagos": [],
@@ -651,7 +651,7 @@ class AccountMove(models.Model):
                                 "descripcion": item.name,
                                 "precio_unitario": round(item.price_unit, 6),
                             }
-                            if self.fe_type == '05':
+                            if self.fe_type_sv == '05':
                                 item_data.update({'numero_documento': str(None)})
                             if not len(item.tax_ids) > 0:
                                 item_data.update({'tipo_venta': '2'})
@@ -674,7 +674,7 @@ class AccountMove(models.Model):
                     observations = 'El anticipo fue emitido el día' + ' ' + date_anticipo + ' ' + 'por valor a' + ' ' + str(round(total_anticipo, 2)) + self.currency_id.symbol
 
         # dte nota de credito
-        if int(self.fe_type) == 5:
+        if int(self.fe_type_sv) == 5:
 
             for item in self.invoice_line_ids:
                 if not item.tax_ids:
@@ -709,7 +709,7 @@ class AccountMove(models.Model):
                 # Inicializa la estructura del documento JSON
                 json_body = {
                     "documento": {
-                        "tipo_dte": str(self.fe_type),
+                        "tipo_dte": str(self.fe_type_sv),
                         "establecimiento": self.journal_id.fe_establishment_id.fe_code,
                         "condicion_pago": int(self.fe_payment),
                         "fecha_emision": self.invoice_date.strftime("%Y-%m-%d"),
@@ -771,7 +771,7 @@ class AccountMove(models.Model):
                 json_body["documento"]["receptor"]["correo"] = self.partner_id.email
 
         # DTE Nota de Debito
-        if int(self.fe_type) == 6:
+        if int(self.fe_type_sv) == 6:
             for item in self.invoice_line_ids:
                 if not item.tax_ids:
                     raise UserError('Para validar un comprobante de crédito fiscal es necesario agregar el impuesto')
@@ -794,7 +794,7 @@ class AccountMove(models.Model):
                 # pago contado
                 json_body = {
                     "documento": {
-                        "tipo_dte": str(self.fe_type),
+                        "tipo_dte": str(self.fe_type_sv),
                         "establecimiento": self.journal_id.fe_establishment_id.fe_code,
                         "condicion_pago": int(self.fe_payment),
                         "pagos": [],
@@ -843,7 +843,7 @@ class AccountMove(models.Model):
                 json_body["documento"]["receptor"]["correo"] = self.partner_id.email
 
         # dte Factura de exportacion
-        if int(self.fe_type) == 11:
+        if int(self.fe_type_sv) == 11:
             date_anticipo = ''
             total_anticipo = 0.0
             for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
@@ -851,7 +851,7 @@ class AccountMove(models.Model):
                     raise UserError('Para validar una factura de exportación es necesario agregar el impuesto')
             json_body = {
                 "documento": {
-                    "tipo_dte": str(self.fe_type),
+                    "tipo_dte": str(self.fe_type_sv),
                     "establecimiento": self.journal_id.fe_establishment_id.fe_code,
                     "tipo_item_exportacion": int(self.fe_export_services),
                     "condicion_pago": int(self.fe_payment),
@@ -903,14 +903,14 @@ class AccountMove(models.Model):
                 json_body["documento"]["regimen"] = self.fe_regimen.code_regimen
 
         # DTE Comprobante de sujeto excluido
-        if int(self.fe_type) == 14:
+        if int(self.fe_type_sv) == 14:
             for item in self.invoice_line_ids:
                 if not item.tax_ids:
                     raise UserError('Para validar una factura es necesario agregar el impuesto')
 
             json_body = {
                 "documento": {
-                    "tipo_dte": str(self.fe_type),
+                    "tipo_dte": str(self.fe_type_sv),
                     "establecimiento": self.journal_id.fe_establishment_id.fe_code,
                     "condicion_pago": int(self.fe_payment),
                     "pagos": [],
@@ -984,7 +984,7 @@ class AccountMove(models.Model):
                                                       'etiqueta': 'Vendedor',
                                                       'valor': self.invoice_user_id.name})
 
-        if int(self.fe_type) == 14:
+        if int(self.fe_type_sv) == 14:
             json_body["documento"].pop('receptor')
         if len(json_body) != 0:
             if has_advance == True:
@@ -1036,7 +1036,7 @@ class AccountMove(models.Model):
                 "descripcion": item.name,
                 "precio_unitario": round(item.price_unit, 6),
             }
-            if self.fe_type == '05':
+            if self.fe_type_sv == '05':
                 item_data.update({'numero_documento': str(numero_documento)})
             if not len(item.tax_ids) > 0:
                 item_data.update({'tipo_venta': '2'})

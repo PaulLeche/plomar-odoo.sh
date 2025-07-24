@@ -13,7 +13,7 @@
             
             <!-- <xpath expr="//button[@name='action_reverse']" position="after">
                 <button name="action_nr" class="btn-primary" type="object" string="Generar Nota de Remisión" 
-                    invisible="fe_type not in ['01','03'] or state not in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
+                    invisible="fe_type_sv not in ['01','03'] or state not in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
             </xpath> -->
 
             <label for="journal_id" position="attributes">
@@ -25,34 +25,34 @@
             </div>
 
             <field name="partner_shipping_id" position="after">
-                <field name="fe_type" force_save="1" 
+                <field name="fe_type_sv" force_save="1" 
                     readonly="move_type not in ['in_invoice', 'in_refund', 'in_receipt']" 
                     invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund']"
                     groups="l10n_sv_fe.group_fel_manager"/>
                 
                 <field name="last_payment_sequence" widget="CopyClipboardChar"/>
                     
-                <field name="fe_cf" force_save="1" invisible="fe_type not in ['01']" groups="l10n_sv_fe.group_fel_manager"/>
+                <field name="fe_cf" force_save="1" invisible="fe_type_sv not in ['01']" groups="l10n_sv_fe.group_fel_manager"/>
                 <field name="fe_payment" force_save="1" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
                 <field name="fe_pay_method" force_save="1" invisible="fe_payment not in ['02']" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
                 <field name="fe_term" force_save="1" invisible="fe_payment not in ['02']" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
                 <field name="fe_period" force_save="1" invisible="fe_payment not in ['02']" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
                 <field name="fe_generation" force_save="1" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
-                <field name="fe_export_services" force_save="1" invisible="fe_type not in ['11']" groups="l10n_sv_fe.group_fel_manager"/>
+                <field name="fe_export_services" force_save="1" invisible="fe_type_sv not in ['11']" groups="l10n_sv_fe.group_fel_manager"/>
                 
-                <field name="fe_incoterm" force_save="1" invisible="fe_export_services in ['02'] or fe_type not in ['11']"
+                <field name="fe_incoterm" force_save="1" invisible="fe_export_services in ['02'] or fe_type_sv not in ['11']"
                        options="{'no_quick_create':True,'no_create_edit':True,'no_open': True}" groups="l10n_sv_fe.group_fel_manager"/>
 
-                <field name="fe_recinto" force_save="1" invisible="fe_export_services in ['02'] or fe_type not in ['11']"
+                <field name="fe_recinto" force_save="1" invisible="fe_export_services in ['02'] or fe_type_sv not in ['11']"
                        options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}" groups="l10n_sv_fe.group_fel_manager"/>
 
-                <field name="fe_regimen" force_save="1" invisible="fe_export_services in ['02'] or fe_type not in ['11']"
+                <field name="fe_regimen" force_save="1" invisible="fe_export_services in ['02'] or fe_type_sv not in ['11']"
                        options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}" groups="l10n_sv_fe.group_fel_manager"/>
             </field>
 
             <xpath expr="//group[@id='header_right_group']" position="after">
                 <group invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund']" groups="l10n_sv_fe.group_fel_manager">
-                    <field name="fe_active" invisible="1"/>
+                    <field name="fe_active_sv" invisible="1"/>
                 </group>
             </xpath>
 
@@ -61,7 +61,7 @@
             </xpath>
 
             <xpath expr="//notebook" position="inside">
-                <page string="Factura Electrónica SV" invisible="move_type in ['entry'] or fe_active == False" groups="l10n_sv_fe.group_fel_manager">
+                <page string="Factura Electrónica SV" invisible="move_type in ['entry'] or fe_active_sv == False" groups="l10n_sv_fe.group_fel_manager">
                     <group>
                         <group>
                             <field name="uuid_code"/>

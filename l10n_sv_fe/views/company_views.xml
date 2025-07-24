@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[1]" position="inside">
-                    <page name="fe" string="Facturación Electrónica El Salvador" groups="l10n_sv_fe.group_fel_manager">
+                    <page name="fe" string="Facturación Electrónica El Salvador" groups="l10n_sv_fe.group_fel_manager" invisible="not fel_enabled_sv">
                         <group>
                             <field name="fe_mode_prod" widget="boolean_toggle"/>
                             <field name="fe_user" />
