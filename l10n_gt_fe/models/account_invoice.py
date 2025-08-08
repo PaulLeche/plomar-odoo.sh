@@ -92,6 +92,8 @@ class AccountMove(models.Model):
 
     rel_establishment_user = fields.Many2one('res.company.establishment', string='Establecimiento Usuario', related="invoice_user_id.fe_establishment_id")
     tipo_personeria = fields.Char('Personeria', related="company_id.tipo_personeria", store=True)
+
+    other_fel_reference = fields.Char(string="Otra Referencia FEL", copy=False)
     
     @api.depends('partner_id')
     def get_partner_vat(self):
@@ -481,7 +483,7 @@ class AccountMove(models.Model):
                 ET.SubElement(Exportacion, "cex:CodigoConsignatarioODestinatario").text = self.partner_id.vat.replace("-", "")
                 ET.SubElement(Exportacion, "cex:NombreComprador").text = self.partner_id.name.upper()
                 ET.SubElement(Exportacion, "cex:CodigoComprador").text = self.partner_id.vat.replace("-", "")
-                ET.SubElement(Exportacion, "cex:OtraReferencia").text = "EXPORTACION"
+                ET.SubElement(Exportacion, "cex:OtraReferencia").text = self.other_fel_reference or "EXPORTACION"
 
                 if self.invoice_incoterm_id and self.invoice_incoterm_id.code:
                     ET.SubElement(Exportacion, "cex:INCOTERM").text = self.invoice_incoterm_id.code

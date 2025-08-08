@@ -97,6 +97,10 @@
                 </page>
             </xpath>
 
+            <xpath expr="//group[@id='other_tab_group']/group[@name='accounting_info_group']/field[@name='company_id']" position="after">
+                <field name="other_fel_reference" />
+            </xpath>
+
             <xpath expr="//field[@name='ref']" position="attributes">
                 <attribute name="readonly">state == 'posted'</attribute>
             </xpath>
