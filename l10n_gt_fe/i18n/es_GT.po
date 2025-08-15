@@ -353,12 +353,12 @@ msgstr ""
 #. module: l10n_gt_fe
 #: model:ir.model.fields,field_description:l10n_gt_fe.field_account_move__fe_number
 msgid "Number"
-msgstr "Numero"
+msgstr "Número FEL"
 
 #. module: l10n_gt_fe
 #: model:ir.model.fields,field_description:l10n_gt_fe.field_account_move__fe_count_payment
 msgid "Number of Payments"
-msgstr "Numero de Pagos"
+msgstr "Número de Pagos"
 
 #. module: l10n_gt_fe
 #: model:ir.model.fields,field_description:l10n_gt_fe.field_res_company__fe_other_email
@@ -413,7 +413,7 @@ msgstr ""
 #. module: l10n_gt_fe
 #: model:ir.model.fields,field_description:l10n_gt_fe.field_account_move__fe_serie
 msgid "Serie"
-msgstr ""
+msgstr "Serie FEL"
 
 #. module: l10n_gt_fe
 #: model:res.groups,name:l10n_gt_fe.set_draft_invoice
@@ -428,12 +428,7 @@ msgstr "Nombre corto"
 #. module: l10n_gt_fe
 #: model:ir.model.fields,field_description:l10n_gt_fe.field_res_company__fe_sign_token
 msgid "Sign Token"
-msgstr "Token de Frima"
-
-#. module: l10n_gt_fe
-#: model:ir.model.fields,field_description:l10n_gt_fe.field_account_move_line__price_tax
-msgid "Subtotal"
-msgstr ""
+msgstr "Token de firma"
 
 #. module: l10n_gt_fe
 #: model:ir.model.fields.selection,name:l10n_gt_fe.selection__account_tax_group__shortname__tabaco

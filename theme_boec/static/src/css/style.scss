@@ -27,7 +27,6 @@ body {
         margin: 30px 0;
     }
 
-
     #counters_hero {
         display: flex;
         justify-content: space-between;
@@ -119,4 +118,10 @@ body {
     font-size: 41px;
     color: #04884c;
     font-weight: 400;
+}
+.o_wsale_product_information .o_wsale_product_information_text h6 a {
+    color: #000 !important;
+    text-decoration: none;
+    font-size: 14px !important;
+    font-family: 'Poppins', sans-serif !important;
 }

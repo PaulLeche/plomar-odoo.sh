@@ -1,12 +1,11 @@
-odoo.define('website_sale.utils', function (require) {
-'use strict';
+/** @odoo-module **/
 
-const wUtils = require('website.utils');
+import wUtils from "@website/js/utils";
 
-const cartHandlerMixin = {
+export const cartHandlerMixin = {
     getRedirectOption() {
         const html = document.documentElement;
-        this.stayOnPageOption = html.dataset.add2cartRedirect !== '0';
+        this.stayOnPageOption = html.dataset.add2cartRedirect === '1';
     },
     getCartHandlerOptions(ev) {
         this.isBuyNow = ev.currentTarget.classList.contains('o_we_buy_now');
@@ -27,15 +26,15 @@ const cartHandlerMixin = {
     /**
      * @private
      */
-    _addToCartInPage(params) {
-        params.force_create = true;
-        return this._rpc({
-            route: "/shop/cart/update_json",
-            params: params,
-        }).then(async data => {
-            await animateClone($('header .o_wsale_my_cart').first(), this.$itemImgContainer, 25, 40);
-            updateCartNavBar(data);
+    async _addToCartInPage(params) {
+        const data = await this.rpc("/shop/cart/update_json", {
+            ...params,
+            display: false,
+            force_create: true,
         });
+            updateCartNavBar(data);
+        showCartNotification(this.call.bind(this), data.notification_info);
+        return data;
     },
 };
 
@@ -46,6 +45,7 @@ function animateClone($cart, $elem, offsetTop, offsetLeft) {
         $(this).removeClass("o_red_highlight").dequeue();
     });
     return new Promise(function (resolve, reject) {
+        if(!$elem) resolve();
         var $imgtodrag = $elem.find('img').eq(0);
         if ($imgtodrag.length) {
             var $imgclone = $imgtodrag.clone()
@@ -65,7 +65,7 @@ function animateClone($cart, $elem, offsetTop, offsetLeft) {
                     left: 1400,
                     width: 75,
                     height: 75,
-                }, 1000, 'easeInOutExpo');
+                }, 500);
 
             $imgclone.animate({
                 width: 0,
@@ -79,7 +79,6 @@ function animateClone($cart, $elem, offsetTop, offsetLeft) {
         }
     });
 }
-
 /**
  * Updates both navbar cart
  * @param {Object} data
@@ -97,10 +96,8 @@ function updateCartNavBar(data) {
     $(".js_cart_lines").first().before(data['website_sale.cart_lines']).end().remove();
     $(".js_cart_summary").first().before(data['website_sale.short_cart_summary']).end().remove();
 }
-
-return {
+export default {
     animateClone: animateClone,
     updateCartNavBar: updateCartNavBar,
     cartHandlerMixin: cartHandlerMixin,
 };
-});

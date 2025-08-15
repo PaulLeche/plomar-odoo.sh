@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="accounting_entry_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+
+                    <template id="accounting_entry_template_header">
+                        <div class="header">
+                            <center>
+                                <strong><h2><p style="font-size:20px;" t-esc="o.company_id.name.upper()"/></h2></strong>
+                                <strong><h2><p style="font-size:20px; margin-top:-6px;">DETALLE DE POLIZAS DE PLANILLA</p></h2></strong>
+                            </center>
+                        </div>  
+                    </template>
+
+                    <div class="page" style="font-size:18px;">
+                        <div class="row">
+                                
+                            <table class="table table-borderless table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td width="15%" style="border-bottom:2px solid black; padding:6px; font-size:20px; border-top:2px solid black; border-left:2px solid black; vertical-align: middle;"><strong>POLIZA:</strong></td>
+                                        <td width="35%" class="text-center" style="border-bottom:2px solid black; padding:6px; border-top:2px solid black; border-right:2px solid black; font-size:20px; vertical-align: middle;"><strong><span t-esc="o.name.upper()"/></strong></td>
+                                        <td width="15%" style="border-bottom:2px solid black; padding:6px; border-top:2px solid black; font-size:20px; vertical-align: middle;"><strong>FECHA:</strong></td>
+                                        <td width="35%" class="text-center" style="border-bottom:2px solid black; padding:6px; border-top:2px solid black; border-right:2px solid black; font-size:20px; vertical-align: middle;"><strong><span t-esc="o.date"/></strong></td>
+                                    </tr>
+                                    <tr style="border:2px solid black;">
+                                        <td width="15%" style="padding:6px; font-size:20px; vertical-align: middle;"><strong>GRUPO:</strong></td>
+                                        <td width="85%" colspan="3" style="padding:6px; font-size:12px; vertical-align: middle;"><span t-esc="o.journal_id.name.upper()"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <div class="row" style="margin-top:-17px;">
+                                
+                            <table class="table table-borderless table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td width="20%" class="text-center" style="font-size:12px; border-bottom:2px solid black; border-left:2px solid black;">CUENTA</td>
+                                        <td width="40%" class="text-center" style="font-size:12px; border-bottom:2px solid black;">DESCRIPCIÓN</td>
+                                        <td width="20%" class="text-center" style="font-size:12px; border-bottom:2px solid black;">DÉBITOS</td>
+                                        <td width="20%" class="text-center" style="font-size:12px; border-bottom:2px solid black; border-right:2px solid black;">CRÉDITOS</td>
+                                    </tr>
+
+                                    <t t-set="total_debit" t-value="0"/>
+                                    <t t-set="total_credit" t-value="0"/>
+
+                                    <!-- <t t-foreach="o.line_ids" t-as="line"> -->
+
+                                    <!-- ORDENAR POR MONTOS  -->
+                                    <t t-set="lines" t-value="o.line_ids.sorted(key=lambda line: (line.debit, line.credit), reverse=True)"/>
+                                    <t t-foreach="lines" t-as="line">
+                                        <tr>
+                                            <td width="20%" style="font-size:12px; border-left:2px solid black;" class="text-center"><span t-esc="line.account_id.code"/></td>
+                                            <td width="40%" style="font-size:12px; border-left:2px solid black;"><span t-esc="line.account_id.name"/></td>
+                                            <td width="20%" style="font-size:12px; border-left:2px solid black;" class="text-right">
+                                                <t t-if="line.debit != 0">
+                                                    <span t-esc="'{0:,.2f}'.format(line.debit)"/>
+                                                    <t t-set="total_debit" t-value="total_debit + line.debit"/>
+                                                </t>
+                                            </td>
+                                            <td width="20%" style="font-size:12px; border-left:2px solid black; border-right:2px solid black;" class="text-right">
+                                                <t t-if="line.credit != 0">
+                                                    <span t-esc="'{0:,.2f}'.format(line.credit)"/>
+                                                    <t t-set="total_credit" t-value="total_credit + line.credit"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <td width="60%" colspan="2" style="font-size:12px; border:2px solid black;" class="text-right">SUMAS IGUALES:</td>
+                                        <td width="20%" style="font-size:12px; border:2px solid black;" class="text-right"><span t-esc="'{0:,.2f}'.format(total_debit)"/></td>
+                                        <td width="20%" style="font-size:12px; border:2px solid black;" class="text-right"><span t-esc="'{0:,.2f}'.format(total_credit)"/></td>
+                                    </tr>
+                                    <t t-if="o.ref">
+                                        <tr>
+                                            <td width="100%" colspan="4" style="font-size:12px; border:2px solid black;"><span t-esc="o.ref"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+
+                    <template id="accounting_entry_template_footer">
+                        <div class="footer" style="font-size:12px;">
+                            <div class="row">
+                                
+                                <table class="table table-borderless table-sm">
+                                    <tbody>
+                                        <tr>
+                                            <td width="33%" class="text-center" style="padding:6px; border:2px solid black; font-size:12px;">HECHO POR</td>
+                                            <td width="33%" class="text-center" style="padding:6px; border:2px solid black; font-size:12px;">REVISADO POR</td>
+                                            <td width="33%" class="text-center" style="padding:6px; border:2px solid black; font-size:12px;">AUTORIZADO POR</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="33%" class="text-center" style="padding:6px; border:2px solid black; color:white;">zzz</td>
+                                            <td width="33%" class="text-center" style="padding:6px; border:2px solid black; color:white;">zzz</td>
+                                            <td width="33%" class="text-center" style="padding:6px; border:2px solid black; color:white;">zzz</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+                            <div class="row" style="margin-top:-13px;">
+                              
+                              <table class="table table-borderless table-sm">
+                                  <tbody>
+                                      <tr>
+                                          <td width="13%" class="text-right" style="padding:6px; font-size:13px;">Emision: </td>
+                                          <td width="23%" style="padding:6px; font-size:13px;"><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y %H:%M:%S')"/></td>
+                                          <td width="23%" class="text-right" style="padding:6px; font-size:13px;">Pagina: </td>
+                                          <td style="padding:6px; font-size:13px;"><span class="page"/></td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                              
+                            </div>
+                        </div>
+                    </template>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

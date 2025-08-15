@@ -10,6 +10,5 @@
             <field name="name">Set Draft Invoice</field>
         </record>
 
-        
     </data>
 </odoo>

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="product_tab_demo_banner" inherit_id="website.snippets" name="Product Tab Demo banner">
-        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
-            <t t-snippet="theme_boec.product_tab_demo" t-thumbnail="/theme_boec/static/src/images/snippets/product_tab.jpg"/>
+    <!--Adding thumbnail for Product Tab Demo Snippet-->
+    <template id="product_tab_demo_banner" inherit_id="website.snippets"
+              name="Product Tab Demo banner">
+        <xpath expr="//snippets[@id='snippet_groups']"
+               position="inside">
+            <t t-snippet="theme_boec.product_tab_demo"
+               t-thumbnail="/theme_boec/static/src/images/snippets/product_tab.jpg"/>
         </xpath>
     </template>
-
+    <!--Template for Product Tab Demo Snippet-->
     <template id="product_tab_demo" name="Product Tab Demo">
         <section class="tab_product gap">
             <div class="wrapper">
@@ -16,49 +20,46 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <div class="slider"/>
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                                       aria-selected="true" data-filter="all"> Hot Sales</a>
+                                    <a class="nav-link active"
+                                       data-bs-toggle="tab"
+                                       id="home-tabs"
+                                       data-bs-target="#prod"
+                                       aria-controls="prod"
+                                       aria-selected="false">
+                                        Hot Sales
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                       aria-controls="profile" aria-selected="false" data-filter="hdpe"> New Arrivels</a>
+                                    <a class="nav-link"
+                                       id="profile-tab"
+                                       data-bs-toggle="tab"
+                                       data-bs-target="#profiles"
+                                       aria-controls="profiles"
+                                       aria-selected="false">
+                                        New Arrivals
+                                    </a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content gap">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="tab-pane active" id="prod"
+                                     role="tabpanel" aria-labelledby="home-tabs">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  hdpe">
                                                 <div class="wrapper">
                                                     <div class="img_wrapper">
-                                                        <img  src="/theme_boec/static/src/images/tab-product/t-product (1).jpg" alt="" loading="lazy" class="rotate-center"/>
-                                                        <div class="new">New</div>
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (1).jpg"
+                                                             alt=""
+                                                             loading="lazy"
+                                                             class="rotate-center"/>
+                                                        <div class="new">New
+                                                        </div>
                                                     </div>
                                                     <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
                                                         <h5 class="product_name">
                                                             Men T-shirt
                                                         </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
                                                         <div class="wrappr  ">
                                                             <div class="price">
                                                                 $59.00
@@ -70,32 +71,15 @@
                                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  sprinkle">
                                                 <div class="wrapper">
                                                     <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (2).jpg" alt="" loading="lazy" class="rotate-center"/>
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (2).jpg"
+                                                             alt=""
+                                                             loading="lazy"
+                                                             class="rotate-center"/>
                                                     </div>
                                                     <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
                                                         <h5 class="product_name">
-                                                            Men T-shirt
+                                                            Women T-shirt
                                                         </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
                                                         <div class="wrappr  ">
                                                             <div class="price">
                                                                 $59.00
@@ -107,183 +91,17 @@
                                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  sprinkle">
                                                 <div class="wrapper">
                                                     <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (3).jpg" alt="" loading="lazy" class="rotate-center"/>
-                                                        <div class="sale">Sale</div>
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (3).jpg"
+                                                             alt=""
+                                                             loading="lazy"
+                                                             class="rotate-center"/>
+                                                        <div class="sale">Sale
+                                                        </div>
                                                     </div>
                                                     <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
                                                         <h5 class="product_name">
-                                                            Men T-shirt
+                                                            Men Shoes
                                                         </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
-                                                        <div class="wrappr  ">
-                                                            <div class="price">
-                                                                $59.00
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  hdpe">
-                                                <div class="wrapper">
-                                                    <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (5).jpg" alt="" class="rotate-center"/>
-                                                    </div>
-                                                    <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
-                                                        <h5 class="product_name">
-                                                            Men T-shirt
-                                                        </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
-                                                        <div class="wrappr  ">
-                                                            <div class="price">
-                                                                $59.00
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  hdpe">
-                                                <div class="wrapper">
-                                                    <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (4).jpg" alt="" class="rotate-center"/>
-                                                        <div class="sale">Sale</div>
-                                                    </div>
-                                                    <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
-                                                        <h5 class="product_name">
-                                                            Men T-shirt
-                                                        </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
-                                                        <div class="wrappr  ">
-                                                            <div class="price">
-                                                                $59.00
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  hdpe">
-                                                <div class="wrapper">
-                                                    <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (6).jpg" alt="" class="rotate-center"/>
-                                                    </div>
-                                                    <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
-                                                        <h5 class="product_name">
-                                                            Men T-shirt
-                                                        </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
-                                                        <div class="wrappr  ">
-                                                            <div class="price">
-                                                                $59.00
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  hdpe">
-                                                <div class="wrapper">
-                                                    <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (7).jpg" alt="" class="rotate-center"/>
-                                                        <div class="new">New</div>
-                                                    </div>
-                                                    <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
-                                                        <h5 class="product_name">
-                                                            Men T-shirt
-                                                        </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
                                                         <div class="wrappr  ">
                                                             <div class="price">
                                                                 $59.00
@@ -295,33 +113,16 @@
                                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  sprinkle">
                                                 <div class="wrapper">
                                                     <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (8).jpg" alt="" class="rotate-center"/>
-                                                        <div class="sale">sale</div>
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (8).jpg"
+                                                             alt=""
+                                                             class="rotate-center"/>
+                                                        <div class="sale">sale
+                                                        </div>
                                                     </div>
                                                     <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
                                                         <h5 class="product_name">
-                                                            Men T-shirt
+                                                            Women Shoes
                                                         </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
                                                         <div class="wrappr  ">
                                                             <div class="price">
                                                                 $59.00
@@ -333,32 +134,14 @@
                                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  hdpe">
                                                 <div class="wrapper">
                                                     <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (9).jpg" alt="" class="rotate-center"/>
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (9).jpg"
+                                                             alt=""
+                                                             class="rotate-center"/>
                                                     </div>
                                                     <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
                                                         <h5 class="product_name">
-                                                            Men T-shirt
+                                                            Men Shoes
                                                         </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
                                                         <div class="wrappr  ">
                                                             <div class="price">
                                                                 $59.00
@@ -370,32 +153,14 @@
                                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  sprinkle">
                                                 <div class="wrapper">
                                                     <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (10).jpg" alt="" class="rotate-center"/>
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (10).jpg"
+                                                             alt=""
+                                                             class="rotate-center"/>
                                                     </div>
                                                     <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
                                                         <h5 class="product_name">
-                                                            Men T-shirt
+                                                            Women T-shirt
                                                         </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
                                                         <div class="wrappr  ">
                                                             <div class="price">
                                                                 $59.00
@@ -407,33 +172,16 @@
                                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  hdpe">
                                                 <div class="wrapper">
                                                     <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (11).jpg" alt="" class="rotate-center"/>
-                                                        <div class="sale">sale</div>
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (11).jpg"
+                                                             alt=""
+                                                             class="rotate-center"/>
+                                                        <div class="sale">sale
+                                                        </div>
                                                     </div>
                                                     <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
                                                         <h5 class="product_name">
-                                                            Men T-shirt
+                                                            Women T-shirt
                                                         </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                        </div>
                                                         <div class="wrappr  ">
                                                             <div class="price">
                                                                 $59.00
@@ -445,33 +193,90 @@
                                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  sprinkle">
                                                 <div class="wrapper">
                                                     <div class="img_wrapper">
-                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (1).jpg" alt="" class="rotate-center"/>
-                                                        <div class="new">New</div>
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (1).jpg"
+                                                             alt=""
+                                                             class="rotate-center"/>
+                                                        <div class="new">New
+                                                        </div>
                                                     </div>
                                                     <div class="img_details">
-                                                        <a class="add_to_c" href="#">
-                                                            Click to open
-                                                        </a>
                                                         <h5 class="product_name">
                                                             Men T-shirt
                                                         </h5>
-                                                        <div class="rating">
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
-                                                            <i class="r_star">
-                                                                <img src="/theme_boec/static/src/images/icons/rate-star-button.svg" alt=""/>
-                                                            </i>
+                                                        <div class="wrappr  ">
+                                                            <div class="price">
+                                                                $59.00
+                                                            </div>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Arrivals-->
+                                <div class="tab-pane"
+                                     id="profiles"
+                                     role="tabpanel"
+                                     aria-labelledby="profile-tab">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  hdpe">
+                                                <div class="wrapper">
+                                                    <div class="img_wrapper">
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (1).jpg"
+                                                             alt=""
+                                                             loading="lazy"
+                                                             class="rotate-center"/>
+                                                        <div class="new">New
+                                                        </div>
+                                                    </div>
+                                                    <div class="img_details">
+                                                        <h5 class="product_name">
+                                                            Men T-shirt
+                                                        </h5>
+                                                        <div class="wrappr  ">
+                                                            <div class="price">
+                                                                $59.00
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  sprinkle">
+                                                <div class="wrapper">
+                                                    <div class="img_wrapper">
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (2).jpg"
+                                                             alt=""
+                                                             loading="lazy"
+                                                             class="rotate-center"/>
+                                                    </div>
+                                                    <div class="img_details">
+                                                        <h5 class="product_name">
+                                                            Women T-shirt
+                                                        </h5>
+                                                        <div class="wrappr  ">
+                                                            <div class="price">
+                                                                $59.00
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter  sprinkle">
+                                                <div class="wrapper">
+                                                    <div class="img_wrapper">
+                                                        <img src="/theme_boec/static/src/images/tab-product/t-product (3).jpg"
+                                                             alt=""
+                                                             loading="lazy"
+                                                             class="rotate-center"/>
+                                                        <div class="sale">Sale
+                                                        </div>
+                                                    </div>
+                                                    <div class="img_details">
+                                                        <h5 class="product_name">
+                                                            Men Shoes
+                                                        </h5>
                                                         <div class="wrappr  ">
                                                             <div class="price">
                                                                 $59.00
