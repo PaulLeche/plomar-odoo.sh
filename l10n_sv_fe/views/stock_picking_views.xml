@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//button[@name='action_open_label_type']" position="after">
+                    <button name="action_nr" class="btn-primary" type="object" string="Generar Nota de Remisión" invisible="state!='done'" groups="l10n_sv_fe.group_fel_manager"/>
+                </xpath> -->
+
+                <field name="origin" position="after">
+                    <field name="fe_assets" />
+                </field>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

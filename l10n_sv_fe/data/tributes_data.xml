@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="default_code_tribute_20" model="tribute.fel">
+            <field name="code">20</field>
+            <field name="name_tribute">Impuesto al Valor Agregado</field>
+        </record>
+        <record id="default_code_tribute_C3" model="tribute.fel">
+            <field name="code">C3</field>
+            <field name="name_tribute">Impuesto al Valor Agregado (exportaciones)</field>
+        </record>
+        <record id="default_code_tribute_59" model="tribute.fel">
+            <field name="code">59</field>
+            <field name="name_tribute">Turismo: por alojamiento</field>
+        </record>
+        <record id="default_code_tribute_71" model="tribute.fel">
+            <field name="code">71</field>
+            <field name="name_tribute">Turismo: salida del país por vía aérea</field>
+        </record>
+        <record id="default_code_tribute_D1" model="tribute.fel">
+            <field name="code">D1</field>
+            <field name="name_tribute">FOVIAL</field>
+        </record>
+        <record id="default_code_tribute_C8" model="tribute.fel">
+            <field name="code">C8</field>
+            <field name="name_tribute">COTRANS</field>
+        </record>
+        <record id="default_code_tribute_A8" model="tribute.fel">
+            <field name="code">A8</field>
+            <field name="name_tribute">Impuesto Especial al Combustible</field>
+        </record>
+        <record id="default_code_tribute_57" model="tribute.fel">
+            <field name="code">57</field>
+            <field name="name_tribute">Impuesto industria de Cemento</field>
+        </record>
+        <record id="default_code_tribute_90" model="tribute.fel">
+            <field name="code">90</field>
+            <field name="name_tribute">Impuesto especial a la primera matrícula</field>
+        </record>
+        <record id="default_code_tribute_A6" model="tribute.fel">
+            <field name="code">A6</field>
+            <field name="name_tribute">Impuesto ad- valorem, armas de fuego, municiones explosivas y artículos
+                similares
+            </field>
+        </record>
+        <record id="default_code_tribute_C5" model="tribute.fel">
+            <field name="code">C5</field>
+            <field name="name_tribute">Impuesto ad- valorem por diferencial de precios de bebidas alcohólicas</field>
+        </record>
+        <record id="default_code_tribute_C6" model="tribute.fel">
+            <field name="code">C6</field>
+            <field name="name_tribute">Impuesto ad- valorem por diferencial de precios al tabaco cigarrillos</field>
+        </record>
+        <record id="default_code_tribute_C7" model="tribute.fel">
+            <field name="code">C7</field>
+            <field name="name_tribute">Impuesto ad- valorem por diferencial de precios al tabaco cigarros</field>
+        </record>
+        <record id="default_code_tribute_19" model="tribute.fel">
+            <field name="code">19</field>
+            <field name="name_tribute">Fabricante de Bebidas Gaseosas, Isotónicas, Deportivas, Fortificantes,
+                Energizante o Estimulante
+            </field>
+        </record>
+        <record id="default_code_tribute_28" model="tribute.fel">
+            <field name="code">28</field>
+            <field name="name_tribute">Importador de Bebidas Gaseosas, Isotónicas, Deportivas, Fortificantes,
+                Energizante o Estimulante
+            </field>
+        </record>
+        <record id="default_code_tribute_31" model="tribute.fel">
+            <field name="code">31</field>
+            <field name="name_tribute">Detallistas o Expendedores de Bebidas Alcohólicas</field>
+        </record>
+        <record id="default_code_tribute_32" model="tribute.fel">
+            <field name="code">32</field>
+            <field name="name_tribute">Fabricante de Cerveza</field>
+        </record>
+        <record id="default_code_tribute_33" model="tribute.fel">
+            <field name="code">33</field>
+            <field name="name_tribute">Importador de Cerveza</field>
+        </record>
+        <record id="default_code_tribute_34" model="tribute.fel">
+            <field name="code">34</field>
+            <field name="name_tribute">Fabricante de Productos de Tabaco</field>
+        </record>
+        <record id="default_code_tribute_35" model="tribute.fel">
+            <field name="code">35</field>
+            <field name="name_tribute">Importador de Productos de Tabaco</field>
+        </record>
+        <record id="default_code_tribute_36" model="tribute.fel">
+            <field name="code">36</field>
+            <field name="name_tribute">Fabricante de Armas de Fuego, Municiones y Artículos Similares</field>
+        </record>
+        <record id="default_code_tribute_37" model="tribute.fel">
+            <field name="code">37</field>
+            <field name="name_tribute">Importador de Arma de Fuego, Munición y Artículos. Similares</field>
+        </record>
+        <record id="default_code_tribute_38" model="tribute.fel">
+            <field name="code">38</field>
+            <field name="name_tribute">Fabricante de Explosivos</field>
+        </record>
+        <record id="default_code_tribute_39" model="tribute.fel">
+            <field name="code">39</field>
+            <field name="name_tribute">Importador de Explosivos</field>
+        </record>
+        <record id="default_code_tribute_42" model="tribute.fel">
+            <field name="code">42</field>
+            <field name="name_tribute">Fabricante de Productos Pirotécnicos</field>
+        </record>
+        <record id="default_code_tribute_43" model="tribute.fel">
+            <field name="code">43</field>
+            <field name="name_tribute">Importador de Productos Pirotécnicos</field>
+        </record>
+        <record id="default_code_tribute_44" model="tribute.fel">
+            <field name="code">44</field>
+            <field name="name_tribute">Productor de Tabaco</field>
+        </record>
+        <record id="default_code_tribute_50" model="tribute.fel">
+            <field name="code">50</field>
+            <field name="name_tribute">Distribuidor de Bebidas Gaseosas, Isotónicas, Deportivas, Fortificantes,
+                Energizante o Estimulante
+            </field>
+        </record>
+        <record id="default_code_tribute_51" model="tribute.fel">
+            <field name="code">51</field>
+            <field name="name_tribute">Bebidas Alcohólicas</field>
+        </record>
+        <record id="default_code_tribute_52" model="tribute.fel">
+            <field name="code">52</field>
+            <field name="name_tribute">Cerveza</field>
+        </record>
+        <record id="default_code_tribute_53" model="tribute.fel">
+            <field name="code">53</field>
+            <field name="name_tribute">Productos del Tabaco</field>
+        </record>
+        <record id="default_code_tribute_54" model="tribute.fel">
+            <field name="code">54</field>
+            <field name="name_tribute">Bebidas Carbonatadas o Gaseosas Simples o Endulzadas</field>
+        </record>
+        <record id="default_code_tribute_55" model="tribute.fel">
+            <field name="code">55</field>
+            <field name="name_tribute">Otros Específicos</field>
+        </record>
+        <record id="default_code_tribute_58" model="tribute.fel">
+            <field name="code">58</field>
+            <field name="name_tribute">Alcohol</field>
+        </record>
+        <record id="default_code_tribute_77" model="tribute.fel">
+            <field name="code">77</field>
+            <field name="name_tribute">Importador de Jugos, Néctares, Bebidas con Jugo y Refrescos</field>
+        </record>
+        <record id="default_code_tribute_78" model="tribute.fel">
+            <field name="code">78</field>
+            <field name="name_tribute">Distribuidor de Jugos, Néctares, Bebidas con Jugo y Refrescos</field>
+        </record>
+        <record id="default_code_tribute_79" model="tribute.fel">
+            <field name="code">79</field>
+            <field name="name_tribute">Sobre Llamadas Telefónicas Provenientes del Ext.</field>
+        </record>
+        <record id="default_code_tribute_85" model="tribute.fel">
+            <field name="code">85</field>
+            <field name="name_tribute">Detallista de Jugos, Néctares, Bebidas con Jugo y Refrescos</field>
+        </record>
+        <record id="default_code_tribute_86" model="tribute.fel">
+            <field name="code">86</field>
+            <field name="name_tribute">Fabricante de Preparaciones Concentradas o en Polvo para la Elaboración de
+                Bebidas
+            </field>
+        </record>
+        <record id="default_code_tribute_91" model="tribute.fel">
+            <field name="code">91</field>
+            <field name="name_tribute">Fabricante de Jugos, Néctares, Bebidas con Jugo y Refrescos</field>
+        </record>
+        <record id="default_code_tribute_92" model="tribute.fel">
+            <field name="code">92</field>
+            <field name="name_tribute">Importador de Preparaciones Concentradas o en Polvo para la elaboración de
+                Bebidas
+            </field>
+        </record>
+        <record id="default_code_tribute_A1" model="tribute.fel">
+            <field name="code">A1</field>
+            <field name="name_tribute">Específicos y Ad-Valorem</field>
+        </record>
+        <record id="default_code_tribute_A5" model="tribute.fel">
+            <field name="code">A5</field>
+            <field name="name_tribute">Bebidas Gaseosas, Isotónicas, Deportivas, Fortificantes, Energizantes o
+                Estimulantes
+            </field>
+        </record>
+        <record id="default_code_tribute_A7" model="tribute.fel">
+            <field name="code">A7</field>
+            <field name="name_tribute">Alcohol Etílico</field>
+        </record>
+        <record id="default_code_tribute_A9" model="tribute.fel">
+            <field name="code">A9</field>
+            <field name="name_tribute">Sacos Sintéticos</field>
+        </record>
+
+    </data>
+</odoo>

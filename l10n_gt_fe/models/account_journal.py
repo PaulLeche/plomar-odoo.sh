@@ -33,3 +33,10 @@ class AccountJournal(models.Model):
     fe_type = fields.Selection(TYPE_FE, string='Type')
     fe_establishment_id = fields.Many2one('res.company.establishment', string='Establishment')
     fe_active = fields.Boolean(string="Active FE")
+    fel_enabled_status_gt = fields.Boolean(string='FEL Habilitado', compute='_compute_fel_enabled_status_gt', store=True)
+
+    @api.depends('company_id.fel_enabled')
+    def _compute_fel_enabled_status_gt(self):
+        for record in self:
+            record.fel_enabled_status_gt = record.company_id.fel_enabled if record.company_id else False
+

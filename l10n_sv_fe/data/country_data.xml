@@ -1,0 +1,1002 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="default_code_pais_AF" model="export.country">
+            <field name="code_country">AF</field>
+            <field name="name_country">Afganistán</field>
+        </record>
+        <record id="default_code_pais_AX" model="export.country">
+            <field name="code_country">AX</field>
+            <field name="name_country">Aland</field>
+        </record>
+        <record id="default_code_pais_AL" model="export.country">
+            <field name="code_country">AL</field>
+            <field name="name_country">Albania</field>
+        </record>
+        <record id="default_code_pais_DE" model="export.country">
+            <field name="code_country">DE</field>
+            <field name="name_country">Alemania</field>
+        </record>
+        <record id="default_code_pais_AD" model="export.country">
+            <field name="code_country">AD</field>
+            <field name="name_country">Andorra</field>
+        </record>
+        <record id="default_code_pais_AO" model="export.country">
+            <field name="code_country">AO</field>
+            <field name="name_country">Anpola</field>
+        </record>
+        <record id="default_code_pais_AI" model="export.country">
+            <field name="code_country">AI</field>
+            <field name="name_country">Anguila</field>
+        </record>
+        <record id="default_code_pais_AQ" model="export.country">
+            <field name="code_country">AQ</field>
+            <field name="name_country">Antártica</field>
+        </record>
+        <record id="default_code_pais_AG" model="export.country">
+            <field name="code_country">AG</field>
+            <field name="name_country">Antigua y Barbuda</field>
+        </record>
+        <record id="default_code_pais_AW" model="export.country">
+            <field name="code_country">AW</field>
+            <field name="name_country">Aruba</field>
+        </record>
+        <record id="default_code_pais_SA" model="export.country">
+            <field name="code_country">SA</field>
+            <field name="name_country">Arabia Saudita</field>
+        </record>
+        <record id="default_code_pais_DZ" model="export.country">
+            <field name="code_country">DZ</field>
+            <field name="name_country">Arpelia</field>
+        </record>
+        <record id="default_code_pais_AR" model="export.country">
+            <field name="code_country">AR</field>
+            <field name="name_country">Argentina</field>
+        </record>
+        <record id="default_code_pais_AL" model="export.country">
+            <field name="code_country">AL</field>
+            <field name="name_country">Armenia</field>
+        </record>
+        <record id="default_code_pais_AU" model="export.country">
+            <field name="code_country">AU</field>
+            <field name="name_country">Australia</field>
+        </record>
+        <record id="default_code_pais_AT" model="export.country">
+            <field name="code_country">AT</field>
+            <field name="name_country">Austria</field>
+        </record>
+        <record id="default_code_pais_AZ" model="export.country">
+            <field name="code_country">AZ</field>
+            <field name="name_country">Azerbaiyán</field>
+        </record>
+        <record id="default_code_pais_BS" model="export.country">
+            <field name="code_country">BS</field>
+            <field name="name_country">Bahamas</field>
+        </record>
+        <record id="default_code_pais_BH" model="export.country">
+            <field name="code_country">BH</field>
+            <field name="name_country">Bahrein</field>
+        </record>
+        <record id="default_code_pais_BD" model="export.country">
+            <field name="code_country">BD</field>
+            <field name="name_country">Bangladesh</field>
+        </record>
+        <record id="default_code_pais_BB" model="export.country">
+            <field name="code_country">BB</field>
+            <field name="name_country">Barbados</field>
+        </record>
+        <record id="default_code_pais_BE" model="export.country">
+            <field name="code_country">BE</field>
+            <field name="name_country">Bélgica</field>
+        </record>
+        <record id="default_code_pais_BZ" model="export.country">
+            <field name="code_country">BZ</field>
+            <field name="name_country">Belice</field>
+        </record>
+        <record id="default_code_pais_BJ" model="export.country">
+            <field name="code_country">BJ</field>
+            <field name="name_country">Benin</field>
+        </record>
+        <record id="default_code_pais_BM" model="export.country">
+            <field name="code_country">BM</field>
+            <field name="name_country">Bermudas</field>
+        </record>
+        <record id="default_code_pais_BY" model="export.country">
+            <field name="code_country">BY</field>
+            <field name="name_country">Bielorrusia</field>
+        </record>
+        <record id="default_code_pais_BO" model="export.country">
+            <field name="code_country">BO</field>
+            <field name="name_country">Bolívia</field>
+        </record>
+        <record id="default_code_pais_BQ" model="export.country">
+            <field name="code_country">BQ</field>
+            <field name="name_country">Bonaire, Sint Eustatius and Saba</field>
+        </record>
+        <record id="default_code_pais_BA" model="export.country">
+            <field name="code_country">BA</field>
+            <field name="name_country">Bosnia-Herzegovina</field>
+        </record>
+        <record id="default_code_pais_BW" model="export.country">
+            <field name="code_country">BW</field>
+            <field name="name_country">Botswana</field>
+        </record>
+        <record id="default_code_pais_BR" model="export.country">
+            <field name="code_country">BR</field>
+            <field name="name_country">Brasil</field>
+        </record>
+        <record id="default_code_pais_BN" model="export.country">
+            <field name="code_country">BN</field>
+            <field name="name_country">Brunei</field>
+        </record>
+        <record id="default_code_pais_BG" model="export.country">
+            <field name="code_country">BG</field>
+            <field name="name_country">Bulgaria</field>
+        </record>
+        <record id="default_code_pais_BF" model="export.country">
+            <field name="code_country">BF</field>
+            <field name="name_country">Burkina Faso</field>
+        </record>
+        <record id="default_code_pais_BI" model="export.country">
+            <field name="code_country">BI</field>
+            <field name="name_country">Burundi</field>
+        </record>
+        <record id="default_code_pais_BT" model="export.country">
+            <field name="code_country">BT</field>
+            <field name="name_country">Bután</field>
+        </record>
+        <record id="default_code_pais_CV" model="export.country">
+            <field name="code_country">CV</field>
+            <field name="name_country">Cabo Verde</field>
+        </record>
+        <record id="default_code_pais_KY" model="export.country">
+            <field name="code_country">KY</field>
+            <field name="name_country">Caimán, islas</field>
+        </record>
+        <record id="default_code_pais_KH" model="export.country">
+            <field name="code_country">KH</field>
+            <field name="name_country">Camboya</field>
+        </record>
+        <record id="default_code_pais_CM" model="export.country">
+            <field name="code_country">CM</field>
+            <field name="name_country">Camerún</field>
+        </record>
+        <record id="default_code_pais_CA" model="export.country">
+            <field name="code_country">CA</field>
+            <field name="name_country">Canadá</field>
+        </record>
+        <record id="default_code_pais_CF" model="export.country">
+            <field name="code_country">CF</field>
+            <field name="name_country">Centroafricana, República</field>
+        </record>
+        <record id="default_code_pais_TD" model="export.country">
+            <field name="code_country">TD</field>
+            <field name="name_country">Chad</field>
+        </record>
+        <record id="default_code_pais_CL" model="export.country">
+            <field name="code_country">CL</field>
+            <field name="name_country">Chile</field>
+        </record>
+        <record id="default_code_pais_CN" model="export.country">
+            <field name="code_country">CN</field>
+            <field name="name_country">China</field>
+        </record>
+        <record id="default_code_pais_CY" model="export.country">
+            <field name="code_country">CY</field>
+            <field name="name_country">Chipre</field>
+        </record>
+        <record id="default_code_pais_VA" model="export.country">
+            <field name="code_country">VA</field>
+            <field name="name_country">Ciudad del Vaticano</field>
+        </record>
+        <record id="default_code_pais_CO" model="export.country">
+            <field name="code_country">CO</field>
+            <field name="name_country">Colombia</field>
+        </record>
+        <record id="default_code_pais_KG" model="export.country">
+            <field name="code_country">KG</field>
+            <field name="name_country">Comoras</field>
+        </record>
+        <record id="default_code_pais_CG" model="export.country">
+            <field name="code_country">CG</field>
+            <field name="name_country">Congo</field>
+        </record>
+        <record id="default_code_pais_CI" model="export.country">
+            <field name="code_country">CI</field>
+            <field name="name_country">Costa de Marfil</field>
+        </record>
+        <record id="default_code_pais_CR" model="export.country">
+            <field name="code_country">CR</field>
+            <field name="name_country">Costa Rica</field>
+        </record>
+        <record id="default_code_pais_HR" model="export.country">
+            <field name="code_country">HR</field>
+            <field name="name_country">Croacia</field>
+        </record>
+        <record id="default_code_pais_CU" model="export.country">
+            <field name="code_country">CU</field>
+            <field name="name_country">Cuba</field>
+        </record>
+        <record id="default_code_pais_CW" model="export.country">
+            <field name="code_country">CW</field>
+            <field name="name_country">Curazao</field>
+        </record>
+        <record id="default_code_pais_DK" model="export.country">
+            <field name="code_country">DK</field>
+            <field name="name_country">Dinamarca</field>
+        </record>
+        <record id="default_code_pais_DM" model="export.country">
+            <field name="code_country">DM</field>
+            <field name="name_country">Dominica</field>
+        </record>
+        <record id="default_code_pais_DJ" model="export.country">
+            <field name="code_country">DJ</field>
+            <field name="name_country">Djibouti</field>
+        </record>
+        <record id="default_code_pais_EC" model="export.country">
+            <field name="code_country">EC</field>
+            <field name="name_country">Ecuador</field>
+        </record>
+        <record id="default_code_pais_EG" model="export.country">
+            <field name="code_country">EG</field>
+            <field name="name_country">Epipto</field>
+        </record>
+        <record id="default_code_pais_SV" model="export.country">
+            <field name="code_country">SV</field>
+            <field name="name_country">El Salvador</field>
+        </record>
+        <record id="default_code_pais_AE" model="export.country">
+            <field name="code_country">AE</field>
+            <field name="name_country">Emiratos Arabes Unidos</field>
+        </record>
+        <record id="default_code_pais_ER" model="export.country">
+            <field name="code_country">ER</field>
+            <field name="name_country">Eritrea</field>
+        </record>
+        <record id="default_code_pais_SK" model="export.country">
+            <field name="code_country">SK</field>
+            <field name="name_country">Eslovaquia</field>
+        </record>
+        <record id="default_code_pais_SI" model="export.country">
+            <field name="code_country">SI</field>
+            <field name="name_country">Eslovenia</field>
+        </record>
+        <record id="default_code_pais_ES" model="export.country">
+            <field name="code_country">ES</field>
+            <field name="name_country">España</field>
+        </record>
+        <record id="default_code_pais_US" model="export.country">
+            <field name="code_country">US</field>
+            <field name="name_country">Estados Unidos</field>
+        </record>
+        <record id="default_code_pais_EE" model="export.country">
+            <field name="code_country">EE</field>
+            <field name="name_country">Estonia</field>
+        </record>
+        <record id="default_code_pais_ET" model="export.country">
+            <field name="code_country">ET</field>
+            <field name="name_country">Etiopía</field>
+        </record>
+        <record id="default_code_pais_FJ" model="export.country">
+            <field name="code_country">FJ</field>
+            <field name="name_country">Fiji</field>
+        </record>
+        <record id="default_code_pais_PH" model="export.country">
+            <field name="code_country">PH</field>
+            <field name="name_country">Filipinas</field>
+        </record>
+        <record id="default_code_pais_FI" model="export.country">
+            <field name="code_country">FI</field>
+            <field name="name_country">Finlandia</field>
+        </record>
+        <record id="default_code_pais_FR" model="export.country">
+            <field name="code_country">FR</field>
+            <field name="name_country">Francia</field>
+        </record>
+        <record id="default_code_pais_GA" model="export.country">
+            <field name="code_country">GA</field>
+            <field name="name_country">Gabón</field>
+        </record>
+        <record id="default_code_pais_GM" model="export.country">
+            <field name="code_country">GM</field>
+            <field name="name_country">Gambia</field>
+        </record>
+        <record id="default_code_pais_GE" model="export.country">
+            <field name="code_country">GE</field>
+            <field name="name_country">Georgia</field>
+        </record>
+        <record id="default_code_pais_GH" model="export.country">
+            <field name="code_country">GH</field>
+            <field name="name_country">Ghana</field>
+        </record>
+        <record id="default_code_pais_GI" model="export.country">
+            <field name="code_country">GI</field>
+            <field name="name_country">Gibraltar</field>
+        </record>
+        <record id="default_code_pais_GD" model="export.country">
+            <field name="code_country">GD</field>
+            <field name="name_country">Granada</field>
+        </record>
+        <record id="default_code_pais_GR" model="export.country">
+            <field name="code_country">GR</field>
+            <field name="name_country">Grecia</field>
+        </record>
+        <record id="default_code_pais_GL" model="export.country">
+            <field name="code_country">GL</field>
+            <field name="name_country">Groenlandia</field>
+        </record>
+        <record id="default_code_pais_GP" model="export.country">
+            <field name="code_country">GP</field>
+            <field name="name_country">Guadalupe</field>
+        </record>
+        <record id="default_code_pais_GU" model="export.country">
+            <field name="code_country">GU</field>
+            <field name="name_country">Guam</field>
+        </record>
+        <record id="default_code_pais_GT" model="export.country">
+            <field name="code_country">GT</field>
+            <field name="name_country">Guatemala</field>
+        </record>
+        <record id="default_code_pais_GF" model="export.country">
+            <field name="code_country">GF</field>
+            <field name="name_country">Guayana Francesa</field>
+        </record>
+        <record id="default_code_pais_CC" model="export.country">
+            <field name="code_country">CC</field>
+            <field name="name_country">Guernsey</field>
+        </record>
+        <record id="default_code_pais_GN" model="export.country">
+            <field name="code_country">GN</field>
+            <field name="name_country">Guinea</field>
+        </record>
+        <record id="default_code_pais_GQ" model="export.country">
+            <field name="code_country">GQ</field>
+            <field name="name_country">Guinea Ecuatorial</field>
+        </record>
+        <record id="default_code_pais_GW" model="export.country">
+            <field name="code_country">GW</field>
+            <field name="name_country">Guinea-Bissau</field>
+        </record>
+        <record id="default_code_pais_GY" model="export.country">
+            <field name="code_country">GY</field>
+            <field name="name_country">Guyana</field>
+        </record>
+        <record id="default_code_pais_HT" model="export.country">
+            <field name="code_country">HT</field>
+            <field name="name_country">Haití</field>
+        </record>
+        <record id="default_code_pais_HN" model="export.country">
+            <field name="code_country">HN</field>
+            <field name="name_country">Honduras</field>
+        </record>
+        <record id="default_code_pais_HK" model="export.country">
+            <field name="code_country">HK</field>
+            <field name="name_country">Honp Kong</field>
+        </record>
+        <record id="default_code_pais_HU" model="export.country">
+            <field name="code_country">HU</field>
+            <field name="name_country">Hungría</field>
+        </record>
+        <record id="default_code_pais_IN" model="export.country">
+            <field name="code_country">IN</field>
+            <field name="name_country">India</field>
+        </record>
+        <record id="default_code_pais_ID" model="export.country">
+            <field name="code_country">ID</field>
+            <field name="name_country">Indonesia</field>
+        </record>
+        <record id="default_code_pais_IQ" model="export.country">
+            <field name="code_country">IQ</field>
+            <field name="name_country">Irak</field>
+        </record>
+        <record id="default_code_pais_IE" model="export.country">
+            <field name="code_country">IE</field>
+            <field name="name_country">Irlanda</field>
+        </record>
+        <record id="default_code_pais_BV" model="export.country">
+            <field name="code_country">BV</field>
+            <field name="name_country">Isla Bouvet</field>
+        </record>
+        <record id="default_code_pais_IM" model="export.country">
+            <field name="code_country">IM</field>
+            <field name="name_country">Isla de Man</field>
+        </record>
+        <record id="default_code_pais_NF" model="export.country">
+            <field name="code_country">NF</field>
+            <field name="name_country">Isla Norfolk</field>
+        </record>
+        <record id="default_code_pais_IS" model="export.country">
+            <field name="code_country">IS</field>
+            <field name="name_country">Islandia</field>
+        </record>
+        <record id="default_code_pais_CX" model="export.country">
+            <field name="code_country">CX</field>
+            <field name="name_country">Islas Navidad</field>
+        </record>
+        <record id="default_code_pais_CC" model="export.country">
+            <field name="code_country">CC</field>
+            <field name="name_country">Islas Cocos</field>
+        </record>
+        <record id="default_code_pais_CK" model="export.country">
+            <field name="code_country">CK</field>
+            <field name="name_country">Islas Cook</field>
+        </record>
+        <record id="default_code_pais_FO" model="export.country">
+            <field name="code_country">FO</field>
+            <field name="name_country">Islas Faroe</field>
+        </record>
+        <record id="default_code_pais_GS" model="export.country">
+            <field name="code_country">GS</field>
+            <field name="name_country">Islas Georgias d. S.-Sandwich d. S</field>
+        </record>
+        <record id="default_code_pais_HM" model="export.country">
+            <field name="code_country">HM</field>
+            <field name="name_country">Islas Heard y McDonald</field>
+        </record>
+        <record id="default_code_pais_FK" model="export.country">
+            <field name="code_country">FK</field>
+            <field name="name_country">Islas Malvinas (Falkland)</field>
+        </record>
+        <record id="default_code_pais_MP" model="export.country">
+            <field name="code_country">MP</field>
+            <field name="name_country">Islas Marianas del Norte</field>
+        </record>
+        <record id="default_code_pais_MH" model="export.country">
+            <field name="code_country">MH</field>
+            <field name="name_country">Islas Marshall</field>
+        </record>
+        <record id="default_code_pais_PN" model="export.country">
+            <field name="code_country">PN</field>
+            <field name="name_country">Islas Pitcairn</field>
+        </record>
+        <record id="default_code_pais_TC" model="export.country">
+            <field name="code_country">TC</field>
+            <field name="name_country">Islas Turcas y Caicos</field>
+        </record>
+        <record id="default_code_pais_UM" model="export.country">
+            <field name="code_country">UM</field>
+            <field name="name_country">Islas Ultramarinas de E.E.U.U</field>
+        </record>
+        <record id="default_code_pais_VI" model="export.country">
+            <field name="code_country">VI</field>
+            <field name="name_country">Islas Vírgenes</field>
+        </record>
+        <record id="default_code_pais_IL" model="export.country">
+            <field name="code_country">IL</field>
+            <field name="name_country">Israel</field>
+        </record>
+        <record id="default_code_pais_IT" model="export.country">
+            <field name="code_country">IT</field>
+            <field name="name_country">Italia</field>
+        </record>
+        <record id="default_code_pais_JM" model="export.country">
+            <field name="code_country">JM</field>
+            <field name="name_country">Jamaica</field>
+        </record>
+        <record id="default_code_pais_JP" model="export.country">
+            <field name="code_country">JP</field>
+            <field name="name_country">Japón</field>
+        </record>
+        <record id="default_code_pais_JE" model="export.country">
+            <field name="code_country">JE</field>
+            <field name="name_country">Jersey</field>
+        </record>
+        <record id="default_code_pais_JO" model="export.country">
+            <field name="code_country">JO</field>
+            <field name="name_country">Jordania</field>
+        </record>
+        <record id="default_code_pais_KZ" model="export.country">
+            <field name="code_country">KZ</field>
+            <field name="name_country">Kazajistán</field>
+        </record>
+        <record id="default_code_pais_KE" model="export.country">
+            <field name="code_country">KE</field>
+            <field name="name_country">Kenia</field>
+        </record>
+        <record id="default_code_pais_KG" model="export.country">
+            <field name="code_country">KG</field>
+            <field name="name_country">Kirguistán</field>
+        </record>
+        <record id="default_code_pais_KI" model="export.country">
+            <field name="code_country">KI</field>
+            <field name="name_country">Kiribati</field>
+        </record>
+        <record id="default_code_pais_KW" model="export.country">
+            <field name="code_country">KW</field>
+            <field name="name_country">Kuwait</field>
+        </record>
+        <record id="default_code_pais_LA" model="export.country">
+            <field name="code_country">LA</field>
+            <field name="name_country">Laos, República Democrática</field>
+        </record>
+        <record id="default_code_pais_LS" model="export.country">
+            <field name="code_country">LS</field>
+            <field name="name_country">Lesotho</field>
+        </record>
+        <record id="default_code_pais_LV" model="export.country">
+            <field name="code_country">LV</field>
+            <field name="name_country">Letonia</field>
+        </record>
+        <record id="default_code_pais_LB" model="export.country">
+            <field name="code_country">LB</field>
+            <field name="name_country">Líbano</field>
+        </record>
+        <record id="default_code_pais_LR" model="export.country">
+            <field name="code_country">LR</field>
+            <field name="name_country">Liberia</field>
+        </record>
+        <record id="default_code_pais_LY" model="export.country">
+            <field name="code_country">LY</field>
+            <field name="name_country">Libia</field>
+        </record>
+        <record id="default_code_pais_LI" model="export.country">
+            <field name="code_country">LI</field>
+            <field name="name_country">Liechtenstein</field>
+        </record>
+        <record id="default_code_pais_LT" model="export.country">
+            <field name="code_country">LT</field>
+            <field name="name_country">Lituania</field>
+        </record>
+        <record id="default_code_pais_LU" model="export.country">
+            <field name="code_country">LU</field>
+            <field name="name_country">Luxemburgo</field>
+        </record>
+        <record id="default_code_pais_MO" model="export.country">
+            <field name="code_country">MO</field>
+            <field name="name_country">Macao</field>
+        </record>
+        <record id="default_code_pais_MK" model="export.country">
+            <field name="code_country">MK</field>
+            <field name="name_country">Macedonia</field>
+        </record>
+        <record id="default_code_pais_MG" model="export.country">
+            <field name="code_country">MG</field>
+            <field name="name_country">Madagascar</field>
+        </record>
+        <record id="default_code_pais_MY" model="export.country">
+            <field name="code_country">MY</field>
+            <field name="name_country">Malasia</field>
+        </record>
+        <record id="default_code_pais_MW" model="export.country">
+            <field name="code_country">MW</field>
+            <field name="name_country">Malawi</field>
+        </record>
+        <record id="default_code_pais_MV" model="export.country">
+            <field name="code_country">MV</field>
+            <field name="name_country">Maldivas</field>
+        </record>
+        <record id="default_code_pais_ML" model="export.country">
+            <field name="code_country">ML</field>
+            <field name="name_country">Mali</field>
+        </record>
+        <record id="default_code_pais_MT" model="export.country">
+            <field name="code_country">MT</field>
+            <field name="name_country">Malta</field>
+        </record>
+        <record id="default_code_pais_MA" model="export.country">
+            <field name="code_country">MA</field>
+            <field name="name_country">Marruecos</field>
+        </record>
+        <record id="default_code_pais_MQ" model="export.country">
+            <field name="code_country">MQ</field>
+            <field name="name_country">Martinica</field>
+        </record>
+        <record id="default_code_pais_MU" model="export.country">
+            <field name="code_country">MU</field>
+            <field name="name_country">Mauricio</field>
+        </record>
+        <record id="default_code_pais_MR" model="export.country">
+            <field name="code_country">MR</field>
+            <field name="name_country">Mauritania</field>
+        </record>
+        <record id="default_code_pais_YT" model="export.country">
+            <field name="code_country">YT</field>
+            <field name="name_country">Mayotte</field>
+        </record>
+        <record id="default_code_pais_MX" model="export.country">
+            <field name="code_country">MX</field>
+            <field name="name_country">México</field>
+        </record>
+        <record id="default_code_pais_FM" model="export.country">
+            <field name="code_country">FM</field>
+            <field name="name_country">Micronesia</field>
+        </record>
+        <record id="default_code_pais_MD" model="export.country">
+            <field name="code_country">MD</field>
+            <field name="name_country">Moldavia, República de</field>
+        </record>
+        <record id="default_code_pais_MC" model="export.country">
+            <field name="code_country">MC</field>
+            <field name="name_country">Mónaco</field>
+        </record>
+        <record id="default_code_pais_MN" model="export.country">
+            <field name="code_country">MN</field>
+            <field name="name_country">Mongolia</field>
+        </record>
+        <record id="default_code_pais_ME" model="export.country">
+            <field name="code_country">ME</field>
+            <field name="name_country">Montenegro</field>
+        </record>
+        <record id="default_code_pais_MS" model="export.country">
+            <field name="code_country">MS</field>
+            <field name="name_country">Montserrat</field>
+        </record>
+        <record id="default_code_pais_MZ" model="export.country">
+            <field name="code_country">MZ</field>
+            <field name="name_country">Mozambique</field>
+        </record>
+        <record id="default_code_pais_MM" model="export.country">
+            <field name="code_country">MM</field>
+            <field name="name_country">Myanmar</field>
+        </record>
+        <record id="default_code_pais_NA" model="export.country">
+            <field name="code_country">NA</field>
+            <field name="name_country">Namibia</field>
+        </record>
+        <record id="default_code_pais_NR" model="export.country">
+            <field name="code_country">NR</field>
+            <field name="name_country">Nauru</field>
+        </record>
+        <record id="default_code_pais_NP" model="export.country">
+            <field name="code_country">NP</field>
+            <field name="name_country">Nepal</field>
+        </record>
+        <record id="default_code_pais_NI" model="export.country">
+            <field name="code_country">NI</field>
+            <field name="name_country">Nicaragua</field>
+        </record>
+        <record id="default_code_pais_NE" model="export.country">
+            <field name="code_country">NE</field>
+            <field name="name_country">Níger</field>
+        </record>
+        <record id="default_code_pais_NG" model="export.country">
+            <field name="code_country">NG</field>
+            <field name="name_country">Nigeria</field>
+        </record>
+        <record id="default_code_pais_NU" model="export.country">
+            <field name="code_country">NU</field>
+            <field name="name_country">Niue</field>
+        </record>
+        <record id="default_code_pais_NO" model="export.country">
+            <field name="code_country">NO</field>
+            <field name="name_country">Noruega</field>
+        </record>
+        <record id="default_code_pais_NC" model="export.country">
+            <field name="code_country">NC</field>
+            <field name="name_country">Nueva Caledonia</field>
+        </record>
+        <record id="default_code_pais_NZ" model="export.country">
+            <field name="code_country">NZ</field>
+            <field name="name_country">Nueva Zelanda</field>
+        </record>
+        <record id="default_code_pais_OM" model="export.country">
+            <field name="code_country">OM</field>
+            <field name="name_country">Omán</field>
+        </record>
+        <record id="default_code_pais_NL" model="export.country">
+            <field name="code_country">NL</field>
+            <field name="name_country">Países Bajos</field>
+        </record>
+        <record id="default_code_pais_PK" model="export.country">
+            <field name="code_country">PK</field>
+            <field name="name_country">Pakistán</field>
+        </record>
+        <record id="default_code_pais_PW" model="export.country">
+            <field name="code_country">PW</field>
+            <field name="name_country">Palaos</field>
+        </record>
+        <record id="default_code_pais_PS" model="export.country">
+            <field name="code_country">PS</field>
+            <field name="name_country">Palestina</field>
+        </record>
+        <record id="default_code_pais_PA" model="export.country">
+            <field name="code_country">PA</field>
+            <field name="name_country">Panamá</field>
+        </record>
+        <record id="default_code_pais_PG" model="export.country">
+            <field name="code_country">PG</field>
+            <field name="name_country">Papúa, Nueva Guinea</field>
+        </record>
+        <record id="default_code_pais_PY" model="export.country">
+            <field name="code_country">PY</field>
+            <field name="name_country">Paraguay</field>
+        </record>
+        <record id="default_code_pais_PE" model="export.country">
+            <field name="code_country">PE</field>
+            <field name="name_country">Perú</field>
+        </record>
+        <record id="default_code_pais_PF" model="export.country">
+            <field name="code_country">PF</field>
+            <field name="name_country">Polinesia Francesa</field>
+        </record>
+        <record id="default_code_pais_PL" model="export.country">
+            <field name="code_country">PL</field>
+            <field name="name_country">Polonia</field>
+        </record>
+        <record id="default_code_pais_PT" model="export.country">
+            <field name="code_country">PT</field>
+            <field name="name_country">Portugal</field>
+        </record>
+        <record id="default_code_pais_PR" model="export.country">
+            <field name="code_country">PR</field>
+            <field name="name_country">Puerto Rico</field>
+        </record>
+        <record id="default_code_pais_QA" model="export.country">
+            <field name="code_country">QA</field>
+            <field name="name_country">Qatar</field>
+        </record>
+        <record id="default_code_pais_GB" model="export.country">
+            <field name="code_country">GB</field>
+            <field name="name_country">Reino Unido</field>
+        </record>
+        <record id="default_code_pais_KP" model="export.country">
+            <field name="code_country">KP</field>
+            <field name="name_country">Rep. Democrática popular de Corea</field>
+        </record>
+        <record id="default_code_pais_CZ" model="export.country">
+            <field name="code_country">CZ</field>
+            <field name="name_country">República Checa</field>
+        </record>
+        <record id="default_code_pais_KR" model="export.country">
+            <field name="code_country">KR</field>
+            <field name="name_country">República de Corea</field>
+        </record>
+        <record id="default_code_pais_CD" model="export.country">
+            <field name="code_country">CD</field>
+            <field name="name_country">República Democrática del Congo</field>
+        </record>
+        <record id="default_code_pais_DO" model="export.country">
+            <field name="code_country">DO</field>
+            <field name="name_country">República Dominicana</field>
+        </record>
+        <record id="default_code_pais_IR" model="export.country">
+            <field name="code_country">IR</field>
+            <field name="name_country">República Islámica de Irán</field>
+        </record>
+        <record id="default_code_pais_RE" model="export.country">
+            <field name="code_country">RE</field>
+            <field name="name_country">Reunión</field>
+        </record>
+        <record id="default_code_pais_RW" model="export.country">
+            <field name="code_country">RW</field>
+            <field name="name_country">Ruanda</field>
+        </record>
+        <record id="default_code_pais_RO" model="export.country">
+            <field name="code_country">RO</field>
+            <field name="name_country">Rumania</field>
+        </record>
+        <record id="default_code_pais_RU" model="export.country">
+            <field name="code_country">RU</field>
+            <field name="name_country">Rusia</field>
+        </record>
+        <record id="default_code_pais_EH" model="export.country">
+            <field name="code_country">EH</field>
+            <field name="name_country">Sahara Occidental</field>
+        </record>
+        <record id="default_code_pais_BL" model="export.country">
+            <field name="code_country">BL</field>
+            <field name="name_country">Saint Barthélemy</field>
+        </record>
+        <record id="default_code_pais_MF" model="export.country">
+            <field name="code_country">MF</field>
+            <field name="name_country">Saint Martin (French part)</field>
+        </record>
+        <record id="default_code_pais_SB" model="export.country">
+            <field name="code_country">SB</field>
+            <field name="name_country">Salomón, Islas</field>
+        </record>
+        <record id="default_code_pais_WS" model="export.country">
+            <field name="code_country">WS</field>
+            <field name="name_country">Samoa</field>
+        </record>
+        <record id="default_code_pais_AS" model="export.country">
+            <field name="code_country">AS</field>
+            <field name="name_country">Samoa Americana</field>
+        </record>
+        <record id="default_code_pais_KN" model="export.country">
+            <field name="code_country">KN</field>
+            <field name="name_country">San Cristóbal y Nieves</field>
+        </record>
+        <record id="default_code_pais_SM" model="export.country">
+            <field name="code_country">SM</field>
+            <field name="name_country">San Marino</field>
+        </record>
+        <record id="default_code_pais_PM" model="export.country">
+            <field name="code_country">PM</field>
+            <field name="name_country">San Pedro y Miquelón</field>
+        </record>
+        <record id="default_code_pais_VC" model="export.country">
+            <field name="code_country">VC</field>
+            <field name="name_country">San Vicente y las Granadinas</field>
+        </record>
+        <record id="default_code_pais_SH" model="export.country">
+            <field name="code_country">SH</field>
+            <field name="name_country">Santa Elena</field>
+        </record>
+        <record id="default_code_pais_LC" model="export.country">
+            <field name="code_country">LC</field>
+            <field name="name_country">Santa Lucía</field>
+        </record>
+        <record id="default_code_pais_ST" model="export.country">
+            <field name="code_country">ST</field>
+            <field name="name_country">Santo Tomé y Príncipe</field>
+        </record>
+        <record id="default_code_pais_SN" model="export.country">
+            <field name="code_country">SN</field>
+            <field name="name_country">Senegal</field>
+        </record>
+        <record id="default_code_pais_RS" model="export.country">
+            <field name="code_country">RS</field>
+            <field name="name_country">Serbia</field>
+        </record>
+        <record id="default_code_pais_SC" model="export.country">
+            <field name="code_country">SC</field>
+            <field name="name_country">Seychelles</field>
+        </record>
+        <record id="default_code_pais_SL" model="export.country">
+            <field name="code_country">SL</field>
+            <field name="name_country">Sierra Leona</field>
+        </record>
+        <record id="default_code_pais_SG" model="export.country">
+            <field name="code_country">SG</field>
+            <field name="name_country">Singapur</field>
+        </record>
+        <record id="default_code_pais_SX" model="export.country">
+            <field name="code_country">SX</field>
+            <field name="name_country">Sint Maarten (Dutch part)</field>
+        </record>
+        <record id="default_code_pais_SY" model="export.country">
+            <field name="code_country">SY</field>
+            <field name="name_country">Siria</field>
+        </record>
+        <record id="default_code_pais_SO" model="export.country">
+            <field name="code_country">SO</field>
+            <field name="name_country">Somalia</field>
+        </record>
+        <record id="default_code_pais_SS" model="export.country">
+            <field name="code_country">SS</field>
+            <field name="name_country">South Sudan</field>
+        </record>
+        <record id="default_code_pais_LK" model="export.country">
+            <field name="code_country">LK</field>
+            <field name="name_country">Sri Lanka</field>
+        </record>
+        <record id="default_code_pais_ZA" model="export.country">
+            <field name="code_country">ZA</field>
+            <field name="name_country">Sudáfrica</field>
+        </record>
+        <record id="default_code_pais_SD" model="export.country">
+            <field name="code_country">SD</field>
+            <field name="name_country">Sudán</field>
+        </record>
+        <record id="default_code_pais_SE" model="export.country">
+            <field name="code_country">SE</field>
+            <field name="name_country">Suecia</field>
+        </record>
+        <record id="default_code_pais_CH" model="export.country">
+            <field name="code_country">CH</field>
+            <field name="name_country">Suiza</field>
+        </record>
+        <record id="default_code_pais_SR" model="export.country">
+            <field name="code_country">SR</field>
+            <field name="name_country">Surinám</field>
+        </record>
+        <record id="default_code_pais_SJ" model="export.country">
+            <field name="code_country">SJ</field>
+            <field name="name_country">Svalbard y Jan Mayen</field>
+        </record>
+        <record id="default_code_pais_SZ" model="export.country">
+            <field name="code_country">SZ</field>
+            <field name="name_country">Swazilandia</field>
+        </record>
+        <record id="default_code_pais_TH" model="export.country">
+            <field name="code_country">TH</field>
+            <field name="name_country">Tailandia</field>
+        </record>
+        <record id="default_code_pais_TW" model="export.country">
+            <field name="code_country">TW</field>
+            <field name="name_country">Taiwan, Provincia de China</field>
+        </record>
+        <record id="default_code_pais_TZ" model="export.country">
+            <field name="code_country">TZ</field>
+            <field name="name_country">Tanzania, República Unida de</field>
+        </record>
+        <record id="default_code_pais_TJ" model="export.country">
+            <field name="code_country">TJ</field>
+            <field name="name_country">Tayikistán</field>
+        </record>
+        <record id="default_code_pais_IO" model="export.country">
+            <field name="code_country">IO</field>
+            <field name="name_country">Territorio Británico Océano Índico</field>
+        </record>
+        <record id="default_code_pais_TF" model="export.country">
+            <field name="code_country">TF</field>
+            <field name="name_country">Territorios Australes Franceses</field>
+        </record>
+        <record id="default_code_pais_TL" model="export.country">
+            <field name="code_country">TL</field>
+            <field name="name_country">Timor Oriental</field>
+        </record>
+        <record id="default_code_pais_TG" model="export.country">
+            <field name="code_country">TG</field>
+            <field name="name_country">Togo</field>
+        </record>
+        <record id="default_code_pais_TK" model="export.country">
+            <field name="code_country">TK</field>
+            <field name="name_country">Tokelau</field>
+        </record>
+        <record id="default_code_pais_TO" model="export.country">
+            <field name="code_country">TO</field>
+            <field name="name_country">Tonga</field>
+        </record>
+        <record id="default_code_pais_TT" model="export.country">
+            <field name="code_country">TT</field>
+            <field name="name_country">Trinidad y Tobago</field>
+        </record>
+        <record id="default_code_pais_TN" model="export.country">
+            <field name="code_country">TN</field>
+            <field name="name_country">Túnez</field>
+        </record>
+        <record id="default_code_pais_TM" model="export.country">
+            <field name="code_country">TM</field>
+            <field name="name_country">Turkmenistán</field>
+        </record>
+        <record id="default_code_pais_TR" model="export.country">
+            <field name="code_country">TR</field>
+            <field name="name_country">Turquía</field>
+        </record>
+        <record id="default_code_pais_TV" model="export.country">
+            <field name="code_country">TV</field>
+            <field name="name_country">Tuvalu</field>
+        </record>
+        <record id="default_code_pais_UA" model="export.country">
+            <field name="code_country">UA</field>
+            <field name="name_country">Ucrania</field>
+        </record>
+        <record id="default_code_pais_UG" model="export.country">
+            <field name="code_country">UG</field>
+            <field name="name_country">Uganda</field>
+        </record>
+        <record id="default_code_pais_UY" model="export.country">
+            <field name="code_country">UY</field>
+            <field name="name_country">Uruguay</field>
+        </record>
+        <record id="default_code_pais_UZ" model="export.country">
+            <field name="code_country">UZ</field>
+            <field name="name_country">Uzbekistán</field>
+        </record>
+        <record id="default_code_pais_VU" model="export.country">
+            <field name="code_country">VU</field>
+            <field name="name_country">Vanuatu</field>
+        </record>
+        <record id="default_code_pais_VE" model="export.country">
+            <field name="code_country">VE</field>
+            <field name="name_country">Venezuela</field>
+        </record>
+        <record id="default_code_pais_VN" model="export.country">
+            <field name="code_country">VN</field>
+            <field name="name_country">Vietnam</field>
+        </record>
+        <record id="default_code_pais_VG" model="export.country">
+            <field name="code_country">VG</field>
+            <field name="name_country">Islas Vírgenes Británicas</field>
+        </record>
+        <record id="default_code_pais_WF" model="export.country">
+            <field name="code_country">WF</field>
+            <field name="name_country">Wallis y Fortuna, Islas</field>
+        </record>
+        <record id="default_code_pais_YE" model="export.country">
+            <field name="code_country">YE</field>
+            <field name="name_country">Yemen</field>
+        </record>
+        <record id="default_code_pais_ZM" model="export.country">
+            <field name="code_country">ZM</field>
+            <field name="name_country">Zambia</field>
+        </record>
+        <record id="default_code_pais_ZW" model="export.country">
+            <field name="code_country">ZW</field>
+            <field name="name_country">Zimbabue</field>
+        </record>
+        
+    </data>
+</odoo>

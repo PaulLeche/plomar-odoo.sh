@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_move_payment,access.account.move.payment,model_account_move_payment,,1,1,1,1
+access_res_company_establishment,access.res.company.establishment,model_res_company_establishment,,1,1,1,1
+access_charge_third_party_account,access.charge.third.party.account,model_charge_third_party_account,,1,1,1,1
+access_product_category_uom_fel,access.product.category.uom.fel,model_uom_fel,,1,1,1,1
+access_code_activity_fel,access.code.activity.fel,model_codigoactividad_fel,,1,1,1,1
+access_address_depart_fel,access.address.depart.fel,model_address_depart_fel,,1,1,1,1
+access_address_muni_fel,access.address.muni.fel,model_address_muni_fel,,1,1,1,1
+access_tribute_fel,access.tribute.fel,model_tribute_fel,,1,1,1,1
+access_export_country,access.export.country,model_export_country,,1,1,1,1
+access_export_recinto,access.export.recinto,model_export_recinto,,1,1,1,1
+access_export_regimen,access.export.regimen,model_export_regimen,,1,1,1,1
+access_export_incoterm,access.export.incoterm,model_export_incoterm,,1,1,1,1
