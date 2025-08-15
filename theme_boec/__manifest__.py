@@ -19,6 +19,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
+
 {
     'name': 'Theme Boec',
     'description': 'Theme Boec is an attractive and modern eCommerce Website theme',
