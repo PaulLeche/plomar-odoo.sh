@@ -26,6 +26,7 @@ MONTHS = {
 class ReportSaleBookXlsx(models.AbstractModel):
     _name = 'report.report_ventas_compras.report_sale_book_xls'
     _inherit = ['report.report_xlsx.abstract', 'report.report_ventas_compras.report_sale_book']
+    _description = "Report Sale Book XLSX"
 
     def _get_format_date(self, date):
         B = MONTHS[ date.strftime('%B') ]

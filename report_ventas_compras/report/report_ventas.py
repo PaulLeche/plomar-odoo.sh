@@ -8,6 +8,7 @@ import operator
 
 class ReportSaleBook(models.AbstractModel):
     _name = 'report.report_ventas_compras.report_sale_book'
+    _description = "Report Sale Book XLSX"
 
     @api.model
     def _get_report_values(self, docids, data=None):
@@ -114,14 +115,14 @@ class ReportSaleBook(models.AbstractModel):
                 move_name = inv.name
 
                 # ELIMINAR CUANDO SE INSTALE EL CERTIFICADOR
-                fel_serie = ""
-                fel_no = ""
+                fel_serie = inv.fe_serie if inv.fe_serie else ""
+                fel_no = inv.fe_number if inv.fe_number else ""
 
                 date = inv.invoice_date if inv.invoice_date else inv.date
 
                 # OTHER INVOICE DATA
-                # tipo = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else inv.journal_id.tipo_documento 
-                tipo = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else 'FC'
+                tipo = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else inv.journal_id.fe_type 
+                # tipo = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else 'FC'
 
                 # ELIMINAR CUANDO SE INSTALE EL CERTIFICADOR
                 if inv.state in ['posted']:

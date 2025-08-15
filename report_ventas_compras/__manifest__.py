@@ -13,6 +13,7 @@
 		'account_reports', 
 		'report_xlsx', 
 		'product', 
+		'l10n_gt_fe'
     ],
 	'license': 'AGPL-3',
 	'data': [

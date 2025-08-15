@@ -12,6 +12,8 @@ _logger = logging.getLogger(__name__)
 
 class ReportPurchaseBook(models.AbstractModel):
     _name = 'report.report_ventas_compras.report_purchase_book'
+    _description = "Report Purchase Book"
+    
 
     @api.model
     def _get_report_values(self, docids, data=None):
@@ -144,8 +146,8 @@ class ReportPurchaseBook(models.AbstractModel):
         if facturas:
             for inv in facturas:
                 # ELIMINAR CUANDO SE INSTALE EL CERTIFICADOR
-                # tipo_doc = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else inv.journal_id.tipo_documento
-                tipo_doc = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else 'FC'
+                tipo_doc = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else inv.journal_id.fe_type
+                # tipo_doc = 'NC' if inv.move_type == 'in_refund' or inv.move_type == 'out_refund' else 'FC'
                 
                 # MONTO GRAVADO
                 bienes_gravados = 0.00
@@ -194,8 +196,8 @@ class ReportPurchaseBook(models.AbstractModel):
                     move_name = inv.name
 
                     # ELIMINAR CUANDO SE INSTALE EL CERTIFICADOR
-                    fel_serie = ""
-                    fel_no = ""
+                    fel_serie = inv.fe_serie if inv.fe_serie else ""
+                    fel_no = inv.fe_number if inv.fe_number else ""
 
                     # ELIMINAR CUANDO SE INSTALE EL CERTIFICADOR
                     precio = line.price_total if inv.state != 'cancel' else 0.0
