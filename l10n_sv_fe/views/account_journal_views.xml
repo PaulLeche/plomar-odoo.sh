@@ -9,10 +9,9 @@
             <field name="arch" type="xml">
                 <field name="type" position="after">
                     <field name="code" invisible="1"/>
-                    <field name="fel_enabled_status_sv" invisible="1" />
-                    <field name="fe_active_sv" widget="boolean_toggle" groups="l10n_sv_fe.group_fel_manager" invisible="not fel_enabled_status_sv"/>
-                    <field name="fe_type_sv" groups="l10n_sv_fe.group_fel_manager" invisible="not fel_enabled_status_sv"/>
-                    <field name="fe_establishment_id" domain="[('company_id', '=', company_id)]" groups="l10n_sv_fe.group_fel_manager" invisible="not fel_enabled_status_sv"/>
+                    <field name="sv_fe_active" widget="boolean_toggle" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_country_code != 'SV'" />
+                    <field name="sv_fe_type" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_country_code != 'SV'" />
+                    <field name="sv_fe_establishment_id" domain="[('company_id', '=', company_id)]" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_country_code != 'SV'" />
                 </field>
             </field>
         </record>

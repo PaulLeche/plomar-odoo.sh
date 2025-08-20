@@ -11,43 +11,37 @@ _logger = logging.getLogger(__name__)
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
-    fe_user = fields.Char(string='Usuario')
-    fe_key_webservice = fields.Char(string='Llave')
-    fe_sign_token = fields.Char(string='Sign Token')
-    fe_other_email = fields.Char(string="Otro Email")
-    fe_establishment_ids = fields.One2many('res.company.establishment', 'company_id', string='Establecimientos')
-    fe_mode_prod = fields.Boolean(string='Prod Mode')
-    fe_url_prod = fields.Char(string='URL Prod')
-    fe_url_test = fields.Char(string='URL Test')
+    sv_fe_user = fields.Char(string='Usuario')
+    sv_fe_key_webservice = fields.Char(string='Llave')
+    sv_fe_sign_token = fields.Char(string='Sign Token')
+    sv_fe_other_email = fields.Char(string="Otro Email")
+    sv_fe_establishment_ids = fields.One2many('sv_fe.res.company.establishment', 'company_id', string='Establecimientos')
+    sv_fe_mode_prod = fields.Boolean(string='Prod Mode')
+    sv_fe_url_prod = fields.Char(string='URL Prod')
+    sv_fe_url_test = fields.Char(string='URL Test')
+    country_code = fields.Char(related='country_id.code', string='Country Code', store=True, readonly=True)
 
-    fel_enabled_sv = fields.Boolean(string='Enable FEL SV', compute='_compute_fel_enabled_sv', store=True, help="Automatically enabled for El Salvador companies.")
+    def sv_fe_get_fe_url(self):
+        return self.sv_fe_url_prod if self.sv_fe_mode_prod else self.sv_fe_url_test
 
-    @api.depends('country_id.code')
-    def _compute_fel_enabled_sv(self):
-        for record in self:
-            record.fel_enabled_sv = record.country_id.code == 'SV'
-
-    def _get_fe_url(self):
-        return self.fe_url_prod if self.fe_mode_prod else self.fe_url_test
-
-    def _get_headers(self):
+    def sv_fe_get_headers(self):
         headers = {'Content-Type': 'application/json'}
-        if not self.fe_user and not self.fe_key_webservice:
+        if not self.sv_fe_user and not self.sv_fe_key_webservice:
             raise ValidationError(_("Error. credentials aren't setted"))
-        headers.update( {'usuario': self.fe_user, 'llave': self.fe_key_webservice} )
+        headers.update( {'usuario': self.sv_fe_user, 'llave': self.sv_fe_key_webservice} )
         return headers
 
-    def _get_sign_token(self):
-        if not self.fe_sign_token:
+    def sv_fe_get_sign_token(self):
+        if not self.sv_fe_sign_token:
             raise ValidationError(_("Error. Token isn't setted"))
         return {
-            "llave": self.fe_sign_token,
-            "alias": self.fe_user
+            "llave": self.sv_fe_sign_token,
+            "alias": self.sv_fe_user
         }
 
 
 class ResCompanyEstablishment(models.Model):
-    _name = 'res.company.establishment'
+    _name = 'sv_fe.res.company.establishment'
     _description = 'Company Establishment'
     _rec_name = 'fe_tradename'
 

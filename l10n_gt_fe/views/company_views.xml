@@ -8,10 +8,10 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[hasclass('o_address_format')]" position="after">
-                    <field name="tipo_personeria" invisible="not fel_enabled"/>
+                    <field name="tipo_personeria" invisible="country_code != 'GT'" />
                 </xpath>
                 <notebook position="inside">
-                    <page name="fe" string="Electronic Invoice" invisible="not fel_enabled">
+                    <page name="fe" string="Electronic Invoice" invisible="country_code != 'GT'">
                         <group>
                             <field name="fe_user" />
                             <field name="fe_sign_token" />

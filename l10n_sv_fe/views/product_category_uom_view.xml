@@ -4,7 +4,7 @@
 
         <record id="product_uom_fel_form_inherit" model="ir.ui.view">
             <field name="name">uom.category.fel.view</field>
-            <field name="model">uom.fel</field>
+            <field name="model">sv_fe.uom.fel</field>
             <field name="inherit_id" ref="uom.product_uom_categ_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='active']" position="after">
