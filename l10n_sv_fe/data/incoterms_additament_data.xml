@@ -2,47 +2,47 @@
 <odoo>
     <data>
     
-        <record id="default_code_incoterm_10" model="export.incoterm">
+        <record id="default_code_incoterm_10" model="sv_fe.export.incoterm">
             <field name="code_incoterm">01</field>
             <field name="name_incoterm">EXW-En fabrica</field>
         </record>
-        <record id="default_code_incoterm_0" model="export.incoterm">
+        <record id="default_code_incoterm_0" model="sv_fe.export.incoterm">
             <field name="code_incoterm">02</field>
             <field name="name_incoterm">FCA-Libre transportista</field>
         </record>
-        <record id="default_code_incoterm_1" model="export.incoterm">
+        <record id="default_code_incoterm_1" model="sv_fe.export.incoterm">
             <field name="code_incoterm">03</field>
             <field name="name_incoterm">CPT-Transporte pagado hasta</field>
         </record>
-        <record id="default_code_incoterm_2" model="export.incoterm">
+        <record id="default_code_incoterm_2" model="sv_fe.export.incoterm">
             <field name="code_incoterm">04</field>
             <field name="name_incoterm">CIP-Transporte y seguro pagado hasta</field>
         </record>
-        <record id="default_code_incoterm_3" model="export.incoterm">
+        <record id="default_code_incoterm_3" model="sv_fe.export.incoterm">
             <field name="code_incoterm">05</field>
             <field name="name_incoterm">DAP-Entrega en el lugar</field>
         </record>
-        <record id="default_code_incoterm_4" model="export.incoterm">
+        <record id="default_code_incoterm_4" model="sv_fe.export.incoterm">
             <field name="code_incoterm">06</field>
             <field name="name_incoterm">DPU-Entregado en el lugar descargado</field>
         </record>
-        <record id="default_code_incoterm_5" model="export.incoterm">
+        <record id="default_code_incoterm_5" model="sv_fe.export.incoterm">
             <field name="code_incoterm">07</field>
             <field name="name_incoterm">DDP-Entrega con impuestos pagados</field>
         </record>
-        <record id="default_code_incoterm_6" model="export.incoterm">
+        <record id="default_code_incoterm_6" model="sv_fe.export.incoterm">
             <field name="code_incoterm">08</field>
             <field name="name_incoterm">FAS-Libre al costado del buque</field>
         </record>
-        <record id="default_code_incoterm_7" model="export.incoterm">
+        <record id="default_code_incoterm_7" model="sv_fe.export.incoterm">
             <field name="code_incoterm">09</field>
             <field name="name_incoterm">FOB-Libre a bordo</field>
         </record>
-        <record id="default_code_incoterm_8" model="export.incoterm">
+        <record id="default_code_incoterm_8" model="sv_fe.export.incoterm">
             <field name="code_incoterm">10</field>
             <field name="name_incoterm">CFR-Costo y flete</field>
         </record>
-        <record id="default_code_incoterm_9" model="export.incoterm">
+        <record id="default_code_incoterm_9" model="sv_fe.export.incoterm">
             <field name="code_incoterm">11</field>
             <field name="name_incoterm">CIF- Costo seguro y flete</field>
         </record>

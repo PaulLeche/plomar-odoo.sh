@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="account.view_tax_form"/>
             <field name="arch" type="xml">
                 <field name="active" position="after">
-                    <field name="holdback" widget="boolean_toggle" groups="l10n_sv_fe.group_fel_manager"/>
+                    <field name="holdback" widget="boolean_toggle" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
                 </field>
             </field>
         </record>

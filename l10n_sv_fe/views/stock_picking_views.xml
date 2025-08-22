@@ -9,11 +9,11 @@
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
                 <!-- <xpath expr="//button[@name='action_open_label_type']" position="after">
-                    <button name="action_nr" class="btn-primary" type="object" string="Generar Nota de Remisión" invisible="state!='done'" groups="l10n_sv_fe.group_fel_manager"/>
+                    <button name="sv_fe_action_nr" class="btn-primary" type="object" string="Generar Nota de Remisión" invisible="state!='done'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
                 </xpath> -->
 
                 <field name="origin" position="after">
-                    <field name="fe_assets" />
+                    <field name="sv_fe_assets" invisible="sv_fe_picking_country_code != 'SV'" />
                 </field>
             </field>
         </record>
