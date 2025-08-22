@@ -32,13 +32,6 @@ class ResCompany(models.Model):
     tipo_personeria = fields.Char('Personeria', store=True)
     afiliacion_iva = fields.Char('Afiliación', store=True)
 
-    fel_enabled = fields.Boolean(string='Enable FEL', compute='_compute_fel_enabled', store=True, help="Automatically enabled for Guatemala companies.")
-
-    @api.depends('country_id.code')
-    def _compute_fel_enabled(self):
-        for record in self:
-            record.fel_enabled = record.country_id.code == 'GT'
-
     def _get_headers(self):
         headers = {'Content-Type': 'application/json'}
         if not self.fe_user and not self.fe_key_webservice:

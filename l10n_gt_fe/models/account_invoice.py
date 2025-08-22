@@ -94,7 +94,9 @@ class AccountMove(models.Model):
     tipo_personeria = fields.Char('Personeria', related="company_id.tipo_personeria", store=True)
 
     other_fel_reference = fields.Char(string="Otra Referencia FEL", copy=False)
-    
+
+    move_country_code = fields.Char(related="company_id.country_code", string="Country Code", store=True, readonly=True)
+
     @api.depends('partner_id')
     def get_partner_vat(self):
         for record in self:
@@ -516,7 +518,7 @@ class AccountMove(models.Model):
         return data['archivo']
 
     def send_invoice(self):
-        if self.fe_active and self.company_id.fel_enabled:
+        if self.fe_active and self.move_country_code == 'GT':
             URL = self.env['ir.config_parameter'].sudo().get_param('url.webservice.fe.gt')
             xml = self._xml()
             self.write({ 'arch_xml': base64.b64encode( xml ),
@@ -612,7 +614,7 @@ class AccountMove(models.Model):
 
     def button_cancel(self):
         for record in self:
-            if not record.fe_active or not record.company_id.fel_enabled:
+            if not record.fe_active:
                 continue
             if record.process_status:
                 if record.journal_id.fe_type != 'OTRO' and record.move_type in ['out_invoice', 'out_refund'] and record.process_status not in ('cancel', 'fail'):
