@@ -16,7 +16,7 @@
                             <field name="fe_user" />
                             <field name="fe_sign_token" />
                             <field name="fe_key_webservice" />
-                            <field name="fe_phrase_ids" string="Frases" widget="many2many_tags"/>
+                            <field name="fe_phrase_ids" string="Frases" required="country_code == 'GT'" widget="many2many_tags"/>
                             <field name="afiliacion_iva"/>
                             <field name="fe_establishment_ids" mode="list">
                                 <list editable="bottom">
