@@ -6,25 +6,25 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='vat']" position="before">
-                <field name="sv_fv_movimiento_preferido_cliente" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
-                <field name="sv_fe_nrc" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
-                <field name="sv_fe_address_dep" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
-                <field name="sv_fe_address_mun" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
-                <field name="sv_fe_country" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
-                <field name="sv_fe_complement_address" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
-                <field name="sv_fv_tipo_persona" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
-                <field name="sv_fe_identification_type" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+            <xpath expr="//div[@class='o_address_format']" position="after">
+                <field name="sv_fv_movimiento_preferido_cliente" string="Movimiento Preferido Cliente" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fe_nrc" string="NRC" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fe_address_dep" string="Departamento" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fe_address_mun" string="Municipio" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fe_country" string="País Exportación" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fe_complement_address" string="Dirección Complementaria" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fv_tipo_persona" string="Tipo de Persona" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fe_identification_type" string="Tipo Identificación" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
             </xpath>
             <xpath expr="//field[@name='function']" position="before">
-                <field name="sv_fe_code_activity" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fe_code_activity" string="Actividad Económica" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
             </xpath>
             <xpath expr="//field[@name='vat']" position="replace">
                 <field name="vat" string="NIT" invisible="sv_fe_identification_type != '36' or sv_fe_partner_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
-                <field name="sv_fe_dui_field" invisible="sv_fe_identification_type != '13' or sv_fe_partner_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
-                <field name="sv_fe_other_field" invisible="sv_fe_identification_type != '37' or sv_fe_partner_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
-                <field name="sv_fe_passport_field" invisible="sv_fe_identification_type != '03' or sv_fe_partner_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
-                <field name="sv_fe_carnet_residente_field" invisible="sv_fe_identification_type != '02' or sv_fe_partner_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_dui_field" string="DUI" invisible="sv_fe_identification_type != '13' or sv_fe_partner_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_other_field" string="Otro" invisible="sv_fe_identification_type != '37' or sv_fe_partner_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_passport_field" string="Pasaporte" invisible="sv_fe_identification_type != '03' or sv_fe_partner_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_carnet_residente_field" string="Carnét de Residente" invisible="sv_fe_identification_type != '02' or sv_fe_partner_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
             </xpath>
             <xpath expr="//field[@name='email']" position="attributes">
                 <attribute name="required">True</attribute>
