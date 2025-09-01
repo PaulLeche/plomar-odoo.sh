@@ -87,7 +87,7 @@ class AccountMove(models.Model):
                 
             if record.payment_state in ('in_payment', 'paid','partial'):
                 last_payment = self.env['account.payment'].search([
-                        ('ref', '=', record.name),
+                        ('payment_reference', '=', record.name),
                         ('state', '=', 'posted')
                     ], order='id desc', limit=1)
                 record.last_payment_sequence = last_payment.name or ''
