@@ -12,7 +12,7 @@ class ReportPlanillaF930(models.AbstractModel):
     _description = 'report advanced_reports report_planilla_f930'
 
     def get_nit(self, partner):
-        if partner.identification_type == '36':
+        if partner.sv_fe_identification_type == '36':
             if partner.vat:
                 return partner.vat
             else:

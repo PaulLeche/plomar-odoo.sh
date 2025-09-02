@@ -316,7 +316,7 @@ class ReportPlanillaF07(models.AbstractModel):
                 dui_proveedor, nrc = self.get_dui_nrc(move)
 
                 # nrc = self.insert_dash_before_last_nrc(nrc)
-                # if move.partner_id.identification_type == '13':
+                # if move.partner_id.sv_fe_identification_type == '13':
                 #     if move.partner_id.nrc:
                 #         dui_proveedor = ''
                 #     else:
@@ -404,7 +404,7 @@ class ReportPlanillaF07(models.AbstractModel):
                                 debito_fiscal += tax['amount']
                                 impuesto = True
                 # if not move.partner_id.nrc:
-                #     if move.partner_id.identification_type == '13':
+                #     if move.partner_id.sv_fe_identification_type == '13':
                 #         dui = move.partner_id.dui_field
                 #     else:
                 #         dui = ''
@@ -875,7 +875,7 @@ class ReportPlanillaF07(models.AbstractModel):
 
     def get_nrc(self, move):
         if move.partner_id.nrc:
-            if move.partner_id.identification_type == '13':
+            if move.partner_id.sv_fe_identification_type == '13':
                 if move.partner_id.dui_field:
                     nrc = ''
                 else:
@@ -887,27 +887,27 @@ class ReportPlanillaF07(models.AbstractModel):
         return nrc
 
     def get_number_name_document(self, partner):
-        if partner.identification_type == '36':
+        if partner.sv_fe_identification_type == '36':
             name = '1'
             # name = 'NIT'
             name_document = partner.vat
             return name, name_document
-        elif partner.identification_type == '13':
+        elif partner.sv_fe_identification_type == '13':
             name = '2'
             # name = 'DUI'
             name_document = partner.dui_field
             return name, name_document
-        elif partner.identification_type == '37':
+        elif partner.sv_fe_identification_type == '37':
             name = '3'
             # name = 'Otro'
             name_document = partner.other_field
             return name, name_document
-        elif partner.identification_type == '03':
+        elif partner.sv_fe_identification_type == '03':
             name = '3'
             # name = 'Pasaporte'
             name_document = partner.passport_field
             return name, name_document
-        elif partner.identification_type == '02':
+        elif partner.sv_fe_identification_type == '02':
             name = '3'
             # name = 'Carnet de Residente'
             name_document = partner.carnet_residente_field
@@ -967,13 +967,13 @@ class ReportPlanillaF07(models.AbstractModel):
 
 
     def get_nit_dui(self, partner):
-        if partner.identification_type == '13':
+        if partner.sv_fe_identification_type == '13':
             if partner.dui_field:
                 return '', partner.dui_field
             else:
                 return '', ''
         else:
-            if partner.identification_type == '36':
+            if partner.sv_fe_identification_type == '36':
                 if partner.vat:
                     return partner.vat, ''
                 else:
@@ -984,7 +984,7 @@ class ReportPlanillaF07(models.AbstractModel):
 
 
     def get_dui_nrc(self, move):
-        if move.partner_id.identification_type == '13':
+        if move.partner_id.sv_fe_identification_type == '13':
             if move.partner_id.dui_field:
                 return move.partner_id.dui_field, ''
             else:

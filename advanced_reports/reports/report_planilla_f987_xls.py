@@ -192,7 +192,7 @@ class ReportPlanillaF987Xls(models.AbstractModel):
                 sheet2.write(row2, column + 1, line.get('month'), no_bold_no)
                 sheet2.write(row2, column + 2, line.get('year'), no_bold_no)
                 sheet2.write(row2, column + 3, line.get('concept_operation'), no_bold_no)
-                sheet2.write(row2, column + 4, line.get('identification_type'), no_bold_no)
+                sheet2.write(row2, column + 4, line.get('sv_fe_identification_type'), no_bold_no)
                 sheet2.write(row2, column + 5, line.get('nro_identification'), no_bold_no)
                 sheet2.write(row2, column + 6, line.get('partner_name'), no_bold_no)
                 sheet2.write(row2, column + 7, line.get('representante'), no_bold_no)
@@ -263,7 +263,7 @@ class ReportPlanillaF987Xls(models.AbstractModel):
                 sheet3.write(row3, column, line.get('invoice_date').strftime('%d/%m/%Y') if line.get('invoice_date') else '', no_bold_no)
                 sheet3.write(row3, column + 1, line.get('month'), no_bold_no)
                 sheet3.write(row3, column + 2, line.get('year'), no_bold_no)
-                sheet3.write(row3, column + 3, line.get('identification_type'), no_bold_no)
+                sheet3.write(row3, column + 3, line.get('sv_fe_identification_type'), no_bold_no)
                 sheet3.write(row3, column + 4, line.get('nro_identification'), no_bold_no)
                 sheet3.write(row3, column + 5, line.get('partner_name'), no_bold_no)
                 sheet3.write(row3, column + 6, line.get('fe_type'), no_bold_no)
@@ -321,7 +321,7 @@ class ReportPlanillaF987Xls(models.AbstractModel):
 
         if result_cliente:
             for line in result_cliente:
-                sheet4.write(row4, column, line.get('identification_type'), no_bold_no)
+                sheet4.write(row4, column, line.get('sv_fe_identification_type'), no_bold_no)
                 sheet4.write(row4, column + 1, line.get('nro_identification'), no_bold_no)
                 sheet4.write(row4, column + 2, line.get('partner_name'), no_bold_no)
                 sheet4.write(row4, column + 3, line.get('fe_type'), no_bold_no)

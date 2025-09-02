@@ -76,31 +76,31 @@ class ReportPlanillaF987(models.AbstractModel):
         return concept_operation
 
     def get_identification_type(self, partner_id):
-        identification_type = ''
-        if partner_id and partner_id.identification_type:
-            if partner_id.identification_type == '36':
-                identification_type = 'NIT'
-            elif partner_id.identification_type == '13':
-                identification_type = 'DUI'
-            elif partner_id.identification_type == '37':
-                identification_type = 'Otro'
-            elif partner_id.identification_type == '03':
-                identification_type = 'Pasaporte'
-            elif partner_id.identification_type == '02':
-                identification_type = 'Carnet de residente'
-        return identification_type
+        sv_fe_identification_type = ''
+        if partner_id and partner_id.sv_fe_identification_type:
+            if partner_id.sv_fe_identification_type == '36':
+                sv_fe_identification_type = 'NIT'
+            elif partner_id.sv_fe_identification_type == '13':
+                sv_fe_identification_type = 'DUI'
+            elif partner_id.sv_fe_identification_type == '37':
+                sv_fe_identification_type = 'Otro'
+            elif partner_id.sv_fe_identification_type == '03':
+                sv_fe_identification_type = 'Pasaporte'
+            elif partner_id.sv_fe_identification_type == '02':
+                sv_fe_identification_type = 'Carnet de residente'
+        return sv_fe_identification_type
     def get_identification(self, partner_id):
         identification = ''
-        if partner_id and partner_id.identification_type:
-            if partner_id.identification_type == '36' and partner_id.vat:
+        if partner_id and partner_id.sv_fe_identification_type:
+            if partner_id.sv_fe_identification_type == '36' and partner_id.vat:
                 identification = partner_id.vat
-            elif partner_id.identification_type == '13' and partner_id.dui_field:
+            elif partner_id.sv_fe_identification_type == '13' and partner_id.dui_field:
                 identification = partner_id.dui_field
-            elif partner_id.identification_type == '37' and partner_id.other_field:
+            elif partner_id.sv_fe_identification_type == '37' and partner_id.other_field:
                 identification = partner_id.other_field
-            elif partner_id.identification_type == '03' and partner_id.passport_field:
+            elif partner_id.sv_fe_identification_type == '03' and partner_id.passport_field:
                 identification = partner_id.passport_field
-            elif partner_id.identification_type == '02' and partner_id.carnet_residente_field:
+            elif partner_id.sv_fe_identification_type == '02' and partner_id.carnet_residente_field:
                 identification = partner_id.carnet_residente_field
         return identification
 
@@ -260,7 +260,7 @@ class ReportPlanillaF987(models.AbstractModel):
                     'month': self._month_letters(move.invoice_date.month),
                     'year': move.invoice_date.year,
                     'concept_operation': self.get_concept_operation(move),
-                    'identification_type' : self.get_identification_type(move.partner_id),
+                    'sv_fe_identification_type' : self.get_identification_type(move.partner_id),
                     'nro_identification': self.get_identification(move.partner_id),
                     'partner_name': move.partner_id.name if move.partner_id.name else '',
                     'representante': self.get_representante(move.partner_id),
@@ -303,7 +303,7 @@ class ReportPlanillaF987(models.AbstractModel):
                     'invoice_date': move.invoice_date,
                     'month': self._month_letters(move.invoice_date.month),
                     'year': move.invoice_date.year,
-                    'identification_type': self.get_identification_type(move.partner_id),
+                    'sv_fe_identification_type': self.get_identification_type(move.partner_id),
                     'nro_identification': self.get_identification(move.partner_id),
                     'partner_name': move.partner_id.name if move.partner_id.name else '',
                     'fe_type': self.get_fe_type(move),
@@ -369,7 +369,7 @@ class ReportPlanillaF987(models.AbstractModel):
                 if move.fe_type == '01':
                     if amount_total_dollar >= 200:
                         line_cliente = {
-                            'identification_type': self.get_identification_type(move.partner_id),
+                            'sv_fe_identification_type': self.get_identification_type(move.partner_id),
                             'nro_identification': self.get_identification(move.partner_id),
                             'partner_name': move.partner_id.name if move.partner_id.name else '',
                             'fe_type': self.get_fe_type(move),
@@ -385,7 +385,7 @@ class ReportPlanillaF987(models.AbstractModel):
                         result.append(line_cliente)
                 else:
                     line_cliente = {
-                        'identification_type': self.get_identification_type(move.partner_id),
+                        'sv_fe_identification_type': self.get_identification_type(move.partner_id),
                         'nro_identification': self.get_identification(move.partner_id),
                         'partner_name': move.partner_id.name if move.partner_id.name else '',
                         'fe_type': self.get_fe_type(move),

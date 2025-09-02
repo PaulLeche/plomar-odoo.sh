@@ -210,7 +210,7 @@ class ReportPlanillaF14(models.AbstractModel):
 
     def get_nit(self, partner):
         if partner:
-            if partner.identification_type == '36' and partner.vat:
+            if partner.sv_fe_identification_type == '36' and partner.vat:
                 return partner.vat
             else:
                 return ''
@@ -218,7 +218,7 @@ class ReportPlanillaF14(models.AbstractModel):
             return ''
     def get_dui(self, partner):
         if partner:
-            # if partner.identification_type == '13' and partner.dui_field:
+            # if partner.sv_fe_identification_type == '13' and partner.dui_field:
             if partner.dui_field:
                 return partner.dui_field
             else:

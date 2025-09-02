@@ -15,11 +15,11 @@
             <xpath expr="//field[@name='company_type']" position="before">
                 <field name="type_consumer_taxp" widget="radio" options="{'horizontal': true}" invisible="1"/>
             </xpath>
-             <xpath expr="//field[@name='tipo_persona']" position="after">
+             <xpath expr="//field[@name='sv_fe_tipo_persona']" position="after">
                  <field name="type_consumer_taxp"/>
                  <field name="nrc" invisible="is_consumer_taxp != False"/>
             </xpath>
-            <xpath expr="//field[@name='identification_type']" position="before">
+            <xpath expr="//field[@name='sv_fe_identification_type']" position="before">
                 <field name="taxpayer_type" invisible="type_consumer_taxp == 'consumer'"/>
             </xpath>
             <xpath expr="//field[@name='category_id']" position="after">
