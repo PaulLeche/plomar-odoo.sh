@@ -62,11 +62,11 @@ class AccountMove(models.Model):
     number_of_annexed_9 = fields.Integer(string='Número de anexo 9', default=9)
     number_of_annexed_11 = fields.Integer(string='Número de anexo 11', default=11)
 
-    @api.depends('numero_control')
+    @api.depends('sv_fe_numero_control')
     def _compute_numero_control(self):
         for record in self:
-            if record.numero_control:
-                record.number_of_resolution = record.numero_control.replace("-", "")
+            if record.sv_fe_numero_control:
+                record.number_of_resolution = record.sv_fe_numero_control.replace("-", "")
             else:
                 record.number_of_resolution = ''
 

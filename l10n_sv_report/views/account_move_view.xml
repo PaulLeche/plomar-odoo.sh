@@ -22,7 +22,7 @@
                 <field name="type_of_purchase" optional="hide"/>
             </xpath>
 
-            <field name="numero_control" position="after">
+            <field name="sv_fe_numero_control" position="after">
                 <field name="class_of_document" readonly="1"/>
                 <field name="number_internal_control"/>
                 <field name="number_of_resolution"/>
@@ -60,7 +60,7 @@
 <!--        <field name="model">account.move</field>-->
 <!--        <field name="inherit_id" ref="l10n_sv_fe.view_move_form"/>-->
 <!--        <field name="arch" type="xml">-->
-<!--            <field name="numero_control" position="after">-->
+<!--            <field name="sv_fe_numero_control" position="after">-->
 <!--                <field name="class_of_document"/>-->
 <!--            </field>-->
 <!--        </field>-->
