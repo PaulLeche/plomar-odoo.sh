@@ -5,7 +5,7 @@
     "website": "https://www.xetechs.com",
     "category": "Account",
     "license": "LGPL-3",
-    "version": "17.0.1.0",
+    "version": "18.0.1.0.0",
     "description": """
         Este módulo incluye:
         - Reporte de libro mayor por fechas.
