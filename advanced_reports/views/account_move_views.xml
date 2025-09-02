@@ -5,7 +5,7 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='fe_regimen']" position="after">
+            <xpath expr="//field[@name='sv_fe_regimen']" position="after">
                 <field name="document_number" invisible="move_type in ['entry', 'out_receipt', 'in_receipt']"/>
                 <field name="date_payment" invisible="move_type in ['entry', 'out_receipt', 'in_receipt']"/>
             </xpath>
@@ -26,7 +26,7 @@
                    <field name="aduana_code_id" required="partner_country != 'El Salvador' and move_type == 'in_invoice'"/>
                </group>
             </xpath>
-            <xpath expr="//field[@name='motivo_invalidacion']" position="after">
+            <xpath expr="//field[@name='sv_fe_motivo_invalidacion']" position="after">
                 <field name="type_rental_operation"/>
                 <field name="type_rental_income"/>
             </xpath>

@@ -17,7 +17,7 @@
             </xpath>
              <xpath expr="//field[@name='sv_fe_tipo_persona']" position="after">
                  <field name="type_consumer_taxp"/>
-                 <field name="nrc" invisible="is_consumer_taxp != False"/>
+                 <field name="sv_fe_nrc" invisible="is_consumer_taxp != False"/>
             </xpath>
             <xpath expr="//field[@name='sv_fe_identification_type']" position="before">
                 <field name="taxpayer_type" invisible="type_consumer_taxp == 'consumer'"/>
