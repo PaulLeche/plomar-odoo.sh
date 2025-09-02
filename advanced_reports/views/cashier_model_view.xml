@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vista árbol (tree)  -->
+        <record id="view_cashier_model_tree" model="ir.ui.view">
+            <field name="name">cashier.model.tree</field>
+            <field name="model">cashier.model</field>
+            <field name="arch" type="xml">
+                <tree string="Cajero">
+                    <field name="name"/>
+                    <field name="company_id" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista formulario (form)  -->
+        <record id="view_cashier_model_form" model="ir.ui.view">
+            <field name="name">cashier.model.form</field>
+            <field name="model">cashier.model</field>
+            <field name="arch" type="xml">
+                <form string="Cajero">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cashier_model_view" model="ir.actions.act_window">
+            <field name="name">Cajeros</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cashier.model</field>
+            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            action="action_cashier_model_view" id="menu_cashier_model"
+            name="Cajeros"
+            parent="account.menu_finance_configuration" sequence="7"
+        />
+    </data>
+</odoo>

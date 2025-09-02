@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_extends_form" model="ir.ui.view">
+        <field name="name">view.partner.extends.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_code']" position="before">
+                <field name="is_consumer_taxp" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='nrc']" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_type']" position="before">
+                <field name="type_consumer_taxp" widget="radio" options="{'horizontal': true}" invisible="1"/>
+            </xpath>
+             <xpath expr="//field[@name='tipo_persona']" position="after">
+                 <field name="type_consumer_taxp"/>
+                 <field name="nrc" invisible="is_consumer_taxp != False"/>
+            </xpath>
+            <xpath expr="//field[@name='identification_type']" position="before">
+                <field name="taxpayer_type" invisible="type_consumer_taxp == 'consumer'"/>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="house_number"/>
+                <field name="local_apartment"/>
+                <field name="address_information"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

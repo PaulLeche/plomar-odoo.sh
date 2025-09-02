@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_close_box">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <t t-foreach="ultima" t-as="box_lines">
+                    <t t-set="box" t-value="box_lines[0]"/>
+                    <t t-set="chashier" t-value="box_lines[1]"/>
+                    <t t-set="lines" t-value="box_lines[2]"/>
+                    <div class="page" style="font-size:12px;">
+<!--                        <template id="report_close_box_header">-->
+<!--                            <div class="header" style="font-size:14px;">-->
+                                <div class="row" style="font-size:14px;">
+                                    <div>
+                                        <center><strong><span t-esc="company_name"/></strong></center>
+                                        <center><strong><span>REPORTE DE CIERRE DE&#160;<span t-esc="box.upper()"/></span></strong></center>
+                                        <center><strong>Del&#160;<span t-esc="date_to"/>&#160;al&#160;<span t-esc="date_from"/></strong></center>
+                                        <t t-if="lines and len(lines) &gt; 0">
+<!--                                            <t t-set="first_line" t-value="lines[0]"/>-->
+                                            <center><strong><span>Nombre del cajero:&#160;<span t-esc="chashier"/></span></strong></center>
+                                        </t>
+                                        <t t-else="">
+                                            <center><strong><span>Nombre del cajero:&#160;</span></strong></center>
+                                        </t>
+                                    </div>
+                                </div>
+<!--                            </div>-->
+<!--                        </template>-->
+
+                        <br/><br/>
+                         <style>
+                            .custom-table {
+                                width: 100%;
+                                border: 1px solid black;
+                                border-collapse: collapse;
+                            }
+                            .custom-table th, .custom-table td {
+                                padding: 6px;
+                                border: 1px solid black;
+                                border-collapse: collapse;
+                                text-align:center;
+                            }
+                             .custom-table-box {
+                                width: 100%;
+                                border: 0px;
+                                border-collapse: collapse;
+                            }
+                            .custom-table-box th, .custom-table-box td {
+                                padding: 6px;
+                                border: 0px;
+                                border-collapse: collapse;
+                                text-align:right;
+                            }
+                        </style>
+                        <table class="custom-table">
+                            <t t-set="payment_method1" t-value="None"/>
+                            <t t-set="amount_total1" t-value="0"/>
+                            <t t-set="swich" t-value="1"/>
+                            <t t-set="total_amount_box" t-value="0"/>
+                            <t t-foreach="lines" t-as="line">
+                                <t t-set="payment_method2" t-value="line.get('payment_method')"/>
+                                <t t-set="amount_total2" t-value="line.get('amount_total')"/>
+                                <t t-if="payment_method2 != payment_method1">
+                                    <t t-if="payment_method1 or payment_method1 == ''">
+                                        <tr>
+                                            <td colspan="3">
+                                                <span>TOTAL&#160;<span t-esc="payment_method1.upper()"/></span>
+                                            </td>
+                                            <td style="text-align:right;">
+                                                <span t-esc="'{0:,.2f}'.format(amount_total1)"/>
+                                            </td>
+                                        </tr>
+                                        <t t-set="total_amount_box" t-value="total_amount_box + amount_total1"/>
+                                        <t t-set="amount_total1" t-value="0"/>
+                                        <t t-set="swich" t-value="1"/>
+                                    </t>
+                                    <t t-set="payment_method1" t-value="payment_method2"/>
+                                </t>
+                                <t t-if="swich == 1">
+                                    <tr>
+                                        <td colspan="4" style="text-align:left;">
+                                            <strong><span>PAGOS CON :&#160;<span t-esc="line.get('payment_method').upper()"/></span></strong>
+                                        </td>
+                                    </tr>
+                                    <t t-set="swich" t-value="0"/>
+                                </t>
+                                <tr>
+                                    <td style="width:35%;">
+                                        <span t-esc="line.get('partner_name')"/>
+                                    </td>
+                                    <td style="width:15%;">
+                                        <span t-esc="line.get('invoice_date')"/>
+                                    </td>
+                                    <td style="width:30%;">
+                                        <span t-esc="line.get('numero_control')"/>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <span t-esc="'{0:,.2f}'.format(line.get('amount_total'))"/>
+                                    </td>
+                                </tr>
+                                <t t-set="amount_total1" t-value="amount_total1 + amount_total2"/>
+                            </t>
+                            <t t-if="payment_method1">
+                                <tr>
+                                    <td colspan="3">
+                                        <span>TOTAL&#160;<span t-esc="line.get('payment_method').upper()"/></span>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <span t-esc="'{0:,.2f}'.format(amount_total1)"/>
+                                    </td>
+                                </tr>
+                                <t t-set="total_amount_box" t-value="total_amount_box + amount_total1"/>
+                            </t>
+                        </table>
+                        <br/>
+                        <table class="custom-table-box">
+                            <tr>
+                                <td colspan="3" style="width:80%;">
+                                    TOTAL&#160;<span t-esc="box.upper()"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.2f}'.format(total_amount_box)"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p style="page-break-after:always;"/>
+                </t>
+            </t>
+
+
+
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_taxpayer">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page" style="font-size:10px;">
+                    <t t-value="ultima" t-set="final"/>
+<!--                    <t t-value="date_from" t-set="date_ini"/>-->
+<!--                    <t t-value="date_to" t-set="date_ini"/>-->
+                    <t t-set="o" t-value="docs"/>
+
+                    <template id="report_taxpayer_header">
+                        <div class="header" style="font-size:14px;">
+                            <div class="row">
+                                <div>
+                                    <center><strong><span t-esc="o.company_id.name if o.company_id and o.company_id.name else ''"/></strong></center>
+                                    <center><strong><span>LIBRO DE VENTAS DE CONTRIBUYENTES</span></strong></center>
+                                    <center><strong>N.R.C.: <span t-field="o.company_id.partner_id.nrc"/> NIT: <span t-field="o.company_id.vat"/></strong></center>
+                                    <t t-if="final">
+                                        <center><strong>GIRO:&#160;<span t-esc="final.get('giro')"/></strong></center>
+                                    </t>
+                                    <t t-else="">
+                                        <center><strong>GIRO:&#160;</strong></center>
+                                    </t>
+                                    <center><strong>PERIODO:&#160;Del <span t-esc="date_from"/> al <span t-esc="date_to"/></strong></center>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <table class="text-center table table-borderless table-sm table-x">
+                        <thead>
+                            <tr>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>No</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>Fecha de Emisión</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>No de Documento</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>N.R.C.</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>Nombre del Cliente</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="4"><strong>Ventas propias</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="3"><strong>VENTAS A CUENTAS DE TERCEROS</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>IVA Retenido</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>Propina</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>Impuesto del Turismo</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>TOTAL VENTAS</strong></th>
+                            </tr>
+                            <tr>
+                                <th style="border: 1px solid black;" rowspan="1" colspan="1"><strong>Exentas</strong></th>
+                                <th style="border: 1px solid black;" rowspan="1" colspan="1"><strong>No sujetas</strong></th>
+                                <th style="border: 1px solid black;" rowspan="1" colspan="1"><strong>Gravadas</strong></th>
+                                <th style="border: 1px solid black;" rowspan="1" colspan="1"><strong>Débito Fiscal</strong></th>
+                                <th style="border: 1px solid black;" rowspan="1" colspan="1"><strong>Exentas</strong></th>
+                                <th style="border: 1px solid black;" rowspan="1" colspan="1"><strong>Gravadas</strong></th>
+                                <th style="border: 1px solid black;" rowspan="1" colspan="1"><strong>Débito Fiscal</strong></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <t t-set="cont" t-value="1"/>
+                            <t t-foreach="data" t-as="line">
+                                <tr>
+                                    <td style="border: 1px solid black;"><span t-esc="cont"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="line.get('fecha_emision')"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="line.get('nro_doc')"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="line.get('nrc')"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="line.get('nombre_cliente')"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('propias_exenta'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('propias_no_sujetas'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('propias_grabada'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('propias_debito'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('terceros_exenta'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('terceros_grabada'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('terceros_debito'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('iva_ret'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('propina'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('imp_turismo'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('total'))"/></td>
+                                </tr>
+                                <t t-set="cont" t-value="cont + 1"/>
+                            </t>
+                            <t t-if="final">
+                                <tr>
+                                    <td style="border: 1px solid black;" colspan="5"><strong>TOTAL</strong></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_propias_exenta'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_propias_no_sujetas'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_propias_grabada'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_propias_debito'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_terceros_exenta'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_terceros_grabada'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_terceros_debito'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_iva_ret'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_propina'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_imp_turismo'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_total_ventas'))"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <br/>
+
+                </div>
+                <p style="page-break-after:always;"/>
+                <template id="report_taxpayer_footer" style="font-size:12px;">
+                    <div t-attf-class="footer">
+                        <div class="col-12 text-right" style="font-size:14px;">
+                            Pág <span class="page"/> de <span class="topage"/>
+                        </div>
+                    </div>
+                </template>
+            </t>
+        </t>
+    </template>
+</odoo>

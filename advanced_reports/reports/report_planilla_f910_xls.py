@@ -1,0 +1,230 @@
+# -*- encoding: utf-8 -*-
+
+import time, datetime
+import base64
+import io
+import logging
+
+from odoo import fields, models, api
+from datetime import datetime
+
+_logger = logging.getLogger(__name__)
+
+
+class ReportPlanillaF07Xls(models.AbstractModel):
+    _name = 'report.advanced_reports.report_planilla_f910_xls'
+    _description = 'report advanced_reports report_planilla_f910_xls'
+    _inherit = ['report.report_xlsx.abstract']
+
+
+
+    def generate_xlsx_report(self, workbook, data, record):
+        row = 2
+        column = 1
+        total_final = 0
+        now = datetime.now()
+        time_now = now.strftime("%Y/%m/%d %H:%M:%S")
+
+        # SHEET AND STYLES
+        sheet = workbook.add_worksheet("F910")
+
+        title = workbook.add_format({'font_size': 20, 'bold': True, 'align': 'center', 'valign': 'vcenter'})
+        title_no_border = workbook.add_format({'font_size': 16, 'bold': True, 'valign': 'vcenter', 'align': 'center'})
+        date = workbook.add_format({'font_size': 12, 'bold': True, 'align': 'center', 'valign': 'vcenter'})
+        bold = workbook.add_format({'font_size': 12, 'bold': True, 'align': 'center', 'valign': 'vcenter','border': 1, })
+        no_bold = workbook.add_format({'font_size': 12, 'bold': False, 'valign': 'vcenter', 'border': 1, })
+        no_bold_no_border = workbook.add_format({'font_size': 12, 'bold': False, 'valign': 'vcenter', 'align': 'center'})
+        no_bold_no = workbook.add_format({'font_size': 12, 'bold': False, 'align': 'center', 'valign': 'vcenter', 'border': 1, })
+        no_bold_paint = workbook.add_format({'bg_color': '#DCDCDC', 'font_size': 12, 'bold': False, 'align': 'center', 'valign': 'vcenter','border': 1, })
+        no_bold_number = workbook.add_format({'font_size': 12, 'bold': False, 'align': 'right', 'valign': 'vcenter', 'border': 1, })
+        no_bold_total = workbook.add_format({'font_size': 12, 'bold': False, 'align': 'right', 'valign': 'vcenter', 'border': 1, })
+        total = workbook.add_format({'font_size': 12, 'bold': True, 'align': 'center', 'valign': 'vcenter', 'border': 1, })
+        total_paint = workbook.add_format({'bg_color': '#DCDCDC', 'font_size': 12, 'bold': True, 'align': 'center', 'valign': 'vcenter','border': 1, })
+        total_right = workbook.add_format({'font_size': 12, 'bold': True, 'align': 'right', 'valign': 'vcenter', 'border': 1, })
+
+
+        # SET DINAMIC HEIGHT OF COLUMNS
+        bold.set_text_wrap()
+        no_bold_no.set_text_wrap()
+
+        # GET VALUES
+
+        result, ultima = self.env['report.advanced_reports.report_planilla_f910'].generate_records(record)
+        # ------------------------- Detalle ------------------------------------------
+        # SIZE OF COLUMNS
+        # WIDTH
+        sheet.set_column('B:B', 60)
+        sheet.set_column('C:C', 20)
+        sheet.set_column('D:D', 20)
+        sheet.set_column('E:E', 20)
+        sheet.set_column('F:F', 20)
+        sheet.set_column('G:G', 20)
+        sheet.set_column('H:H', 20)
+        sheet.set_column('I:I', 20)
+        sheet.set_column('J:J', 20)
+        sheet.set_column('K:K', 20)
+        sheet.set_column('L:L', 20)
+        sheet.set_column('M:M', 20)
+        sheet.set_column('N:N', 20)
+        sheet.set_column('O:O', 20)
+        sheet.set_column('P:P', 20)
+        sheet.set_column('Q:Q', 20)
+        sheet.set_column('R:R', 20)
+        sheet.set_column('S:S', 20)
+        sheet.set_column('T:T', 20)
+        sheet.set_column('U:U', 20)
+        sheet.set_column('V:V', 20)
+        sheet.set_column('W:W', 20)
+        sheet.set_column('X:X', 20)
+        sheet.set_column('Y:Y', 20)
+        sheet.set_column('Z:Z', 20)
+        sheet.set_column('AA:AA', 20)
+        sheet.set_column('AB:AB', 20)
+        sheet.set_column('AC:AC', 20)
+        sheet.set_column('AD:AD', 20)
+        sheet.set_column('AE:AE', 20)
+        sheet.set_column('AF:AF', 20)
+        sheet.set_column('AG:AG', 20)
+        sheet.set_column('AH:AH', 20)
+        sheet.set_column('AI:AI', 20)
+        sheet.set_column('AJ:AJ', 20)
+        sheet.set_column('AK:AK', 20)
+        sheet.set_column('AL:AL', 20)
+        sheet.set_column('AM:AM', 20)
+        sheet.set_column('AN:AN', 20)
+        sheet.set_column('AO:AO', 20)
+        sheet.set_column('AP:AP', 20)
+        sheet.set_column('AQ:AQ', 20)
+        sheet.set_column('AR:AR', 20)
+        sheet.set_column('AS:AS', 20)
+        sheet.set_column('AT:AT', 20)
+        sheet.set_column('AU:AU', 20)
+        sheet.set_column('AV:AV', 20)
+        sheet.set_column('AW:AW', 20)
+        sheet.set_column('AX:AX', 20)
+        sheet.set_column('AY:AY', 20)
+        sheet.set_column('AZ:AZ', 20)
+
+        # SET MENU
+        sheet.merge_range('B2:B3', 'Apellido y Nombre ', bold)
+        sheet.merge_range('C2:C3', 'NIT', bold)
+        sheet.merge_range('D2:D3', 'Codigo de Ingreso', bold)
+        sheet.merge_range('E2:E3', 'Monto Devengado', bold)
+        sheet.merge_range('F2:F3', 'Bonificaciones y gratificaciones', bold)
+        sheet.merge_range('G2:G3', 'Imp Retenido', bold)
+        sheet.merge_range('H2:H3', 'Aguinaldo Exento',bold)
+        sheet.merge_range('I2:I3', 'Aguinaldo Gravado', bold)
+        sheet.merge_range('J2:J3', 'ISSS', bold)
+        sheet.merge_range('K2:K3', 'AFP', bold)
+        sheet.merge_range('L2:L3', 'IPSFA', bold)
+        sheet.merge_range('M2:M3', 'CEFAFA', bold)
+        sheet.merge_range('N2:N3', 'INPEP', bold)
+        sheet.merge_range('O2:O3', 'Bienestar Magisterial', bold)
+        sheet.merge_range('P2:R2', 'Enero', bold)
+        sheet.write('P3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('Q3', 'Renta', bold)
+        sheet.write('R3', 'AFP', bold)
+        sheet.merge_range('S2:U2', 'Febrero', bold)
+        sheet.write('S3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('T3', 'Renta', bold)
+        sheet.write('U3', 'AFP', bold)
+        sheet.merge_range('V2:X2', 'Marzo', bold)
+        sheet.write('V3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('W3', 'Renta', bold)
+        sheet.write('X3', 'AFP', bold)
+        sheet.merge_range('Y2:AA2', 'Abril', bold)
+        sheet.write('Y3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('Z3', 'Renta', bold)
+        sheet.write('AA3', 'AFP', bold)
+        sheet.merge_range('AB2:AD2', 'Mayo', bold)
+        sheet.write('AB3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('AC3', 'Renta', bold)
+        sheet.write('AD3', 'AFP', bold)
+        sheet.merge_range('AE2:AG2', 'Junio', bold)
+        sheet.write('AE3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('AF3', 'Renta', bold)
+        sheet.write('AG3', 'AFP', bold)
+        sheet.merge_range('AH2:AJ2', 'Julio', bold)
+        sheet.write('AH3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('AI3', 'Renta', bold)
+        sheet.write('AJ3', 'AFP', bold)
+        sheet.merge_range('AK2:AM2', 'Agosto', bold)
+        sheet.write('AK3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('AL3', 'Renta', bold)
+        sheet.write('AM3', 'AFP', bold)
+        sheet.merge_range('AN2:AP2', 'Septiembre', bold)
+        sheet.write('AN3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('AO3', 'Renta', bold)
+        sheet.write('AP3', 'AFP', bold)
+        sheet.merge_range('AQ2:AS2', 'Octubre', bold)
+        sheet.write('AQ3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('AR3', 'Renta', bold)
+        sheet.write('AS3', 'AFP', bold)
+        sheet.merge_range('AT2:AV2', 'Noviembre', bold)
+        sheet.write('AT3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('AU3', 'Renta', bold)
+        sheet.write('AV3', 'AFP', bold)
+        sheet.merge_range('AW2:AY2', 'Diciembre', bold)
+        sheet.write('AW3', 'Monto Sujeto de Retencion', bold)
+        sheet.write('AX3', 'Renta', bold)
+        sheet.write('AY3', 'AFP', bold)
+        sheet.merge_range('AZ2:AZ3', 'Año', bold)
+
+        if result:
+            row += 1
+            for line in result:
+                sheet.write(row, column, line.get('employee_id'), no_bold_no)
+                sheet.write(row, column + 1, line.get('nit'), no_bold_no)
+                sheet.write(row, column + 2, line.get('cod_ingreso'), no_bold_no)
+                sheet.write(row, column + 3, '{0:,.2f}'.format(line.get('monto_deve')), no_bold_no)
+                sheet.write(row, column + 4, '{0:,.2f}'.format(line.get('bonificacion_grat')), no_bold_no)
+                sheet.write(row, column + 5, '{0:,.2f}'.format(line.get('imp_retenido')), no_bold_no)
+                sheet.write(row, column + 6, '{0:,.2f}'.format(line.get('aguinaldo_ex')), no_bold_no)
+                sheet.write(row, column + 7, '{0:,.2f}'.format(line.get('aguinaldo_grab')), no_bold_no)
+                sheet.write(row, column + 8, '{0:,.2f}'.format(line.get('isss')), no_bold_no)
+                sheet.write(row, column + 9, '{0:,.2f}'.format(line.get('afp')), no_bold_no)
+                sheet.write(row, column + 10, '{0:,.2f}'.format(line.get('ipsfa')), no_bold_no)
+                sheet.write(row, column + 11, '{0:,.2f}'.format(line.get('cefafa')), no_bold_no)
+                sheet.write(row, column + 12, '{0:,.2f}'.format(line.get('inep')), no_bold_no)
+                sheet.write(row, column + 13, '{0:,.2f}'.format(line.get('bien_magisterial')), no_bold_no)
+                sheet.write(row, column + 14, '{0:,.2f}'.format(line.get('1ret')), no_bold_no)
+                sheet.write(row, column + 15, '{0:,.2f}'.format(line.get('1renta')), no_bold_no)
+                sheet.write(row, column + 16, '{0:,.2f}'.format(line.get('1lab')), no_bold_no)
+                sheet.write(row, column + 17, '{0:,.2f}'.format(line.get('2ret')), no_bold_no)
+                sheet.write(row, column + 18, '{0:,.2f}'.format(line.get('2renta')), no_bold_no)
+                sheet.write(row, column + 19, '{0:,.2f}'.format(line.get('2lab')), no_bold_no)
+                sheet.write(row, column + 20, '{0:,.2f}'.format(line.get('3ret')), no_bold_no)
+                sheet.write(row, column + 21, '{0:,.2f}'.format(line.get('3renta')), no_bold_no)
+                sheet.write(row, column + 22, '{0:,.2f}'.format(line.get('3lab')), no_bold_no)
+                sheet.write(row, column + 23, '{0:,.2f}'.format(line.get('4ret')), no_bold_no)
+                sheet.write(row, column + 24, '{0:,.2f}'.format(line.get('4renta')), no_bold_no)
+                sheet.write(row, column + 25, '{0:,.2f}'.format(line.get('4lab')), no_bold_no)
+                sheet.write(row, column + 26, '{0:,.2f}'.format(line.get('5ret')), no_bold_no)
+                sheet.write(row, column + 27, '{0:,.2f}'.format(line.get('5renta')), no_bold_no)
+                sheet.write(row, column + 28, '{0:,.2f}'.format(line.get('5lab')), no_bold_no)
+                sheet.write(row, column + 29, '{0:,.2f}'.format(line.get('6ret')), no_bold_no)
+                sheet.write(row, column + 30, '{0:,.2f}'.format(line.get('6renta')), no_bold_no)
+                sheet.write(row, column + 31, '{0:,.2f}'.format(line.get('6lab')), no_bold_no)
+                sheet.write(row, column + 32, '{0:,.2f}'.format(line.get('7ret')), no_bold_no)
+                sheet.write(row, column + 33, '{0:,.2f}'.format(line.get('7renta')), no_bold_no)
+                sheet.write(row, column + 34, '{0:,.2f}'.format(line.get('7lab')), no_bold_no)
+                sheet.write(row, column + 35, '{0:,.2f}'.format(line.get('8ret')), no_bold_no)
+                sheet.write(row, column + 36, '{0:,.2f}'.format(line.get('8renta')), no_bold_no)
+                sheet.write(row, column + 37, '{0:,.2f}'.format(line.get('8lab')), no_bold_no)
+                sheet.write(row, column + 38, '{0:,.2f}'.format(line.get('9ret')), no_bold_no)
+                sheet.write(row, column + 39, '{0:,.2f}'.format(line.get('9renta')), no_bold_no)
+                sheet.write(row, column + 40, '{0:,.2f}'.format(line.get('9lab')), no_bold_no)
+                sheet.write(row, column + 41, '{0:,.2f}'.format(line.get('10ret')), no_bold_no)
+                sheet.write(row, column + 42, '{0:,.2f}'.format(line.get('10renta')), no_bold_no)
+                sheet.write(row, column + 43, '{0:,.2f}'.format(line.get('10lab')), no_bold_no)
+                sheet.write(row, column + 44, '{0:,.2f}'.format(line.get('11ret')), no_bold_no)
+                sheet.write(row, column + 45, '{0:,.2f}'.format(line.get('11renta')), no_bold_no)
+                sheet.write(row, column + 46, '{0:,.2f}'.format(line.get('11lab')), no_bold_no)
+                sheet.write(row, column + 47, '{0:,.2f}'.format(line.get('12ret')), no_bold_no)
+                sheet.write(row, column + 48, '{0:,.2f}'.format(line.get('12renta')), no_bold_no)
+                sheet.write(row, column + 49, '{0:,.2f}'.format(line.get('12lab')), no_bold_no)
+                sheet.write(row, column + 50, line.get('year'), no_bold_no)
+
+                row += 1
+
+

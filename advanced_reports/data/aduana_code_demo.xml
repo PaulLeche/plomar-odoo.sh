@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="default_aduana_code_00" model="aduana.code">
+            <field name="name">00</field>
+            <field name="name_cod"></field>
+        </record>
+
+        <record id="default_aduana_code_01" model="aduana.code">
+            <field name="name">01</field>
+            <field name="name_cod">Terrestre San Bartolo</field>
+        </record>
+
+        <record id="default_aduana_code_02" model="aduana.code">
+            <field name="name">02</field>
+            <field name="name_cod">Marítima de Acajutla</field>
+        </record>
+
+        <record id="default_aduana_code_03" model="aduana.code">
+            <field name="name">03</field>
+            <field name="name_cod">Area de Comalapa</field>
+        </record>
+
+        <record id="default_aduana_code_04" model="aduana.code">
+            <field name="name">04</field>
+            <field name="name_cod">Terrestre Las Chinamas</field>
+        </record>
+
+        <record id="default_aduana_code_05" model="aduana.code">
+            <field name="name">05</field>
+            <field name="name_cod">Terrestre La Hachadura</field>
+        </record>
+
+
+        <record id="default_aduana_code_06" model="aduana.code">
+            <field name="name">06</field>
+            <field name="name_cod">Terrestre Santa Ana</field>
+        </record>
+
+        <record id="default_aduana_code_07" model="aduana.code">
+            <field name="name">07</field>
+            <field name="name_cod">Terrestre San Cristobal</field>
+        </record>
+
+        <record id="default_aduana_code_08" model="aduana.code">
+            <field name="name">08</field>
+            <field name="name_cod">Terrestre Anguiatu</field>
+        </record>
+
+        <record id="default_aduana_code_09" model="aduana.code">
+            <field name="name">09</field>
+            <field name="name_cod">Terrestre El Amatillo</field>
+        </record>
+
+        <record id="default_aduana_code_10" model="aduana.code">
+            <field name="name">10</field>
+            <field name="name_cod">Maritima La Union (Puerto Cutuco)</field>
+        </record>
+
+        <record id="default_aduana_code_11" model="aduana.code">
+            <field name="name">11</field>
+            <field name="name_cod">Terrestre El Poy</field>
+        </record>
+
+        <record id="default_aduana_code_15" model="aduana.code">
+            <field name="name">15</field>
+            <field name="name_cod">Fardos Postales</field>
+        </record>
+
+        <record id="default_aduana_code_16" model="aduana.code">
+            <field name="name">16</field>
+            <field name="name_cod">Zona Franca San Marcos</field>
+        </record>
+
+        <record id="default_aduana_code_17" model="aduana.code">
+            <field name="name">17</field>
+            <field name="name_cod">Zona Franca El Pedregal</field>
+        </record>
+
+        <record id="default_aduana_code_18" model="aduana.code">
+            <field name="name">18</field>
+            <field name="name_cod">Zona Franca San Bartolo</field>
+        </record>
+
+        <record id="default_aduana_code_20" model="aduana.code">
+            <field name="name">20</field>
+            <field name="name_cod">Zona Franca Exportsalva</field>
+        </record>
+
+        <record id="default_aduana_code_21" model="aduana.code">
+            <field name="name">21</field>
+            <field name="name_cod">Zona Franca American Park</field>
+        </record>
+
+        <record id="default_aduana_code_23" model="aduana.code">
+            <field name="name">23</field>
+            <field name="name_cod">Zona Franca Internacional</field>
+        </record>
+
+        <record id="default_aduana_code_24" model="aduana.code">
+            <field name="name">24</field>
+            <field name="name_cod">Zona Franca Diez</field>
+        </record>
+
+        <record id="default_aduana_code_26" model="aduana.code">
+            <field name="name">26</field>
+            <field name="name_cod">Zona Franca Miramar</field>
+        </record>
+
+        <record id="default_aduana_code_27" model="aduana.code">
+            <field name="name">27</field>
+            <field name="name_cod">Zona Franca Santo Tomas</field>
+        </record>
+
+        <record id="default_aduana_code_28" model="aduana.code">
+            <field name="name">28</field>
+            <field name="name_cod">Zona Franca Santa Tecla</field>
+        </record>
+
+        <record id="default_aduana_code_29" model="aduana.code">
+            <field name="name">29</field>
+            <field name="name_cod">Zona Franca Santa Ana</field>
+        </record>
+        <record id="default_aduana_code_30" model="aduana.code">
+            <field name="name">30</field>
+            <field name="name_cod">Zona Franca La Concordia</field>
+        </record>
+
+        <record id="default_aduana_code_31" model="aduana.code">
+            <field name="name">31</field>
+            <field name="name_cod">Aerea Ilopango</field>
+        </record>
+
+        <record id="default_aduana_code_32" model="aduana.code">
+            <field name="name">32</field>
+            <field name="name_cod">Zona Franca Pipi I</field>
+        </record>
+
+        <record id="default_aduana_code_33" model="aduana.code">
+            <field name="name">33</field>
+            <field name="name_cod">Puerto Bari I las</field>
+        </record>
+
+        <record id="default_aduana_code_34" model="aduana.code">
+            <field name="name">34</field>
+            <field name="name_cod">Zona Franca Calvo Conservas</field>
+        </record>
+
+        <record id="default_aduana_code_36" model="aduana.code">
+            <field name="name">36</field>
+            <field name="name_cod">Delegacion Aduana El Papalon</field>
+        </record>
+
+        <record id="default_aduana_code_37" model="aduana.code">
+            <field name="name">37</field>
+            <field name="name_cod">Zona Franca Parque Industrial Sam-Li</field>
+        </record>
+
+        <record id="default_aduana_code_38" model="aduana.code">
+            <field name="name">38</field>
+            <field name="name_cod">Zona Franca San Jose</field>
+        </record>
+
+        <record id="default_aduana_code_39" model="aduana.code">
+            <field name="name">39</field>
+            <field name="name_cod">Zona Franca Las Mercedes</field>
+        </record>
+
+        <record id="default_aduana_code_71" model="aduana.code">
+            <field name="name">71</field>
+            <field name="name_cod">Almacenes de Desarrollo (ALDESA)</field>
+        </record>
+
+        <record id="default_aduana_code_72" model="aduana.code">
+            <field name="name">72</field>
+            <field name="name_cod">Almacen General Deposito Occidente (AGDOSA) Merliot</field>
+        </record>
+
+        <record id="default_aduana_code_73" model="aduana.code">
+            <field name="name">73</field>
+            <field name="name_cod">Bodega General de Deposito (BODESA)</field>
+        </record>
+
+        <record id="default_aduana_code_76" model="aduana.code">
+            <field name="name">76</field>
+            <field name="name_cod">DHL</field>
+        </record>
+
+        <record id="default_aduana_code_77" model="aduana.code">
+            <field name="name">77</field>
+            <field name="name_cod">Transauto</field>
+        </record>
+
+        <record id="default_aduana_code_80" model="aduana.code">
+            <field name="name">80</field>
+            <field name="name_cod">Almacenadora Nejapa, SA. de C.V.</field>
+        </record>
+
+        <record id="default_aduana_code_81" model="aduana.code">
+            <field name="name">81</field>
+            <field name="name_cod">Almacenadora Almaconsa SA de C.V.</field>
+        </record>
+
+        <record id="default_aduana_code_83" model="aduana.code">
+            <field name="name">83</field>
+            <field name="name_cod">Almacen General Deposito Occidente (AGDOSA) Apopa</field>
+        </record>
+
+        <record id="default_aduana_code_84" model="aduana.code">
+            <field name="name">84</field>
+            <field name="name_cod">Galvanizadora IndustriaSalvadoreña</field>
+        </record>
+
+    </data>
+</odoo>

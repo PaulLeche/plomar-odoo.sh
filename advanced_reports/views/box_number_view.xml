@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vista árbol (tree)  -->
+        <record id="view_box_number_tree" model="ir.ui.view">
+            <field name="name">box.number.tree</field>
+            <field name="model">box.number</field>
+            <field name="arch" type="xml">
+                <tree string="Número de caja">
+                    <field name="name"/>
+                    <field name="company_id" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista formulario (form)  -->
+        <record id="view_box_number_form" model="ir.ui.view">
+            <field name="name">box.number.form</field>
+            <field name="model">box.number</field>
+            <field name="arch" type="xml">
+                <form string="Número de caja">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+         <record id="action_box_number_view" model="ir.actions.act_window">
+            <field name="name">Números de caja</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">box.number</field>
+            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            action="action_box_number_view" id="menu_box_number"
+            name="Números de caja"
+            parent="account.menu_finance_configuration" sequence="7"
+        />
+
+    </data>
+</odoo>
