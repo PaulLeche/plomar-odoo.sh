@@ -18,7 +18,7 @@
                     <field name="type_of_operation"/>
                 </group>
            </xpath>
-            <xpath expr="//notebook/page[@id='invoice_tab']/field/tree/field[@name='name']" position="after">
+            <xpath expr="//notebook/page[@id='invoice_tab']/field/list/field[@name='name']" position="after">
                 <field name="type_of_purchase" optional="hide"/>
             </xpath>
 

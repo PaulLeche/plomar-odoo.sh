@@ -13,7 +13,7 @@
                 <field name="type_of_operation"/>
             </field>
 
-            <xpath expr="//notebook/page[@name='products']/field/tree/field[@name='name']" position="after">
+            <xpath expr="//notebook/page[@name='products']/field/list/field[@name='name']" position="after">
                 <field name="type_of_purchase"/>
             </xpath>
 
