@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="pos_config_view_form_sv_report">
+            <field name="name">pos.config.base.sv.report</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//setting[@id='other_devices']" position="after">
+
+                    <setting id="number_of_cash_register" string="Nº de máquina registradora" >
+                        <field name="number_of_cash_register" />
+                    </setting>
+
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
