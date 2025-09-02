@@ -35,11 +35,11 @@ class AccountMove(models.Model):
     class_of_document = fields.Integer(string='Clase de documento', default=4)
     number_internal_control = fields.Char(string='Número de control interno')
     number_of_resolution = fields.Char(string='Número de resolución', compute='_compute_numero_control', store=True)
-    @api.depends('receipt_stamp')
+    @api.depends('sv_fe_receipt_stamp')
     def _compute_number_of_series_document(self):
         for record in self:
-            if record.receipt_stamp:
-                record.number_of_series_document = record.receipt_stamp
+            if record.sv_fe_receipt_stamp:
+                record.number_of_series_document = record.sv_fe_receipt_stamp
             else:
                 record.number_of_series_document = ''
     number_of_series_document = fields.Char(string='Número de serie de documento (FEL)', compute='_compute_number_of_series_document')
