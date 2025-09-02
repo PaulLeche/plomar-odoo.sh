@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Vista árbol (tree)  -->
+        <!-- Vista árbol (list)  -->
         <record id="view_aduana_code_tree" model="ir.ui.view">
-            <field name="name">aduana.code.tree</field>
+            <field name="name">aduana.code.list</field>
             <field name="model">aduana.code</field>
             <field name="arch" type="xml">
-                <tree string="Código de aduana">
+                <list string="Código de aduana">
                     <field name="name"/>
                     <field name="name_cod"/>
-                </tree>
+                </list>
             </field>
         </record>
 

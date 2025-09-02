@@ -7,13 +7,13 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@class='o_address_format']" position="after">
-                <field name="sv_fv_movimiento_preferido_cliente" string="Movimiento Preferido Cliente" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fe_movimiento_preferido_cliente" string="Movimiento Preferido Cliente" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
                 <field name="sv_fe_nrc" string="NRC" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
                 <field name="sv_fe_address_dep" string="Departamento" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
                 <field name="sv_fe_address_mun" string="Municipio" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
                 <field name="sv_fe_country" string="País Exportación" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
                 <field name="sv_fe_complement_address" string="Dirección Complementaria" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
-                <field name="sv_fv_tipo_persona" string="Tipo de Persona" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
+                <field name="sv_fe_tipo_persona" string="Tipo de Persona" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
                 <field name="sv_fe_identification_type" string="Tipo Identificación" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_partner_country_code != 'SV'" />
             </xpath>
             <xpath expr="//field[@name='function']" position="before">

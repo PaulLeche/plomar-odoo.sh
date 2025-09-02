@@ -6,10 +6,10 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='country_code']" position="before">
+            <xpath expr="//div[@class='o_address_format']" position="after">
                 <field name="is_consumer_taxp" invisible="1"/>
             </xpath>
-            <xpath expr="//field[@name='nrc']" position="attributes">
+            <xpath expr="//field[@name='sv_fe_nrc']" position="attributes">
                <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//field[@name='company_type']" position="before">

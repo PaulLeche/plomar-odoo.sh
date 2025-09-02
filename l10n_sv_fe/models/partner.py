@@ -33,8 +33,8 @@ class ResPartner(models.Model):
     sv_fe_country = fields.Many2one('sv_fe.export.country', string='País Exportación', store=True, help='Será requerída cuando se cree una factura de exportación')
     sv_fe_complement_address = fields.Char(string='Dirección complementaria', help='Será requerída cuando se cree una factura de exportación')
 
-    sv_fv_tipo_persona = fields.Selection([('1', 'Persona Natural'), ('2', 'Persona Jurídica')], string='Tipo de Persona', help="Este campo debe ser obligatorio cuando se genere una factura de exportación")
-    sv_fv_movimiento_preferido_cliente = fields.Selection(SV_FE_TYPE_DTE_DEFAULT, string="Movimiento Preferido Cliente", store=True)
+    sv_fe_tipo_persona = fields.Selection([('1', 'Persona Natural'), ('2', 'Persona Jurídica')], string='Tipo de Persona', help="Este campo debe ser obligatorio cuando se genere una factura de exportación")
+    sv_fe_movimiento_preferido_cliente = fields.Selection(SV_FE_TYPE_DTE_DEFAULT, string="Movimiento Preferido Cliente", store=True)
     sv_fe_dui_field = fields.Char(string="DUI", store=True)
 
     sv_fe_other_field = fields.Char(string="Otro", store=True)

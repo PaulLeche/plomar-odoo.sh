@@ -895,7 +895,7 @@ class AccountMove(models.Model):
                 "descripcion_actividad": self.partner_id.sv_fe_code_activity.activity_name,
                 "codigo_pais": str(self.partner_id.sv_fe_country.code_country),
                 "complemento": self.partner_id.sv_fe_complement_address,
-                "sv_fv_tipo_persona": int(self.partner_id.sv_fv_tipo_persona),
+                "sv_fe_tipo_persona": int(self.partner_id.sv_fe_tipo_persona),
                 "correo": self.partner_id.email
             }
             json_body["documento"]["receptor"] = receptor_info
