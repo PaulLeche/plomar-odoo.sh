@@ -16,16 +16,16 @@
                 <field name="type_consumer_taxp" widget="radio" options="{'horizontal': true}" invisible="1"/>
             </xpath>
              <xpath expr="//field[@name='sv_fe_tipo_persona']" position="after">
-                 <field name="type_consumer_taxp"/>
-                 <field name="sv_fe_nrc" invisible="is_consumer_taxp != False"/>
+                 <field name="type_consumer_taxp" invisible="sv_fe_partner_country_code != 'SV'"/>
+                 <field name="sv_fe_nrc" invisible="is_consumer_taxp != False or sv_fe_partner_country_code != 'SV'"/>
             </xpath>
             <xpath expr="//field[@name='sv_fe_identification_type']" position="before">
-                <field name="taxpayer_type" invisible="type_consumer_taxp == 'consumer'"/>
+                <field name="taxpayer_type" invisible="type_consumer_taxp == 'consumer' or sv_fe_partner_country_code != 'SV'"/>
             </xpath>
             <xpath expr="//field[@name='category_id']" position="after">
-                <field name="house_number"/>
-                <field name="local_apartment"/>
-                <field name="address_information"/>
+                <field name="house_number" invisible="sv_fe_partner_country_code != 'SV'"/>
+                <field name="local_apartment" invisible="sv_fe_partner_country_code != 'SV'"/>
+                <field name="address_information" invisible="sv_fe_partner_country_code != 'SV'"/>
             </xpath>
 
         </field>
