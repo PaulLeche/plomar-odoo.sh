@@ -268,16 +268,16 @@ class AccountMove(models.Model):
             ET.SubElement(Item, 'dte:Cantidad').text = str(line.quantity)
             ET.SubElement(Item, 'dte:UnidadMedida').text = line.product_uom_id.name.upper()[0:3] if line.product_uom_id else 'UND'
             ET.SubElement(Item, 'dte:Descripcion').text = line.name
-            ET.SubElement(Item, 'dte:PrecioUnitario').text = str(round(line.price_unit, 2))
-            ET.SubElement(Item, 'dte:Precio').text = str(round(line.price_unit * line.quantity, 2))
-            ET.SubElement(Item, 'dte:Descuento').text = str(round(((line.price_unit * line.quantity) * line.discount) / 100, 2))
-            
+            ET.SubElement(Item, 'dte:PrecioUnitario').text = str(round(line.price_unit, 4))
+            ET.SubElement(Item, 'dte:Precio').text = str(round(line.price_unit * line.quantity, 4))
+            ET.SubElement(Item, 'dte:Descuento').text = str(round(((line.price_unit * line.quantity) * line.discount) / 100, 4))
+
             if self.fe_type in ['RDON']:
-                ET.SubElement(Item, 'dte:Total').text = str(round((line.price_unit * line.quantity) - line.discount, 2))
+                ET.SubElement(Item, 'dte:Total').text = str(round((line.price_unit * line.quantity) - line.discount, 4))
 
             if self.fe_type not in ['NABN', 'FESP', 'RDON']:
 
-                grabable = round(line.price_subtotal, 2)
+                grabable = round(line.price_subtotal, 4)
 
                 if line.tax_ids:
                     Impuestos = ET.SubElement(Item, 'dte:Impuestos')
@@ -318,11 +318,11 @@ class AccountMove(models.Model):
 
                         total_impuestos += line.price_total - grabable
 
-                        ET.SubElement(Impuesto, 'dte:MontoGravable').text = str(round(grabable, 2))
-                        ET.SubElement(Impuesto, 'dte:MontoImpuesto').text = str(round(line.price_total - grabable, 2))
-                        ET.SubElement(Item, 'dte:Total').text = str( round(line.price_total, 2) )
+                        ET.SubElement(Impuesto, 'dte:MontoGravable').text = str(round(grabable, 4))
+                        ET.SubElement(Impuesto, 'dte:MontoImpuesto').text = str(round(line.price_total - grabable, 4))
+                        ET.SubElement(Item, 'dte:Total').text = str( round(line.price_total, 4) )
                 else:
-                    ET.SubElement(Item, 'dte:Total').text = str( round(line.price_total, 2) )
+                    ET.SubElement(Item, 'dte:Total').text = str( round(line.price_total, 4) )
 
             elif self.fe_type == 'FESP':
                 Impuestos = ET.SubElement(Item, 'dte:Impuestos')
@@ -347,16 +347,16 @@ class AccountMove(models.Model):
                     elif origin_faex:
                         ET.SubElement(Impuesto, 'dte:CodigoUnidadGravable').text = "2"
 
-                    ET.SubElement(Impuesto, 'dte:MontoGravable').text = str(round(price_subtotal, 2))
-                    ET.SubElement(Impuesto, 'dte:MontoImpuesto').text = str(round(price_tax, 2))
-                    ET.SubElement(Item, 'dte:Total').text = str(round(price_total, 2))
+                    ET.SubElement(Impuesto, 'dte:MontoGravable').text = str(round(price_subtotal, 4))
+                    ET.SubElement(Impuesto, 'dte:MontoImpuesto').text = str(round(price_tax, 4))
+                    ET.SubElement(Item, 'dte:Total').text = str(round(price_total, 4))
 
                     # almacenar el total_impuestos para el IVA en FESP
                     if tax.tax_group_id.name == 'IVA':
                         total_impuestos += price_tax
 
             elif self.fe_type == 'NABN':
-                ET.SubElement(Item, 'dte:Total').text = str(round(line.price_total, 2))
+                ET.SubElement(Item, 'dte:Total').text = str(round(line.price_total, 4))
 
             count += 1
 
@@ -366,10 +366,10 @@ class AccountMove(models.Model):
             TotalImpuestos = ET.SubElement(Totales, 'dte:TotalImpuestos')
             ET.SubElement(TotalImpuestos, 'dte:TotalImpuesto', {
                 'NombreCorto': "IVA",
-                'TotalMontoImpuesto': str(round(total_impuestos, 2))
+                'TotalMontoImpuesto': str(round(total_impuestos, 4))
             })
 
-        ET.SubElement(Totales, 'dte:GranTotal').text = str(round(self.amount_total, 2))
+        ET.SubElement(Totales, 'dte:GranTotal').text = str(round(self.amount_total, 4))
 
         if self.third_party_account_ids:
             Complementos = ET.SubElement(DatosEmision, 'dte:Complementos')
