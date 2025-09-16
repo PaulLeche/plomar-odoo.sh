@@ -291,7 +291,7 @@ class AccountMove(models.Model):
                                 break
 
                         Impuesto = ET.SubElement(Impuestos, 'dte:Impuesto')
-                        ET.SubElement(Impuesto, 'dte:NombreCorto').text = 'IVA'
+                        ET.SubElement(Impuesto, 'dte:NombreCorto').text = tax.invoice_label
                         
                         if not origin_faex:
                             if self.fe_type == 'FAEX':
