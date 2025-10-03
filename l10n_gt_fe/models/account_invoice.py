@@ -94,7 +94,9 @@ class AccountMove(models.Model):
     tipo_personeria = fields.Char('Personeria', related="company_id.tipo_personeria", store=True)
 
     other_fel_reference = fields.Char(string="Otra Referencia FEL", copy=False)
-    
+
+    move_country_code = fields.Char(related="company_id.country_code", string="Country Code", store=True, readonly=True)
+
     @api.depends('partner_id')
     def get_partner_vat(self):
         for record in self:
@@ -255,7 +257,7 @@ class AccountMove(models.Model):
 
         Items = ET.SubElement(DatosEmision, 'dte:Items')
         count = 1
-        total_impuestos = 0
+        total_impuestos_por_grupo = {}
         
         for line in self.invoice_line_ids:
             Item = ET.SubElement(Items, 'dte:Item', {
@@ -266,31 +268,46 @@ class AccountMove(models.Model):
             ET.SubElement(Item, 'dte:Cantidad').text = str(line.quantity)
             ET.SubElement(Item, 'dte:UnidadMedida').text = line.product_uom_id.name.upper()[0:3] if line.product_uom_id else 'UND'
             ET.SubElement(Item, 'dte:Descripcion').text = line.name
-            ET.SubElement(Item, 'dte:PrecioUnitario').text = str(round(line.price_unit, 2))
-            ET.SubElement(Item, 'dte:Precio').text = str(round(line.price_unit * line.quantity, 2))
-            ET.SubElement(Item, 'dte:Descuento').text = str(round(((line.price_unit * line.quantity) * line.discount) / 100, 2))
-            
+            ET.SubElement(Item, 'dte:PrecioUnitario').text = str(round(line.price_unit, 4))
+            ET.SubElement(Item, 'dte:Precio').text = str(round(line.price_unit * line.quantity, 4))
+            ET.SubElement(Item, 'dte:Descuento').text = str(round(((line.price_unit * line.quantity) * line.discount) / 100, 4))
+
             if self.fe_type in ['RDON']:
-                ET.SubElement(Item, 'dte:Total').text = str(round((line.price_unit * line.quantity) - line.discount, 2))
+                ET.SubElement(Item, 'dte:Total').text = str(round((line.price_unit * line.quantity) - line.discount, 4))
 
             if self.fe_type not in ['NABN', 'FESP', 'RDON']:
 
-                grabable = round(line.price_subtotal, 2)
+                grabable = round(line.price_subtotal, 4)
 
                 if line.tax_ids:
                     Impuestos = ET.SubElement(Item, 'dte:Impuestos')
 
-                    for tax in line.tax_ids:
+                    exento_iva = True
+                    if any(tax.amount != 0 for tax in line.tax_ids):
+                        exento_iva = False
 
-                        exento_iva = True
-                        for tax in line.tax_ids:
-                            if tax.amount != 0:
-                                exento_iva = False
-                                break
+                    all_taxes_result = line.tax_ids.compute_all(
+                        line.price_unit,
+                        quantity=line.quantity,
+                        currency=line.currency_id,
+                        product=line.product_id,
+                        partner=line.partner_id,
+                        is_refund=line.move_id.move_type in ('out_refund', 'in_refund'),
+                    )
+
+                    for tax_data in all_taxes_result['taxes']:
+                        tax = self.env['account.tax'].browse(tax_data['id'])
+                        tax_base = tax_data['base']
+                        tax_amount = tax_data['amount']
+                        tax_group_name = tax.tax_group_id.name
+
+                        if tax_group_name not in total_impuestos_por_grupo:
+                            total_impuestos_por_grupo[tax_group_name] = 0
+                        total_impuestos_por_grupo[tax_group_name] += tax_amount
 
                         Impuesto = ET.SubElement(Impuestos, 'dte:Impuesto')
-                        ET.SubElement(Impuesto, 'dte:NombreCorto').text = 'IVA'
-                        
+                        ET.SubElement(Impuesto, 'dte:NombreCorto').text = tax_group_name
+
                         if not origin_faex:
                             if self.fe_type == 'FAEX':
                                 ET.SubElement(Impuesto, 'dte:CodigoUnidadGravable').text = "2"  
@@ -301,26 +318,9 @@ class AccountMove(models.Model):
                         elif origin_faex:
                             ET.SubElement(Impuesto, 'dte:CodigoUnidadGravable').text = "2"
 
-                        if tax.name[0:3] == "IVA":
-                            if tax.name[0:3] == "IVA":
-                                tax_name = 'IVA'
-                            else:
-                                tax_name = str(tax.description)
-                            iva_grabable = str(grabable)
-                            iva_qty = str(line.quantity)
-                            iva = str(round((line.price_total - grabable),2))
-                            if tax.amount_type == 'fixed':
-                                tax_line = ((grabable - line.price_total) - line.price_total)
-                            else:
-                                tax_line = line.quantity * line.price_unit
-
-                        total_impuestos += line.price_total - grabable
-
-                        ET.SubElement(Impuesto, 'dte:MontoGravable').text = str(round(grabable, 2))
-                        ET.SubElement(Impuesto, 'dte:MontoImpuesto').text = str(round(line.price_total - grabable, 2))
-                        ET.SubElement(Item, 'dte:Total').text = str( round(line.price_total, 2) )
-                else:
-                    ET.SubElement(Item, 'dte:Total').text = str( round(line.price_total, 2) )
+                        ET.SubElement(Impuesto, 'dte:MontoGravable').text = str(round(tax_base, 4))
+                        ET.SubElement(Impuesto, 'dte:MontoImpuesto').text = str(round(tax_amount, 4))
+                ET.SubElement(Item, 'dte:Total').text = str( round(line.price_total, 4) )
 
             elif self.fe_type == 'FESP':
                 Impuestos = ET.SubElement(Item, 'dte:Impuestos')
@@ -337,24 +337,26 @@ class AccountMove(models.Model):
                     price_total = taxes_res["total_included"]
                     price_subtotal = taxes_res["total_excluded"]
                     price_tax = price_total - price_subtotal
+                    tax_group_name = tax.tax_group_id.name
+
+                    if tax_group_name not in total_impuestos_por_grupo:
+                        total_impuestos_por_grupo[tax_group_name] = 0
+                    total_impuestos_por_grupo[tax_group_name] += price_tax
+
                     Impuesto = ET.SubElement(Impuestos, 'dte:Impuesto')
-                    ET.SubElement(Impuesto, 'dte:NombreCorto').text = tax.tax_group_id.name
+                    ET.SubElement(Impuesto, 'dte:NombreCorto').text = tax_group_name
 
                     if not origin_faex:
                         ET.SubElement(Impuesto, 'dte:CodigoUnidadGravable').text = "2" if self.fe_type == 'FAEX' else "1"
                     elif origin_faex:
                         ET.SubElement(Impuesto, 'dte:CodigoUnidadGravable').text = "2"
 
-                    ET.SubElement(Impuesto, 'dte:MontoGravable').text = str(round(price_subtotal, 2))
-                    ET.SubElement(Impuesto, 'dte:MontoImpuesto').text = str(round(price_tax, 2))
-                    ET.SubElement(Item, 'dte:Total').text = str(round(price_total, 2))
-
-                    # almacenar el total_impuestos para el IVA en FESP
-                    if tax.tax_group_id.name == 'IVA':
-                        total_impuestos += price_tax
+                    ET.SubElement(Impuesto, 'dte:MontoGravable').text = str(round(price_subtotal, 4))
+                    ET.SubElement(Impuesto, 'dte:MontoImpuesto').text = str(round(price_tax, 4))
+                    ET.SubElement(Item, 'dte:Total').text = str(round(price_total, 4))
 
             elif self.fe_type == 'NABN':
-                ET.SubElement(Item, 'dte:Total').text = str(round(line.price_total, 2))
+                ET.SubElement(Item, 'dte:Total').text = str(round(line.price_total, 4))
 
             count += 1
 
@@ -362,12 +364,14 @@ class AccountMove(models.Model):
         
         if self.fe_type not in ['NABN', 'RDON', 'RECI']:
             TotalImpuestos = ET.SubElement(Totales, 'dte:TotalImpuestos')
-            ET.SubElement(TotalImpuestos, 'dte:TotalImpuesto', {
-                'NombreCorto': "IVA",
-                'TotalMontoImpuesto': str(round(total_impuestos, 2))
-            })
 
-        ET.SubElement(Totales, 'dte:GranTotal').text = str(round(self.amount_total, 2))
+            for grupo_nombre, grupo_total in total_impuestos_por_grupo.items():
+                ET.SubElement(TotalImpuestos, 'dte:TotalImpuesto', {
+                    'NombreCorto': grupo_nombre,
+                    'TotalMontoImpuesto': str(round(grupo_total, 4))
+                })
+
+        ET.SubElement(Totales, 'dte:GranTotal').text = str(round(self.amount_total, 4))
 
         if self.third_party_account_ids:
             Complementos = ET.SubElement(DatosEmision, 'dte:Complementos')
@@ -499,8 +503,18 @@ class AccountMove(models.Model):
         # ******************* ALTERNATIVA? ***************
 
         final = ET.ElementTree(fe)
+        self.debug_xml_attributes(fe, "root")
         final.write(f, encoding='UTF-8', xml_declaration=True)
         return f.getvalue()
+    
+    def debug_xml_attributes(self, element, name=""):
+        """Método temporal para debuggear atributos XML problemáticos"""
+        for key, value in element.attrib.items():
+            if isinstance(value, bool) or value is None:
+                _logger.error(f"Problematic attribute in {name}: {key} = {value} (type: {type(value)})")
+        
+        for child in element:
+            self.debug_xml_attributes(child, f"{name}.{child.tag}")
 
     def _sign_invoice(self, cancel=False, xml_cancel=False):
         headers = {'Content-Type': 'application/json'}
@@ -516,7 +530,7 @@ class AccountMove(models.Model):
         return data['archivo']
 
     def send_invoice(self):
-        if self.fe_active and self.company_id.fel_enabled:
+        if self.fe_active and self.move_country_code == 'GT':
             URL = self.env['ir.config_parameter'].sudo().get_param('url.webservice.fe.gt')
             xml = self._xml()
             self.write({ 'arch_xml': base64.b64encode( xml ),
@@ -612,7 +626,7 @@ class AccountMove(models.Model):
 
     def button_cancel(self):
         for record in self:
-            if not record.fe_active or not record.company_id.fel_enabled:
+            if not record.fe_active:
                 continue
             if record.process_status:
                 if record.journal_id.fe_type != 'OTRO' and record.move_type in ['out_invoice', 'out_refund'] and record.process_status not in ('cancel', 'fail'):
