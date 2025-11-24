@@ -456,10 +456,10 @@ class AccountMove(models.Model):
                         "tipo": int(item.product_id.sv_fe_services),
                         "cantidad": item.quantity,
                         "unidad_medida": int(item.product_id.sv_fe_unidad_medida_id.code),
-                        "descuento": round(total_discount, 6) if total_discount > 0 else 0.0,
+                        "descuento": 0,
                         "descripcion": item.name,
                         # "precio_unitario": round(((item.price_total + total_discount) / item.quantity), 6)
-                        "precio_unitario": price_unit
+                        "precio_unitario": item.price_unit
                     }
                     if not item.tax_ids:
                         item_data.update({'tipo_venta': '2'})
@@ -538,7 +538,7 @@ class AccountMove(models.Model):
                 # receptor assignment
                 receptor_info = {
                     "numero_documento": self.sv_fe__get_document_number(),
-                    "sv_fe_nrc": self.partner_id.sv_fe_nrc,
+                    "nrc": self.partner_id.sv_fe_nrc,
                     "nombre": self.partner_id.name,
                     "codigo_actividad": self.partner_id.sv_fe_code_activity.code,
                 }
@@ -616,7 +616,7 @@ class AccountMove(models.Model):
                 # receptor assignment
                 receptor_info = {
                     "numero_documento": self.sv_fe__get_document_number(),
-                    "sv_fe_nrc": self.partner_id.sv_fe_nrc,
+                    "nrc": self.partner_id.sv_fe_nrc,
                     "nombre": self.partner_id.name,
                     "codigo_actividad": self.partner_id.sv_fe_code_activity.code,
                 }
@@ -761,7 +761,7 @@ class AccountMove(models.Model):
                 # Información del receptor
                 receptor_info = {
                     "numero_documento": self.sv_fe__get_document_number(),
-                    "sv_fe_nrc": self.partner_id.sv_fe_nrc,
+                    "nrc": self.partner_id.sv_fe_nrc,
                     "nombre": self.partner_id.name,
                     "codigo_actividad": self.partner_id.sv_fe_code_activity.code,
                     "direccion": direccion,
@@ -835,7 +835,7 @@ class AccountMove(models.Model):
                 # receptor assignment
                 receptor_info = {
                     "numero_documento": self.sv_fe__get_document_number(),
-                    "sv_fe_nrc": self.partner_id.sv_fe_nrc,
+                    "nrc": self.partner_id.sv_fe_nrc,
                     "nombre": self.partner_id.name,
                     "codigo_actividad": self.partner_id.sv_fe_code_activity.code,
                 }
@@ -895,7 +895,7 @@ class AccountMove(models.Model):
                 "descripcion_actividad": self.partner_id.sv_fe_code_activity.activity_name,
                 "codigo_pais": str(self.partner_id.sv_fe_country.code_country),
                 "complemento": self.partner_id.sv_fe_complement_address,
-                "sv_fe_tipo_persona": int(self.partner_id.sv_fe_tipo_persona),
+                "tipo_persona": int(self.partner_id.sv_fe_tipo_persona),
                 "correo": self.partner_id.email
             }
             json_body["documento"]["receptor"] = receptor_info
@@ -971,7 +971,7 @@ class AccountMove(models.Model):
         }
         # receptor assignment
         if self.partner_id.sv_fe_nrc and self.partner_id.type_consumer_taxp == 'taxpayer':
-            receptor_info.update({"sv_fe_nrc": self.partner_id.sv_fe_nrc})
+            receptor_info.update({"nrc": self.partner_id.sv_fe_nrc})
         if self.partner_id.sv_fe_code_activity.code:
             receptor_info.update({"codigo_actividad": self.partner_id.sv_fe_code_activity.code})
         json_body["documento"]["receptor"] = receptor_info
@@ -993,11 +993,14 @@ class AccountMove(models.Model):
         if len(json_body) != 0:
             if has_advance == True:
                 json_body["documento"]["extension"] = {'nombre_entrega': self.env.user.partner_id.name,
-                                                       'documento_entrega': self.env.user.partner_id.sv_fe_dui_field,
-                                                       'observaciones': observations
+                                                       'documento_entrega': self.env.user.partner_id.sv_fe_dui_field or self.env.user.partner_id.sv_fe_passport_field or self.env.user.partner_id.vat,
+                                                       'observaciones': observations or 'Sin observaciones'
                                                        }
             else:
-                json_body["documento"]["extension"] = {'nombre_entrega': self.env.user.partner_id.name, 'documento_entrega': self.env.user.partner_id.sv_fe_dui_field}
+                json_body["documento"]["extension"] = {'nombre_entrega': self.env.user.partner_id.name, 
+                                                       'documento_entrega': self.env.user.partner_id.sv_fe_dui_field or self.env.user.partner_id.sv_fe_passport_field or self.env.user.partner_id.vat,
+                                                       'observaciones': observations or 'Sin observaciones'
+                                                       }
             self.message_post(subject='FEL', body="Generando Factura Electronica FEL", attachments=[('Factura.json', str(json_body))])
 
 
@@ -1028,17 +1031,20 @@ class AccountMove(models.Model):
 
     def get_inf_items(self, numero_documento=None):
         result = []
-        for item in self.invoice_line_ids:
-            tributo_item = (item.price_total - item.price_subtotal)
-            total_discount = (item.price_unit * item.quantity) - item.price_subtotal
+        for item in self.invoice_line_ids.filtered(lambda l: l.display_type not in ['line_section', 'line_note']):
+            # tributo_item = (item.price_total - item.price_subtotal)
+            # total_discount = (item.price_unit * item.quantity) - item.price_subtotal
+
+            # Asumiendo IVA incluido en precio
+            precio_unitario = item.price_unit / 1.13
 
             item_data = {
                 "tipo": int(item.product_id.sv_fe_services),
                 "cantidad": item.quantity,
                 "unidad_medida": int(item.product_id.sv_fe_unidad_medida_id.code),
-                "descuento": round(total_discount, 6) if total_discount > 0 else 0.0,
+                "descuento": 0,
                 "descripcion": item.name,
-                "precio_unitario": round(item.price_unit, 6),
+                "precio_unitario": round(precio_unitario, 6),
             }
             if self.sv_fe_type == '05':
                 item_data.update({'numero_documento': str(numero_documento)})
@@ -1050,7 +1056,7 @@ class AccountMove(models.Model):
                 tributos = []
                 for tax in item.tax_ids:
                     if 'IVA por Pagar' in tax.name:
-                        line_tribute = {'codigo': '20','monto':(item.price_unit * item.quantity) * (tax.amount/100 )}
+                        line_tribute = {'codigo': '20','monto':round((precio_unitario * item.quantity) * (tax.amount/100), 6)}
                         tributos.append(line_tribute)
                 item_data.update({'tributos': tributos})
             result.append(item_data)
