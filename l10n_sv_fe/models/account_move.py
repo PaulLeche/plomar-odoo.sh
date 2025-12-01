@@ -445,6 +445,9 @@ class AccountMove(models.Model):
             json_body["documento"]["pagos"].append(pago)
 
             for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
+                if item.display_type == 'line_note':
+                    observations += f"{item.name}. "
+                    continue
                 total_discount = (item.price_unit * item.quantity) - item.price_subtotal
                 price_unit = self.get_price_unit(item)
                 if 'anticipo' in item.name.lower() and item.quantity < 0.0:
@@ -496,6 +499,9 @@ class AccountMove(models.Model):
         if int(self.sv_fe_type) == 3:
             # validacion de impuestos
             for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
+                if item.display_type == 'line_note':
+                    observations += f"{item.name}. "
+                    continue
                 if not item.tax_ids:
                     raise UserError('Para validar un comprobante de crédito fiscal es necesario agregar el impuesto')
 
@@ -559,7 +565,7 @@ class AccountMove(models.Model):
                     result = []
                     date_anticipo = ''
                     total_anticipo = 0.0
-                    for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
+                    for item in self.invoice_line_ids.filtered(lambda l: l.display_type not in ['line_section', 'line_note']):
                         tributo_item = (item.price_total - item.price_subtotal)
                         total_discount = (item.price_unit * item.quantity) - item.price_subtotal
                         if 'anticipo' in item.name.lower() and item.quantity < 0.0:
@@ -638,7 +644,7 @@ class AccountMove(models.Model):
                     result = []
                     date_anticipo = ''
                     total_anticipo = 0.0
-                    for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
+                    for item in self.invoice_line_ids.filtered(lambda l: l.display_type not in ['line_section', 'line_note']):
                         tributo_item = (item.price_total - item.price_subtotal)
                         total_discount = (item.price_unit * item.quantity) - item.price_subtotal
                         if 'anticipo' in item.name.lower() and item.quantity < 0.0:
@@ -680,7 +686,10 @@ class AccountMove(models.Model):
         # dte nota de credito
         if int(self.sv_fe_type) == 5:
 
-            for item in self.invoice_line_ids:
+            for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
+                if item.display_type == 'line_note':
+                    observations += f"{item.name}. "
+                    continue
                 if not item.tax_ids:
                     raise UserError('Para validar un comprobante de crédito fiscal es necesario agregar el impuesto')
 
@@ -776,7 +785,10 @@ class AccountMove(models.Model):
 
         # DTE Nota de Debito
         if int(self.sv_fe_type) == 6:
-            for item in self.invoice_line_ids:
+            for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
+                if item.display_type == 'line_note':
+                    observations += f"{item.name}. "
+                    continue
                 if not item.tax_ids:
                     raise UserError('Para validar un comprobante de crédito fiscal es necesario agregar el impuesto')
 
@@ -851,10 +863,14 @@ class AccountMove(models.Model):
             date_anticipo = ''
             total_anticipo = 0.0
             for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
+                if item.display_type == 'line_note':
+                    observations += f"{item.name}. "
+                    continue
                 if not item.tax_ids:
                     raise UserError('Para validar una factura de exportación es necesario agregar el impuesto')
             json_body = {
                 "documento": {
+                    "observaciones": observations or 'Sin observaciones',
                     "tipo_dte": str(self.sv_fe_type),
                     "establecimiento": self.journal_id.sv_fe_establishment_id.fe_code,
                     "tipo_item_exportacion": int(self.sv_fe_export_services),
@@ -866,7 +882,7 @@ class AccountMove(models.Model):
             # AGREGAR PAGO EN JSON
             pago = self._get_pago_documento(total_items)
             json_body["documento"]["pagos"].append(pago)
-            for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
+            for item in self.invoice_line_ids.filtered(lambda l: l.display_type not in ['line_section', 'line_note']):
                 total_discount = (item.price_unit * item.quantity) - item.price_subtotal
                 if 'anticipo' in item.name.lower() and item.quantity < 0.0:
                     price_export = abs(round((((item.price_total + total_discount) / item.quantity)), 6))
@@ -908,12 +924,16 @@ class AccountMove(models.Model):
 
         # DTE Comprobante de sujeto excluido
         if int(self.sv_fe_type) == 14:
-            for item in self.invoice_line_ids:
+            for item in self.invoice_line_ids.filtered(lambda l: l.display_type != 'line_section'):
+                if item.display_type == 'line_note':
+                    observations += f"{item.name}. "
+                    continue
                 if not item.tax_ids:
                     raise UserError('Para validar una factura es necesario agregar el impuesto')
 
             json_body = {
                 "documento": {
+                    "observaciones": observations or 'Sin observaciones',
                     "tipo_dte": str(self.sv_fe_type),
                     "establecimiento": self.journal_id.sv_fe_establishment_id.fe_code,
                     "condicion_pago": int(self.sv_fe_payment),
@@ -926,7 +946,7 @@ class AccountMove(models.Model):
             pago = self._get_pago_documento(total_items)
             json_body["documento"]["pagos"].append(pago)
 
-            for item in self.invoice_line_ids:
+            for item in self.invoice_line_ids.filtered(lambda l: l.display_type not in ['line_section', 'line_note']):
                 total_discount = (item.price_unit * item.quantity) - item.price_subtotal
 
                 item_data = {
