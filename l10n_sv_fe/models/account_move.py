@@ -3,6 +3,7 @@
 import base64
 import logging
 import urllib.request
+import ast
 
 import requests
 from pytz import timezone
@@ -796,16 +797,28 @@ class AccountMove(models.Model):
             
             if self.sv_fe_fact_info != 0:
                 # prepara el str para convertirlo a json
-                response_raw = self.sv_fe_fact_info.replace("'", '"')
-                response_raw = response_raw.strip()
-                response_raw = response_raw.replace(" ", "")
 
-                response_raw = response_raw.replace("None", "null")
-                response_raw = response_raw.replace('True', 'true')
-                prev_move_data = json.loads(self.sv_fe_prev_move_info)
+                try:
+                    # Si sv_fe_fact_info ya es un JSON valido, úsalo directamente
+                    response_data = json.loads(self.sv_fe_fact_info)
+                    prev_move_data = json.loads(self.sv_fe_prev_move_info)
+                except json.JSONDecodeError as e:
+                    _logger.warning("JSON inválido, intentando con literal_eval: %s", e)
 
-                # convierte a json
-                response_data = json.loads(response_raw)
+                    try:
+                        # Convierte la cadena almacenada en sv_fe_fact_info a un diccionario de Python
+                        python_dict = ast.literal_eval(self.sv_fe_fact_info)
+
+                        # Convierte el diccionario de Python a una cadena JSON válida
+                        response_raw = json.dumps(python_dict)
+                        response_data = json.loads(response_raw)
+                        prev_move_data = json.loads(self.sv_fe_prev_move_info)
+                    except (ValueError, SyntaxError) as e2:
+                        _logger.error("Error al decodificar: %s", e2)
+                        _logger.error("Posición del error JSON: %s", e.pos if hasattr(e, 'pos') else 'N/A')
+                        _logger.error("Fragmento problemático: %s", self.sv_fe_fact_info[:200])
+                        raise UserError(f"Error al procesar la información del documento: {str(e)}")
+                
 
                 # pago contado
                 json_body = {
@@ -822,9 +835,10 @@ class AccountMove(models.Model):
                 pago = self._get_pago_documento(total_items)
                 json_body["documento"]["pagos"].append(pago)
 
-                json_body["documento"]["items"] = self.get_inf_items()
+                json_body["documento"]["items"] = self.get_inf_items(str(response_data['respuesta']['codigoGeneracion']))
 
-                fecha_emision = datetime.strptime(str(response_data['respuesta']['fechaEmision']), "%Y-%m-%d%H:%M:%S")
+                # fecha_emision = datetime.strptime(str(response_data['respuesta']['fechaEmision']), "%Y-%m-%d%H:%M:%S").strftime("%Y-%m-%d")
+                fecha_emision = str(response_data['respuesta']['fechaEmision'])[:10]
 
                 # related document
                 documentos_relacionados = [{
@@ -1066,7 +1080,7 @@ class AccountMove(models.Model):
                 "descripcion": item.name,
                 "precio_unitario": round(precio_unitario, 6),
             }
-            if self.sv_fe_type == '05':
+            if self.sv_fe_type in ['05', '06'] and numero_documento is not None:
                 item_data.update({'numero_documento': str(numero_documento)})
             if not len(item.tax_ids) > 0:
                 item_data.update({'tipo_venta': '2'})
