@@ -512,177 +512,83 @@ class AccountMove(models.Model):
             json_body = {}
             self.sv_fe_type = '03'
 
-            # esto es para cuando el ccf viene de un documento relacionado, de una factura.
-            if self.sv_fe_fact_info != 0:
-                # prepara el str para convertirlo a json
-                response_raw = self.sv_fe_fact_info.replace("'", '"')
-                response_raw = response_raw.strip()
-                response_raw = response_raw.replace(" ", "")
-
-                response_raw = response_raw.replace("None", "null")
-                response_raw = response_raw.replace('True', 'true')
-                prev_move_data = json.loads(self.sv_fe_prev_move_info)
-
-                # convierte a json
-                _logger.info("Contenido de response_raw antes de decodificar JSON: %s", str(response_raw))
-                response_data = json.loads(response_raw)
-
-                # pago contado
-                json_body = {
-                    "documento": {
-                        "tipo_dte": str(self.sv_fe_type),
-                        "establecimiento": self.journal_id.sv_fe_establishment_id.fe_code,
-                        "condicion_pago": int(self.sv_fe_payment),
-                        "pagos": [],
-                        "items": [],
-                    }
+            json_body = {
+                "documento": {
+                    "tipo_dte": str(self.sv_fe_type),
+                    "establecimiento": self.journal_id.sv_fe_establishment_id.fe_code,
+                    "condicion_pago": int(self.sv_fe_payment),
+                    "pagos": [],
+                    "items": [],
                 }
+            }
 
-                # AGREGAR PAGO EN JSON
-                pago = self._get_pago_documento(total_items)
-                json_body["documento"]["pagos"].append(pago)
+            # AGREGAR PAGO EN JSON
+            pago = self._get_pago_documento(total_items)
+            json_body["documento"]["pagos"].append(pago)
 
-                # receptor assignment
-                receptor_info = {
-                    "numero_documento": self.sv_fe__get_document_number(),
-                    "nrc": self.partner_id.sv_fe_nrc,
-                    "nombre": self.partner_id.name,
-                    "codigo_actividad": self.partner_id.sv_fe_code_activity.code,
-                }
-                json_body["documento"]["receptor"] = receptor_info
+            # receptor assignment
+            receptor_info = {
+                "numero_documento": self.sv_fe__get_document_number(),
+                "nrc": self.partner_id.sv_fe_nrc,
+                "nombre": self.partner_id.name,
+                "codigo_actividad": self.partner_id.sv_fe_code_activity.code,
+            }
 
-                # informacion de remitente
-                self._get_address_error()
-                direccion = {
-                    "departamento": str(self.partner_id.sv_fe_address_dep.code),
-                    "municipio": str(self.partner_id.sv_fe_address_mun.code_muni),
-                    "complemento": self.partner_id.sv_fe_complement_address,
-                }
-                # agrega al json la direccion y el correo
-                json_body["documento"]["receptor"]["direccion"] = direccion
-                json_body["documento"]["receptor"]["correo"] = self.partner_id.email
-                is_anticipo = any('anticipo' in line.name.lower() and line.quantity < 0.0 for line in self.invoice_line_ids)
-                if is_anticipo:
-                    result = []
-                    date_anticipo = ''
-                    total_anticipo = 0.0
-                    for item in self.invoice_line_ids.filtered(lambda l: l.display_type not in ['line_section', 'line_note']):
-                        tributo_item = (item.price_total - item.price_subtotal)
-                        total_discount = (item.price_unit * item.quantity) - item.price_subtotal
-                        if 'anticipo' in item.name.lower() and item.quantity < 0.0:
-                            price_comprovante = abs(round(item.price_unit, 6))
-                            total_anticipo += price_comprovante
-                            date_anticipo = self.extract_date(item.name)
-                            has_advance = True
-                        else:
-                            item_data = {
-                                "tipo": int(item.product_id.sv_fe_services),
-                                "cantidad": item.quantity,
-                                "unidad_medida": int(item.product_id.sv_fe_unidad_medida_id.code),
-                                "descuento": round(total_discount, 6) if total_discount > 0 else 0.0,
-                                "descripcion": item.name,
-                                "precio_unitario": round(item.price_unit, 6),
-                            }
-                            if self.sv_fe_type == '05':
-                                item_data.update({'numero_documento': str(None)})
-                            if not len(item.tax_ids) > 0:
-                                item_data.update({'tipo_venta': '2'})
-                            if any('Exento IVA' in tax.name for tax in item.tax_ids):
-                                item_data.update({'tipo_venta': '3'})
-                            if any('IVA por Pagar' in tax.name for tax in item.tax_ids):
-                                tributos = []
-                                for tax in item.tax_ids:
-                                    if 'IVA por Pagar' in tax.name:
-                                        line_tribute = {'codigo': '20',
-                                                        'monto': (item.price_unit * item.quantity) * (tax.amount / 100)}
-                                        tributos.append(line_tribute)
-                                item_data.update({'tributos': tributos})
-                            result.append(item_data)
-                    json_body["documento"]["items"] = result
-                else:
-                    json_body["documento"]["items"] = self.get_inf_items()
-                if has_advance == True:
-                    json_body["documento"]["descuento_gravadas"] = round(total_anticipo, 2)
-                    observations = 'El anticipo fue emitido el día' + ' ' + date_anticipo + ' ' + 'por valor a' + ' ' + str(round(total_anticipo, 2)) + self.currency_id.symbol
+            json_body["documento"]["receptor"] = receptor_info
 
+            # informacion de remitente
+            self._get_address_error()
+            direccion = {
+                "departamento": str(self.partner_id.sv_fe_address_dep.code),
+                "municipio": str(self.partner_id.sv_fe_address_mun.code_muni),
+                "complemento": self.partner_id.sv_fe_complement_address,
+            }
+            # agrega al json la direccion y el correo
+            json_body["documento"]["receptor"]["direccion"] = direccion
+            json_body["documento"]["receptor"]["correo"] = self.partner_id.email
+            is_anticipo = any('anticipo' in line.name.lower() and line.quantity < 0.0 for line in self.invoice_line_ids)
+            if is_anticipo:
+                result = []
+                date_anticipo = ''
+                total_anticipo = 0.0
+                for item in self.invoice_line_ids.filtered(lambda l: l.display_type not in ['line_section', 'line_note']):
+                    tributo_item = (item.price_total - item.price_subtotal)
+                    total_discount = (item.price_unit * item.quantity) - item.price_subtotal
+                    if 'anticipo' in item.name.lower() and item.quantity < 0.0:
+                        price_comprovante = abs(round(item.price_unit, 6))
+                        total_anticipo += price_comprovante
+                        date_anticipo = self.extract_date(item.name)
+                        has_advance = True
+                    else:
+                        item_data = {
+                            "tipo": int(item.product_id.sv_fe_services),
+                            "cantidad": item.quantity,
+                            "unidad_medida": int(item.product_id.sv_fe_unidad_medida_id.code),
+                            "descuento": round(total_discount, 6) if total_discount > 0 else 0.0,
+                            "descripcion": item.name,
+                            "precio_unitario": round(item.price_unit, 6),
+                        }
+                        if self.sv_fe_type == '05':
+                            item_data.update({'numero_documento': str(None)})
+                        if not len(item.tax_ids) > 0:
+                            item_data.update({'tipo_venta': '2'})
+                        if any('Exento IVA' in tax.name for tax in item.tax_ids):
+                            item_data.update({'tipo_venta': '3'})
+                        if any('IVA por Pagar' in tax.name for tax in item.tax_ids):
+                            tributos = []
+                            for tax in item.tax_ids:
+                                if 'IVA por Pagar' in tax.name:
+                                    line_tribute = {'codigo': '20',
+                                                    'monto': (item.price_unit * item.quantity) * (tax.amount / 100)}
+                                    tributos.append(line_tribute)
+                            item_data.update({'tributos': tributos})
+                        result.append(item_data)
+                json_body["documento"]["items"] = result
             else:
-                json_body = {
-                    "documento": {
-                        "tipo_dte": str(self.sv_fe_type),
-                        "establecimiento": self.journal_id.sv_fe_establishment_id.fe_code,
-                        "condicion_pago": int(self.sv_fe_payment),
-                        "pagos": [],
-                        "items": [],
-                    }
-                }
-
-                # AGREGAR PAGO EN JSON
-                pago = self._get_pago_documento(total_items)
-                json_body["documento"]["pagos"].append(pago)
-
-                # receptor assignment
-                receptor_info = {
-                    "numero_documento": self.sv_fe__get_document_number(),
-                    "nrc": self.partner_id.sv_fe_nrc,
-                    "nombre": self.partner_id.name,
-                    "codigo_actividad": self.partner_id.sv_fe_code_activity.code,
-                }
-
-                json_body["documento"]["receptor"] = receptor_info
-
-                # informacion de remitente
-                self._get_address_error()
-                direccion = {
-                    "departamento": str(self.partner_id.sv_fe_address_dep.code),
-                    "municipio": str(self.partner_id.sv_fe_address_mun.code_muni),
-                    "complemento": self.partner_id.sv_fe_complement_address,
-                }
-                # agrega al json la direccion y el correo
-                json_body["documento"]["receptor"]["direccion"] = direccion
-                json_body["documento"]["receptor"]["correo"] = self.partner_id.email
-                is_anticipo = any('anticipo' in line.name.lower() and line.quantity < 0.0 for line in self.invoice_line_ids)
-                if is_anticipo:
-                    result = []
-                    date_anticipo = ''
-                    total_anticipo = 0.0
-                    for item in self.invoice_line_ids.filtered(lambda l: l.display_type not in ['line_section', 'line_note']):
-                        tributo_item = (item.price_total - item.price_subtotal)
-                        total_discount = (item.price_unit * item.quantity) - item.price_subtotal
-                        if 'anticipo' in item.name.lower() and item.quantity < 0.0:
-                            price_comprovante = abs(round(item.price_unit, 6))
-                            total_anticipo += price_comprovante
-                            date_anticipo = self.extract_date(item.name)
-                            has_advance = True
-                        else:
-                            item_data = {
-                                "tipo": int(item.product_id.sv_fe_services),
-                                "cantidad": item.quantity,
-                                "unidad_medida": int(item.product_id.sv_fe_unidad_medida_id.code),
-                                "descuento": round(total_discount, 6) if total_discount > 0 else 0.0,
-                                "descripcion": item.name,
-                                "precio_unitario": round(item.price_unit, 6),
-                            }
-                            if self.sv_fe_type == '05':
-                                item_data.update({'numero_documento': str(None)})
-                            if not len(item.tax_ids) > 0:
-                                item_data.update({'tipo_venta': '2'})
-                            if any('Exento IVA' in tax.name for tax in item.tax_ids):
-                                item_data.update({'tipo_venta': '3'})
-                            if any('IVA por Pagar' in tax.name for tax in item.tax_ids):
-                                tributos = []
-                                for tax in item.tax_ids:
-                                    if 'IVA por Pagar' in tax.name:
-                                        line_tribute = {'codigo': '20',
-                                                        'monto': (item.price_unit * item.quantity) * (tax.amount / 100)}
-                                        tributos.append(line_tribute)
-                                item_data.update({'tributos': tributos})
-                            result.append(item_data)
-                    json_body["documento"]["items"] = result
-                else:
-                    json_body["documento"]["items"] = self.get_inf_items()
-                if has_advance == True:
-                    json_body["documento"]["descuento_gravadas"] = round(total_anticipo, 2)
-                    observations = 'El anticipo fue emitido el día' + ' ' + date_anticipo + ' ' + 'por valor a' + ' ' + str(round(total_anticipo, 2)) + self.currency_id.symbol
+                json_body["documento"]["items"] = self.get_inf_items()
+            if has_advance == True:
+                json_body["documento"]["descuento_gravadas"] = round(total_anticipo, 2)
+                observations = 'El anticipo fue emitido el día' + ' ' + date_anticipo + ' ' + 'por valor a' + ' ' + str(round(total_anticipo, 2)) + self.currency_id.symbol
 
         # dte nota de credito
         if int(self.sv_fe_type) == 5:
@@ -698,27 +604,26 @@ class AccountMove(models.Model):
 
             if self.sv_fe_fact_info != 0:
                 # Prepara el string para convertirlo a JSON
-                _logger.info(str(self.sv_fe_fact_info))
-                # Expresión regular para encontrar comillas dobles entre 2 letras. 
-                # Esto es necesario una vez que se sustituyan todas las comillas simples por dobles
-                # Y conservar el nombre de clientes como D'QUISA,S.A.DE C.V.
-                patron = r"(?<=[a-zA-Z0-9\"\\])\"(?=[a-zA-Z0-9\"\\])"
-                response_raw = (self.sv_fe_fact_info.replace("'", '"')
-                                .strip()
-                                .replace(" ", "")
-                                .replace("None", "null")
-                                .replace('True', 'true')
-                                .replace('False', 'false'))  # Agregando también la conversión de False
-                response_raw = re.sub(patron, "'", response_raw)
-                _logger.info("Inspecting response_raw: %s", type(response_raw))
-                _logger.info("Inspecting response_raw: %s", response_raw)  # Añadir esto para depuración
-
                 try:
+                    # Si sv_fe_fact_info ya es un JSON valido, úsalo directamente
+                    response_data = json.loads(self.sv_fe_fact_info)
                     prev_move_data = json.loads(self.sv_fe_prev_move_info)
-                    response_data = json.loads(response_raw)
                 except json.JSONDecodeError as e:
-                    _logger.error("Error al decodificar el JSON: %s", e)
-                    raise
+                    _logger.warning("JSON inválido, intentando con literal_eval: %s", e)
+
+                    try:
+                        # Convierte la cadena almacenada en sv_fe_fact_info a un diccionario de Python
+                        python_dict = ast.literal_eval(self.sv_fe_fact_info)
+
+                        # Convierte el diccionario de Python a una cadena JSON válida
+                        response_raw = json.dumps(python_dict)
+                        response_data = json.loads(response_raw)
+                        prev_move_data = json.loads(self.sv_fe_prev_move_info)
+                    except (ValueError, SyntaxError) as e2:
+                        _logger.error("Error al decodificar: %s", e2)
+                        _logger.error("Posición del error JSON: %s", e.pos if hasattr(e, 'pos') else 'N/A')
+                        _logger.error("Fragmento problemático: %s", self.sv_fe_fact_info[:200])
+                        raise UserError(f"Error al procesar la información del documento: {str(e)}")
 
                 # Inicializa la estructura del documento JSON
                 json_body = {
@@ -748,7 +653,7 @@ class AccountMove(models.Model):
                 # Agregar documentos relacionados
                 try:
                     fecha_emision_str = response_data['respuesta']['fechaEmision']
-                    fecha_emision = datetime.strptime(fecha_emision_str, "%Y-%m-%d%H:%M:%S").strftime("%Y-%m-%d")
+                    fecha_emision = datetime.strptime(fecha_emision_str, "%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d")
                     documentos_relacionados = [{
                         "tipo_documento": str(prev_move_data['documento']['tipo_dte']),
                         "tipo_generacion": int(self.sv_fe_generation),
@@ -756,9 +661,9 @@ class AccountMove(models.Model):
                         "fecha_emision": fecha_emision,
                     }]
                     json_body["documento"]["documentos_relacionados"] = documentos_relacionados
-                except (KeyError, ValueError):
-                    _logger.error("Error al obtener información de documentos relacionados")
-                    raise ValueError("Error al obtener información de documentos relacionados")
+                except (KeyError, ValueError) as e:
+                    _logger.error("Error al obtener información de documentos relacionados: %s", e)
+                    raise ValueError("Error al obtener información de documentos relacionados: " + str(e))
 
                 # Obtener dirección del remitente
                 self._get_address_error()
