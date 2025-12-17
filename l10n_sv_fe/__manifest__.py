@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 {
-    'name': 'Electronic Invoice SV',
+    'name': 'Electronic Invoice SV.',
     'author': "Xetechs GT",
     'website': "http://www.xetechs.com",
     'support': 'Jonathan Quintero --> jquintero@xetechs.com / Jorge Barrientos',
