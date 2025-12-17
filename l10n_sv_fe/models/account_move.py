@@ -341,6 +341,7 @@ class AccountMove(models.Model):
             urltest = "https://certificador.infile.com.sv/api/v1/certificacion/test/documento/invalidacion"
             urlprod = "https://certificador.infile.com.sv/api/v1/certificacion/prod/documento/invalidacion"
             user = self.env.user
+            company = self.env.company
             json_invalidation_body = {
                 "invalidacion": {
                     "establecimiento": self.journal_id.sv_fe_establishment_id.fe_code,
@@ -348,21 +349,21 @@ class AccountMove(models.Model):
                     "tipo_anulacion": int(self.sv_fe_invalidation_type),
                     "motivo": self.sv_fe_motivo_invalidacion,
                     "responsable": {
-                        "nombre": user.name,
-                        "tipo_documento": user.sv_fe_identification_type,
+                        "nombre": company.name,
+                        "tipo_documento": '36',
                     },
                     "solicitante": {
-                        "nombre": user.name,
-                        "tipo_documento":user.sv_fe_identification_type,
-                        "correo": user.login
+                        "nombre": company.name,
+                        "tipo_documento": '36',
+                        "correo": company.email
                     }
                 }
             }
             _logger.info("**********JSON INVALIDACION*********")
             _logger.info(json_invalidation_body)
 
-            json_invalidation_body["invalidacion"]["responsable"]["numero_documento"] = self._get_user_document_number()
-            json_invalidation_body["invalidacion"]["solicitante"]["numero_documento"] = self._get_user_document_number()
+            json_invalidation_body["invalidacion"]["responsable"]["numero_documento"] = company.vat
+            json_invalidation_body["invalidacion"]["solicitante"]["numero_documento"] = company.vat
             self.message_post(subject='FEL', body="Generando cancelacion Factura Electronica FEL",attachments=[('cancelacion-Factura.json', str(json_invalidation_body))])
             json_data = json.dumps(json_invalidation_body)
             URL = urlprod if self.company_id.sv_fe_mode_prod else urltest
