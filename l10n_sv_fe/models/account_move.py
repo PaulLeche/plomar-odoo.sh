@@ -903,6 +903,8 @@ class AccountMove(models.Model):
         # raise ValidationError(str(json_data))
         if self.get_info_retension() > 0:
             json_body["documento"]["retener_iva"] = self.get_info_retension()
+        if self.is_iva_retenido():
+            json_body["documento"]["retener_iva"] = 'true'
         self._get_address_error()
         direccion = {
             "departamento": str(self.partner_id.sv_fe_address_dep.code or ''),
@@ -1009,6 +1011,13 @@ class AccountMove(models.Model):
                 if 'Gran Contribuyente' in l.name:
                     result += line.price_subtotal * (abs(l.amount)/100)
         return round(result, 2)
+    
+    def is_iva_retenido(self):
+        for line in self.invoice_line_ids.filtered(lambda l: l.display_type not in ['line_section', 'line_note']):
+            for l in line.tax_ids:
+                if 'IVA Retenido' in l.name:
+                    return True
+        return False
 
     def get_price_unit(self, line):
         if any('IVA por Pagar' in tax.name for tax in line.tax_ids):
