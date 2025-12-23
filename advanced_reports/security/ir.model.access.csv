@@ -1,0 +1,14 @@
+id,name,model_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_box_number,box.number,model_box_number,1,1,1,1
+access_cashier_model,cashier.model,model_cashier_model,1,1,1,1
+access_box_payment_method,box.payment.method,model_box_payment_method,1,1,1,1
+access_wizard_close_box,wizard.close.box,model_wizard_close_box,1,1,1,1
+access_wizard_close_box_commission,wizard.close.box.commission,model_wizard_close_box_commission,1,1,1,1
+access_wizard_planilla_f07,wizard.planilla.f07,model_wizard_planilla_f07,1,1,1,1
+access_wizard_report_book,wizard.report.book,model_wizard_report_book,1,1,1,1
+access_wizard_planilla_f14,wizard.planilla.f14,model_wizard_planilla_f14,1,1,1,1
+access_wizard_planilla_f910,wizard.planilla.f910,model_wizard_planilla_f910,1,1,1,1
+access_wizard_planilla_f930,wizard.planilla.f930,model_wizard_planilla_f930,1,1,1,1
+access_wizard_planilla_f983,wizard.planilla.f983,model_wizard_planilla_f983,1,1,1,1
+access_wizard_planilla_f987,wizard.planilla.f987,model_wizard_planilla_f987,1,1,1,1
+access_aduana_code,aduana.code,model_aduana_code,1,1,1,1

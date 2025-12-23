@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="default_code_01" model="box.number">
+            <field name="name">Caja 1</field>
+        </record>
+
+        <record id="default_code_02" model="box.number">
+            <field name="name">Caja 2</field>
+        </record>
+    </data>
+</odoo>

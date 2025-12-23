@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vista árbol (list)  -->
+        <record id="view_aduana_code_tree" model="ir.ui.view">
+            <field name="name">aduana.code.list</field>
+            <field name="model">aduana.code</field>
+            <field name="arch" type="xml">
+                <list string="Código de aduana">
+                    <field name="name"/>
+                    <field name="name_cod"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vista formulario (form)  -->
+        <record id="view_aduana_code_form" model="ir.ui.view">
+            <field name="name">aduana.code.form</field>
+            <field name="model">aduana.code</field>
+            <field name="arch" type="xml">
+                <form string="Código de aduana">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="name_cod"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

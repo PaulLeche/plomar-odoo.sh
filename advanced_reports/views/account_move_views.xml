@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_ext" model="ir.ui.view">
+        <field name="name">view.move.form.ext</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sv_fe_regimen']" position="after">
+                <field name="document_number" invisible="move_type in ['entry', 'out_receipt', 'in_receipt']"/>
+                <field name="date_payment" invisible="move_type in ['entry', 'out_receipt', 'in_receipt']"/>
+            </xpath>
+
+            <xpath expr="//group[@id='other_tab_group']/group/field[@name='number_of_series_document']" position="after">
+                <field name="number_of_series_document_supplier" invisible="move_type != 'in_invoice'"/>
+                <field name="uuid_user"/>
+                <field name="number_resolution"/>
+            </xpath>
+            <xpath expr="//group[@id='other_tab_group']/group/field[@name='number_of_series_document']" position='attributes'>
+                <attribute name="invisible">move_type == 'in_invoice'</attribute>
+            </xpath>
+           <xpath expr="//notebook/page[@id='other_tab']/group[@id='other_tab_group']" position="inside">
+               <group string="" invisible="move_type != 'in_invoice'">
+                   <field name="partner_country" invisible="1"/>
+                   <field name="concept_operation" required="partner_country != 'El Salvador' and move_type == 'in_invoice'"/>
+                   <field name="import_type" required="partner_country != 'El Salvador' and move_type == 'in_invoice'"/>
+                   <field name="aduana_code_id" required="partner_country != 'El Salvador' and move_type == 'in_invoice'"/>
+               </group>
+            </xpath>
+            <xpath expr="//field[@name='sv_fe_motivo_invalidacion']" position="after">
+                <field name="type_rental_operation"/>
+                <field name="type_rental_income"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

@@ -4,7 +4,7 @@ from odoo import _, api, fields, models
 
 
 class ChargeThirdPartyAccount(models.Model):
-    _name = 'charge.third.party.account'
+    _name = 'sv_fe.charge.third.party.account'
     _description = 'Charge Third Party Account'
     
     vat = fields.Char(string='NIT Tercero', required=True) 

@@ -8,14 +8,14 @@
 		<field name="inherit_id" ref="base.view_users_form"/>
 		<field name="arch" type="xml">
 			<xpath expr="//page[@name='preferences']" position="inside">
-                <group string="Establecimiento" groups="l10n_sv_fe.group_fel_manager">
-                    <field name="fe_establishment_id"/>
-					<field name="identification_type"/>
-					<field name="vat" string="NIT" invisible="identification_type != '36'"/>
-				 	<field name="dui_field" invisible="identification_type != '13'"/>
-				 	<field name="other_field" invisible="identification_type != '37'"/>
-				 	<field name="passport_field" invisible="identification_type != '03'"/>
-				 	<field name="carnet_residente_field" invisible="identification_type != '02'"/>
+                <group string="Establecimiento" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_user_country_code != 'SV'">
+                    <field name="sv_fe_establishment_id"/>
+					<field name="sv_fe_identification_type"/>
+					<field name="vat" string="NIT" invisible="sv_fe_identification_type != '36'"/>
+				 	<field name="sv_fe_dui_field" invisible="sv_fe_identification_type != '13'"/>
+				 	<field name="sv_fe_other_field" invisible="sv_fe_identification_type != '37'"/>
+				 	<field name="sv_fe_passport_field" invisible="sv_fe_identification_type != '03'"/>
+				 	<field name="sv_fe_carnet_residente_field" invisible="sv_fe_identification_type != '02'"/>
                 </group>
 			</xpath>
 		</field>

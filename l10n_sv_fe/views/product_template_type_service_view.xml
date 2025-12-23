@@ -9,9 +9,9 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='group_general']" position="inside">
-                    <field name="fe_services" string="Tipo Servicio FEL" force_save="1" groups="l10n_sv_fe.group_fel_manager"/>
-                    <field name="fe_unidad_medida_id" string="Unidad de medida FEL" force_save="1" groups="l10n_sv_fe.group_fel_manager"/>
-                    <field name="fe_tributes_id" groups="l10n_sv_fe.group_fel_manager"/>
+                    <field name="sv_fe_services" string="Tipo Servicio FEL" force_save="1" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_product_country_code != 'SV'" />
+                    <field name="sv_fe_unidad_medida_id" string="Unidad de medida FEL" force_save="1" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_product_country_code != 'SV'" />
+                    <field name="sv_fe_tributes_id" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_product_country_code != 'SV'" />
                 </xpath>
             </field>
         </record>
@@ -23,9 +23,9 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='barcode']" position="after">
-                    <field name="fe_services" string="Tipo Servicio FEL" force_save="1" groups="l10n_sv_fe.group_fel_manager"/>
-                    <field name="fe_unidad_medida_id" string="Unidad de medida FEL" force_save="1" groups="l10n_sv_fe.group_fel_manager"/>
-                    <field name="fe_tributes_id" groups="l10n_sv_fe.group_fel_manager"/>
+                    <field name="sv_fe_services" string="Tipo Servicio FEL" force_save="1" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_product_country_code != 'SV'" />
+                    <field name="sv_fe_unidad_medida_id" string="Unidad de medida FEL" force_save="1" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_product_country_code != 'SV'" />
+                    <field name="sv_fe_tributes_id" groups="l10n_sv_fe.sv_fe_group_fel_manager" invisible="sv_fe_product_country_code != 'SV'" />
                 </xpath>
             </field>
         </record>

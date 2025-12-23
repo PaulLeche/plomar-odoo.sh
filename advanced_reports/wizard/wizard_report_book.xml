@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_report_book_form" model="ir.ui.view">
+        <field name="name">wizard.report.book.form</field>
+        <field name="model">wizard.report.book</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <label for="date_from" string="Periodo"/>
+                            <div class="o_row">
+                                <field name="date_from" class="oe_inline"/>
+                                <span> - </span>
+                                <field name="date_to" class="oe_inline"/>
+                            </div>
+                            <field name="company_id" options="{'no_create_edit': True}" readonly="1" invisible="0"/>
+                        </group>
+                        <group>
+                            <field name="report_type" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="print_report_sale_taxpayer_pdf" string="Reporte PDF" invisible="report_type in ['sale_consumer', 'purchase']" type="object" class="btn-primary"/>
+					<button name="print_report_sale_taxpayer_xls" string="Reporte XLS" invisible="report_type in ['sale_consumer', 'purchase']" type="object" class="btn-primary"/>
+                    <button name="print_report_sale_consumer_pdf" string="Reporte PDF" invisible="report_type in ['sale_taxpayer', 'purchase']" type="object" class="btn-primary"/>
+					<button name="print_report_sale_consumer_xls" string="Reporte XLS" invisible="report_type in ['sale_taxpayer', 'purchase']" type="object" class="btn-primary"/>
+                    <button name="print_report_purchase_pdf" string="Reporte PDF" invisible="report_type in ['sale_taxpayer', 'sale_consumer']" type="object" class="btn-primary"/>
+					<button name="print_report_purchase_xls" string="Reporte XLS" invisible="report_type in ['sale_taxpayer', 'sale_consumer']" type="object" class="btn-primary"/>
+                    <button string="Cerrar" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_sale_taxpayer" model="ir.actions.act_window">
+        <field name="name">Reporte: Libro de ventas a contribuyentes</field>
+        <field name="res_model">wizard.report.book</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_report_book_form"/>
+        <field name="context">{'default_report_type': 'sale_taxpayer'}</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="action_report_sale_taxpayer"
+              id="menu_report_sale_taxpayer"
+              name="Libro de ventas a contribuyentes"
+              parent="account.menu_finance_reports"
+              sequence="62"/>
+
+    <record id="action_report_sale_consumer" model="ir.actions.act_window">
+        <field name="name">Reporte: Libro de ventas a consumidor final</field>
+        <field name="res_model">wizard.report.book</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_report_book_form"/>
+        <field name="context">{'default_report_type': 'sale_consumer'}</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="action_report_sale_consumer"
+              id="menu_report_sale_consumer"
+              name="Libro de ventas a consumidor final"
+              parent="account.menu_finance_reports"
+              sequence="63"/>
+
+    <record id="action_report_purchase" model="ir.actions.act_window">
+        <field name="name">Reporte: Libro de compras</field>
+        <field name="res_model">wizard.report.book</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_report_book_form"/>
+        <field name="context">{'default_report_type': 'purchase'}</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="action_report_purchase"
+              id="menu_report_purchase"
+              name="Libro de compras"
+              parent="account.menu_finance_reports"
+              sequence="64"/>
+
+</odoo>

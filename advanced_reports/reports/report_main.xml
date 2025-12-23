@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--        __________________report_close_the_box___________________         -->
+<!--    XLS  -->
+    <record id="action_close_box_xls" model="ir.actions.report">
+        <field name="name">Reporte cierre de caja XLS</field>
+        <field name="model">wizard.close.box</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_close_box_xls</field>
+        <field name="report_file">advanced_reports.report_close_box_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <record id="action_close_box_commission_xls" model="ir.actions.report">
+        <field name="name">Reporte cierre de caja para comisión XLS</field>
+        <field name="model">wizard.close.box.commission</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_close_box_commission_xls</field>
+        <field name="report_file">advanced_reports.report_close_box_commission_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+<!--    PDF   -->
+    <record id="close_box_pdf_format" model="report.paperformat">
+        <field name="name">Cierre de caja PDF</field>
+        <field name="default" eval="True"/>
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+
+    </record>
+
+
+    <record id="action_close_box_pdf" model="ir.actions.report">
+        <field name="name">Reporte cierre de caja PDF</field>
+        <field name="model">wizard.close.box</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advanced_reports.report_close_box</field>
+        <field name="report_file">advanced_reports.report_close_box</field>
+        <field name="paperformat_id" ref="close_box_pdf_format"/>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+<!--        __________________report planilla f 07___________________         -->
+
+    <record id="action_report_planilla_f07_xls" model="ir.actions.report">
+        <field name="name">Reporte Planilla F-07 XLS</field>
+        <field name="model">wizard.planilla.f07</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_planilla_f07_xls</field>
+        <field name="report_file">advanced_reports.report_planilla_f07_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+
+<!--        __________________report sales purchases___________________         -->
+
+     <!-- Sale reports -->
+    <record id="report_sale_taxpayer_format" model="report.paperformat">
+        <field name="name">Formato: Libro de ventas a consumidor final PDF</field>
+        <field name="default" eval="True"/>
+        <field name="format">Legal</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">35</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">32</field>
+        <field name="dpi">90</field>
+    </record>
+
+
+    <record id="action_sale_taxpayer_xls" model="ir.actions.report">
+        <field name="name">Reporte Libro de ventas a contribuyentes XLS</field>
+        <field name="model">wizard.report.book</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_taxpayer_xls</field>
+        <field name="report_file">advanced_reports.report_taxpayer_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <record id="action_sale_taxpayer_pdf" model="ir.actions.report">
+        <field name="name">Reporte Libro de ventas a contribuyentes PDF</field>
+        <field name="model">wizard.report.book</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advanced_reports.report_taxpayer</field>
+        <field name="report_file">advanced_reports.report_taxpayer</field>
+        <field name="paperformat_id" ref="report_sale_taxpayer_format"/>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+<!--    Libro de ventas a consumidor final-->
+
+    <record id="action_sale_consumer_pdf" model="ir.actions.report">
+        <field name="name">Reporte Libro de ventas a consumidor final PDF</field>
+        <field name="model">wizard.report.book</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advanced_reports.report_consumer</field>
+        <field name="report_file">advanced_reports.report_consumer</field>
+        <field name="paperformat_id" ref="report_sale_taxpayer_format"/>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <record id="action_sale_consumer_xls" model="ir.actions.report">
+        <field name="name">Reporte Libro de ventas a consumidor final XLS</field>
+        <field name="model">wizard.report.book</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_consumer_xls</field>
+        <field name="report_file">advanced_reports.report_consumer_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <!--    Libro de compras-->
+
+    <record id="action_purchase_pdf" model="ir.actions.report">
+        <field name="name">Reporte Libro de compras PDF</field>
+        <field name="model">wizard.report.book</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">advanced_reports.report_purchase</field>
+        <field name="report_file">advanced_reports.report_purchase</field>
+        <field name="paperformat_id" ref="report_sale_taxpayer_format"/>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <record id="action_purchase_xls" model="ir.actions.report">
+        <field name="name">Reporte Libro de compras XLS</field>
+        <field name="model">wizard.report.book</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_purchase_xls</field>
+        <field name="report_file">advanced_reports.report_purchase_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+
+<!--        __________________report planilla f 14___________________         -->
+
+    <record id="action_report_planilla_f14_xls" model="ir.actions.report">
+        <field name="name">Reporte Planilla F-14 XLS</field>
+        <field name="model">wizard.planilla.f14</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_planilla_f14_xls</field>
+        <field name="report_file">advanced_reports.report_planilla_f14_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+<!--        __________________report planilla f 910___________________         -->
+
+
+    <record id="action_report_planilla_f910_xls" model="ir.actions.report">
+        <field name="name">Reporte Planilla F-910 XLS</field>
+        <field name="model">wizard.planilla.f910</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_planilla_f910_xls</field>
+        <field name="report_file">advanced_reports.report_planilla_f910_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+
+<!--        __________________report planilla f 910___________________         -->
+
+    <record id="action_report_planilla_f930_xls" model="ir.actions.report">
+        <field name="name">Reporte Planilla F-930 XLS</field>
+        <field name="model">wizard.planilla.f930</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_planilla_f930_xls</field>
+        <field name="report_file">advanced_reports.report_planilla_f930_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+
+<!--        __________________report planilla f 983___________________         -->
+
+    <record id="action_report_planilla_f983_xls" model="ir.actions.report">
+        <field name="name">Reporte Planilla F-983 XLS</field>
+        <field name="model">wizard.planilla.f983</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_planilla_f983_xls</field>
+        <field name="report_file">advanced_reports.report_planilla_f983_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+<!--        __________________report planilla f 987___________________         -->
+
+    <record id="action_report_planilla_f987_xls" model="ir.actions.report">
+        <field name="name">Reporte Planilla F-987 XLS</field>
+        <field name="model">wizard.planilla.f987</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">advanced_reports.report_planilla_f987_xls</field>
+        <field name="report_file">advanced_reports.report_planilla_f987_xls</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</odoo>

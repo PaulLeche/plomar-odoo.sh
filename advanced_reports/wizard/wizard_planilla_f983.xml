@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_planilla_f983_form" model="ir.ui.view">
+        <field name="name">wizard.planilla.f983.form</field>
+        <field name="model">wizard.planilla.f983</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <label for="date_from" string="Periodo"/>
+                            <div class="o_row">
+                                <field name="date_from" class="oe_inline"/>
+                                <span> - </span>
+                                <field name="date_to" class="oe_inline"/>
+                            </div>
+                            <field name="company_id" options="{'no_create_edit': True}" readonly="1" invisible="0"/>
+                        </group>
+                        <group>
+                            <field name="report_type" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="print_report_planilla_f983_xls" string="Imprimir reporte XLS" type="object" class="btn-primary"/>
+                    <button string="Cerrar" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_report_planilla_f983" model="ir.actions.act_window">
+        <field name="name">Reporte: Planilla F-983</field>
+        <field name="res_model">wizard.planilla.f983</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_planilla_f983_form"/>
+        <field name="context">{'default_report_type': 'spreadsheet'}</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="action_report_planilla_f983"
+              id="menu_report_planilla_f983"
+              name="Reporte Planilla F-983"
+              parent="account.menu_finance_reports"
+              sequence="100"/>
+
+</odoo>

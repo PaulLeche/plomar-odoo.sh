@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_purchase">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page" style="font-size:10px;">
+                    <t t-value="ultima" t-set="final"/>
+<!--                    <t t-value="date_ini" t-set="date_from"/>-->
+<!--                    <t t-value="date_fin" t-set="date_to"/>-->
+                    <t t-set="o" t-value="docs"/>
+
+                    <template id="report_purchase_header">
+                        <div class="header" style="font-size:14px;">
+                            <div class="row">
+                                <div>
+                                    <center><strong><span t-field="o.company_id.name"/></strong></center>
+                                    <center><strong><span>LIBRO DE COMPRAS</span></strong></center>
+                                    <center><strong>N.R.C.: <span t-field="o.company_id.partner_id.nrc"/></strong></center>
+                                    <center><strong>NIT: <span t-field="o.company_id.vat"/></strong></center>
+                                    <t t-if="final">
+                                        <center><strong>GIRO:&#160;<span t-esc="final.get('giro')"/></strong></center>
+                                    </t>
+                                    <t t-else="">
+                                        <center><strong>GIRO:&#160;</strong></center>
+                                    </t>
+<!--                                    <center><strong>MES:&#160;<span t-esc="date_from_m"/></strong></center>-->
+<!--                                    <center><strong>AÑO:&#160;<span t-esc="o.date_from.year"/></strong></center>-->
+                                    <center><strong>Del <span t-esc="date_from"/> al <span t-esc="date_to"/></strong></center>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <table class="text-center table table-borderless table-sm table-x">
+                        <thead>
+                            <tr>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>No</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>DOCUMENTO</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>FECHA</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>No REGISTRO</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>PROVEEDOR</strong></th>
+
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="4"><strong>COMPRAS LOCALES</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="3"><strong>IMPORTACIONES E INTERNACIONES</strong></th>
+
+
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>PERCEPCION 1%</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>ANTICIPO A CUENTA 2%</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>COMPRAS A SUJETOS EXCLUIDOS</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="2" colspan="1"><strong>TOTAL COMPRA</strong></th>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="1"><strong>EXENTAS</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="1"><strong>NO SUJETAS</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="1"><strong>GRABADAS</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="1"><strong>CRÉDITO FISCAL</strong></th>
+
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="1"><strong>EXENTAS</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="1"><strong>GRABADAS</strong></th>
+                                <th style="vertical-align: middle;border: 1px solid black;" rowspan="1" colspan="1"><strong>POLIZA DE IMPORTACION</strong></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <t t-set="cont" t-value="1"/>
+                            <t t-foreach="data" t-as="line">
+                                <tr>
+                                    <td style="border: 1px solid black;"><span t-esc="cont"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="line.get('numero_documento')"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="line.get('fecha_emision')"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="line.get('nro_registro')"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="line.get('nombre_cliente')"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('propias_exenta'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('locales_propias'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('propias_grabada'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('credito_fiscal'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('imp_exentas'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('imp_grabadas'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('imp_poliza'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('percepcion_1'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('anticipo_2'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('sujetos_excluidos'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(line.get('total_compras'))"/></td>
+                                </tr>
+                                <t t-set="cont" t-value="cont + 1"/>
+                            </t>
+                            <t t-if="final">
+                                <tr>
+                                    <td style="border: 1px solid black;" colspan="5"><strong>TOTAL</strong></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_propias_exenta'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_locales_propias'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_propias_grabada'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_credito_fiscal'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_imp_exentas'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_imp_grabadas'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_imp_poliza'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_percepcion_1'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_anticipo_2'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_sujetos_excluidos'))"/></td>
+                                    <td style="border: 1px solid black;"><span t-esc="'{0:,.2f}'.format(final.get('f_total_compras'))"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <br/>
+
+                </div>
+                <p style="page-break-after:always;"/>
+                <template id="report_purchase_footer" style="font-size:12px;">
+                    <div t-attf-class="footer">
+                        <div class="col-12 text-right" style="font-size:14px;">
+                            Pág <span class="page"/> de <span class="topage"/>
+                        </div>
+                    </div>
+                </template>
+            </t>
+        </t>
+    </template>
+</odoo>

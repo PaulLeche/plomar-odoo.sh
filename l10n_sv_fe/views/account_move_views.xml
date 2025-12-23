@@ -8,12 +8,12 @@
         <field name="arch" type="xml">
 
             <xpath expr="//button[@name='action_post']" position="after">
-                <button name="action_print_fel" class="btn-primary" type="object" string="Imprimir FEL" invisible="1" groups="l10n_sv_fe.group_fel_manager"/>
+                <button name="sv_fe_action_print_fel" class="btn-primary" type="object" string="Imprimir FEL" invisible="1" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
             </xpath>
             
             <!-- <xpath expr="//button[@name='action_reverse']" position="after">
-                <button name="action_nr" class="btn-primary" type="object" string="Generar Nota de Remisión" 
-                    invisible="fe_type_sv not in ['01','03'] or state not in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
+                <button name="sv_fe_action_nr" class="btn-primary" type="object" string="Generar Nota de Remisión" 
+                    invisible="sv_fe_type not in ['01','03'] or state not in ['posted']" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
             </xpath> -->
 
             <label for="journal_id" position="attributes">
@@ -25,61 +25,61 @@
             </div>
 
             <field name="partner_shipping_id" position="after">
-                <field name="fe_type_sv" force_save="1" 
+                <field name="sv_fe_type" force_save="1" 
                     readonly="move_type not in ['in_invoice', 'in_refund', 'in_receipt']" 
-                    invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund']"
-                    groups="l10n_sv_fe.group_fel_manager"/>
+                    invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund'] or sv_fe_move_country_code != 'SV'"
+                    groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
                 
-                <field name="last_payment_sequence" widget="CopyClipboardChar"/>
+                <field name="last_payment_sequence" widget="CopyClipboardChar" invisible="sv_fe_move_country_code != 'SV'" />
                     
-                <field name="fe_cf" force_save="1" invisible="fe_type_sv not in ['01']" groups="l10n_sv_fe.group_fel_manager"/>
-                <field name="fe_payment" force_save="1" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
-                <field name="fe_pay_method" force_save="1" invisible="fe_payment not in ['02']" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
-                <field name="fe_term" force_save="1" invisible="fe_payment not in ['02']" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
-                <field name="fe_period" force_save="1" invisible="fe_payment not in ['02']" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
-                <field name="fe_generation" force_save="1" readonly="state in ['posted']" groups="l10n_sv_fe.group_fel_manager"/>
-                <field name="fe_export_services" force_save="1" invisible="fe_type_sv not in ['11']" groups="l10n_sv_fe.group_fel_manager"/>
-                
-                <field name="fe_incoterm" force_save="1" invisible="fe_export_services in ['02'] or fe_type_sv not in ['11']"
-                       options="{'no_quick_create':True,'no_create_edit':True,'no_open': True}" groups="l10n_sv_fe.group_fel_manager"/>
+                <field name="sv_fe_cf" force_save="1" invisible="sv_fe_type not in ['01'] or sv_fe_move_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_payment" force_save="1" readonly="state in ['posted']" invisible="sv_fe_move_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_pay_method" force_save="1" invisible="sv_fe_payment not in ['02'] or sv_fe_move_country_code != 'SV'" readonly="state in ['posted']" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_term" force_save="1" invisible="sv_fe_payment not in ['02'] or sv_fe_move_country_code != 'SV'" readonly="state in ['posted']" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_period" force_save="1" invisible="sv_fe_payment not in ['02'] or sv_fe_move_country_code != 'SV'" readonly="state in ['posted']" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_generation" force_save="1" readonly="state in ['posted']" invisible="sv_fe_move_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+                <field name="sv_fe_export_services" force_save="1" invisible="sv_fe_type not in ['11'] or sv_fe_move_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
 
-                <field name="fe_recinto" force_save="1" invisible="fe_export_services in ['02'] or fe_type_sv not in ['11']"
-                       options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}" groups="l10n_sv_fe.group_fel_manager"/>
+                <field name="sv_fe_incoterm" force_save="1" invisible="sv_fe_export_services in ['02'] or sv_fe_type not in ['11'] or sv_fe_move_country_code != 'SV'"
+                       options="{'no_quick_create':True,'no_create_edit':True,'no_open': True}" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
 
-                <field name="fe_regimen" force_save="1" invisible="fe_export_services in ['02'] or fe_type_sv not in ['11']"
-                       options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}" groups="l10n_sv_fe.group_fel_manager"/>
+                <field name="sv_fe_recinto" force_save="1" invisible="sv_fe_export_services in ['02'] or sv_fe_type not in ['11'] or sv_fe_move_country_code != 'SV'"
+                       options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
+
+                <field name="sv_fe_regimen" force_save="1" invisible="sv_fe_export_services in ['02'] or sv_fe_type not in ['11'] or sv_fe_move_country_code != 'SV'"
+                       options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
             </field>
 
             <xpath expr="//group[@id='header_right_group']" position="after">
-                <group invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund']" groups="l10n_sv_fe.group_fel_manager">
-                    <field name="fe_active_sv" invisible="1"/>
+                <group invisible="move_type not in ['out_invoice', 'out_refund', 'in_invoice', 'in_refund']" groups="l10n_sv_fe.sv_fe_group_fel_manager">
+                    <field name="sv_fe_active" invisible="1"/>
                 </group>
             </xpath>
 
             <xpath expr="//button[@name='button_draft']" position="attributes">
-                <attribute name="groups">l10n_sv_fe.set_draft_invoice</attribute>
+                <attribute name="groups">l10n_sv_fe.sv_fe_set_draft_invoice</attribute>
             </xpath>
 
             <xpath expr="//notebook" position="inside">
-                <page string="Factura Electrónica SV" invisible="move_type in ['entry'] or fe_active_sv == False" groups="l10n_sv_fe.group_fel_manager">
+                <page string="Factura Electrónica SV" invisible="move_type in ['entry'] or sv_fe_active == False or sv_fe_move_country_code != 'SV'" groups="l10n_sv_fe.sv_fe_group_fel_manager">
                     <group>
                         <group>
-                            <field name="uuid_code"/>
-                            <field name="date_certification"/>
-                            <field name="numero_control"/>
-                            <field name="fact_info"/>
+                            <field name="sv_fe_uuid_code"/>
+                            <field name="sv_fe_date_certification"/>
+                            <field name="sv_fe_numero_control"/>
+                            <field name="sv_fe_fact_info"/>
                         </group>
                         <group>
-                            <field name="invalidation_type" readonly="state not in ['posted']"/>
-                            <field name="motivo_invalidacion" readonly="state not in ['posted']"/>
+                            <field name="sv_fe_invalidation_type" readonly="state not in ['posted']"/>
+                            <field name="sv_fe_motivo_invalidacion" readonly="state not in ['posted']"/>
                         </group>
                     </group>
 
                     <div class="oe_button_box" name="button_box">
-                        <button string="Cancelar DTE" name="cancel_dte" type="object" icon="fa-chain-broken"
-                            invisible="state not in ['posted']" groups="l10n_sv_fe.group_fel_manager" class="oe_stat_button"/>
+                        <button string="Cancelar DTE" name="sv_fe_cancel_dte" type="object" icon="fa-chain-broken"
+                            invisible="state not in ['posted']" groups="l10n_sv_fe.sv_fe_group_fel_manager" class="oe_stat_button"/>
 
-                        <button string="Imprimir DTE" name="get_pdf" type="object" icon="fa-download" class="oe_stat_button"
+                        <button string="Imprimir DTE" name="sv_fe_get_pdf" type="object" icon="fa-download" class="oe_stat_button"
                             invisible="state not in ['posted','cancel']"/>
 
                         <button string="Obtener JSON" name="get_json" type="object" icon="fa-code" class="oe_stat_button"
@@ -100,7 +100,7 @@
         <field name="inherit_id" ref="account.view_in_invoice_bill_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//tree[1]/field[@name='name']" position="after">
-                <field name="numero_control" optional="show" groups="l10n_sv_fe.group_fel_manager"/>
+                <field name="sv_fe_numero_control" optional="show" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
             </xpath>
         </field>
     </record> -->
@@ -111,7 +111,7 @@
         <field name="inherit_id" ref="account.view_out_invoice_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
-                <field name="numero_control" optional="show" groups="l10n_sv_fe.group_fel_manager"/>
+                <field name="sv_fe_numero_control" optional="show" groups="l10n_sv_fe.sv_fe_group_fel_manager"/>
             </xpath>
         </field>
     </record>
@@ -122,7 +122,7 @@
         <field name="inherit_id" ref="account.view_account_invoice_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
-                <field name="numero_control"/>
+                <field name="sv_fe_numero_control" />
             </xpath>
         </field>
     </record>
