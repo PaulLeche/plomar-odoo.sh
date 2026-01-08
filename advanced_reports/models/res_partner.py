@@ -26,7 +26,7 @@ class ResPartner(models.Model):
     @api.constrains('vat')
     def _constraint_vat(self):
         for record in self:
-            if record.vat:
+            if record.vat and record.sv_fe_partner_country_code == 'SV':
                 if not re.fullmatch(r'^[A-Za-z0-9]{14}$', record.vat):
                     raise UserError("NIT debe tener un largo de 14 carácteres \nsin guiones")
 
